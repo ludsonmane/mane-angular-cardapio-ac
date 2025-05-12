@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IconService } from './shared/services/icon/icon.service';
 
 @Component({
     selector: 'app-root',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
     standalone: false,
     styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'mane';
+
+    constructor(private iconService: IconService) {}
+
+    ngOnInit(): void {
+        this.iconService.registerIcons()
+    }
 }
