@@ -8,7 +8,6 @@ import { IconService } from './shared/services/icon/icon.service';
     styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-    title = 'mane';
 
     constructor(private iconService: IconService) {}
 
