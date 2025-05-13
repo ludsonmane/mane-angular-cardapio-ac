@@ -1,0 +1,44 @@
+{
+  "UNIT_SELECTION": {
+    "TITLE": "Escolha a unidade",
+    "DESCRIPTION": "Escolha a unidade que você está atualmente."
+  },
+  "HOME": {
+    "SUGGESTIONs": "Sugestões do dia",
+    "PROMOTIONS": "Promoções",
+    "SEE_ALL": "Ver tudo"
+  },
+  "RESTAURANTS": {
+    "TITLE": "Restaurantes",
+    "SEARCH": "Busque pelo nome ou pela categoria...",
+    "MAKE_SUGGESTION": "Faça uma sugestão"
+  },
+  "FAVORITES": {
+    "TITLE": "Favoritos",
+    "SEARCH": "Busque nos seus favoritos"
+  },
+  "OPTIONS": {
+    "LOCATION": "Você está em",
+    "ABOUT_US": "Sobre nós",
+    "LANGUAGE": "Idioma",
+    "RESERVATION": "Reservas",
+    "MUSIC_HUNGRY": "Fome de Música",
+    "MANE_CLUB": "Clube Mané "
+  },
+  "SEARCH_FIELD": {
+    "NO_RESULTS_FOUND": "Não encontramos resultados",
+    "MISSING_RESTAURANT": "Sente falta de algum restaurante que não encontrou no Mané?",
+    "NO_RESULTS_FOUND_PLATE": "Não encontramos nenhum prato com o termo que você buscou.",
+    "NO_RESULTS_FOUND_TERM": "Não encontramos nenhum restaurante com o termo que você buscou."
+  },
+  "MENU": {
+    "HOME": "Início",
+    "RESTAURANTS": "Restaurantes",
+    "SEARCH": "Busca",
+    "FAVORITES": "Favoritos",
+    "OPTIONS": "Opções"
+  },
+  "BUTTONS": {
+    "CANCEL": "Cancelar"
+  }
+}
