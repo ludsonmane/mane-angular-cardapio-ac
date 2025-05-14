@@ -14,7 +14,7 @@ export class IconService {
     ) { }
 
     public registerIcons(): void {
-        this.loadIcons(Object.values(IconsEnum), '../../../../public/icon/')
+        this.loadIcons(Object.values(IconsEnum), 'icon')
     }
 
     private loadIcons(iconKeys: string[], iconUrl: string): void {
