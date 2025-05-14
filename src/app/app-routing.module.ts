@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: 'location-selection',
+        path: '',
         loadChildren: () => import('./pages/location-selection/location-selection.module').then(m => m.LocationSelectionModule)
     }
 ];
