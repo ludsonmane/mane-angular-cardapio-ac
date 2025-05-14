@@ -1,4 +1,4 @@
-import { TranslateLoader, TranslateModule } from './../../node_modules/@ngx-translate/core/public-api.d';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +9,7 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 
 // Função para carregar os arquivos JSON
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, '../public/i18n', '.json')
+    return new TranslateHttpLoader(http, 'i18n/', '.json')
 }
 
 @NgModule({
