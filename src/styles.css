@@ -1,3 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+  --green-500: #004945;
+  --green-700: #062722;
+  --gray-500: #868E96;
+  --gray-300: #DEE2E6;
+  --red-500: #E74644;
+  --red-300: #E7464416;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body { height: 100%; }
 body { margin: 0; font-family: 'Merriweather', sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather';
+}
+
+p { font-family: 'Merriweather Sans';}
