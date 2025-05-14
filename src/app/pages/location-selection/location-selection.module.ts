@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LocationSelectionRoutingModule } from './location-selection-routing.module';
 import { LocationSelectionComponent } from './location-selection.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { LocationSelectionComponent } from './location-selection.component';
     ],
     imports: [
         CommonModule,
-        LocationSelectionRoutingModule
+        LocationSelectionRoutingModule,
+        TranslateModule,
     ]
 })
 export class LocationSelectionModule { }
