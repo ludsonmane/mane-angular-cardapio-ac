@@ -24,8 +24,6 @@ export class LocationSelectionComponent implements OnInit {
     }
 
     selectLocation(location: string): void {
-        this.router.navigate(['/home'], {
-            queryParams: { unitLocaton: location }
-        })
+        this.router.navigate(['/home', location])
     }
 }

@@ -6,7 +6,7 @@
 
     <ul class="list-units">
       @for (location of locations; track location) {
-        <li role="button" (click)="selectLocation(location.slag)">
+        <li role="button" (click)="selectLocation(location.slug)">
           <div class="icon-marker"><mat-icon svgIcon="marker"></mat-icon></div>
           <p>{{ location.name | translate }}</p>
           <mat-icon class="icon-arrow" svgIcon="arrow"></mat-icon>
