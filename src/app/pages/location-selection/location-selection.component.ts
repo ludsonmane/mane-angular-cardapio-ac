@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { LocationsModel } from '../../shared/models/locations.model';
-import { LocationDataService } from './services/location-data/location-data.service';
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { UnitLocationBottomSheetComponent } from '../../shared/components/unit-location-bottom-sheet/unit-location-bottom-sheet.component';
 
 @Component({
     selector: 'app-location-selection',
@@ -11,19 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocationSelectionComponent implements OnInit {
 
-    locations: LocationsModel[] = []
-
-    constructor(
-        private locationDataService: LocationDataService,
-        private router: Router
-    ) {}
+    constructor(private matBottomSheet: MatBottomSheet) {}
 
     ngOnInit(): void {
-        this.locationDataService.getLocations()
-            .subscribe((response: any) => { this.locations = response })
-    }
-
-    selectLocation(location: string): void {
-        this.router.navigate(['/home', location])
+        this.matBottomSheet.open(UnitLocationBottomSheetComponent,
+            { hasBackdrop: false }
+        )
     }
 }
