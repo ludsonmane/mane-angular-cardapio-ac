@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HomeModule } from './pages/home/home.module';
 
 // Função para carregar os arquivos JSON
 export function HttpLoaderFactory(http: HttpClient) {
@@ -25,7 +26,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        HomeModule
     ],
     providers: [
         provideHttpClient()
