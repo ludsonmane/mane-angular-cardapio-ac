@@ -29,7 +29,7 @@ export class UnitLocationBottomSheetComponent implements OnInit {
             .subscribe((response) => this.locations = response)
     }
 
-    selectLocation(locationId: string): void {
+    selectLocation(locationId: number): void {
         this.router.navigate(['/home', locationId])
         this.matBottomSheetRef.dismiss()
     }
