@@ -7,8 +7,12 @@
   --gray-300: #DEE2E6;
   --red-500: #E74644;
   --red-300: #E7464416;
-}
 
+  --swiper-pagination-color: white !important;
+  --swiper-pagination-bullet-width: 28px;
+  --swiper-pagination-bullet-height: 4px;
+  --swiper-pagination-bullet-border-radius: 3px;
+}
 * {
   margin: 0;
   padding: 0;

@@ -1,0 +1,14 @@
+.slide-item {
+  background-color: var(--green-500);
+  border-radius: 12px;
+  overflow: auto;
+  min-height: 200px;
+}
+
+.slide-item div {
+  width: 100%;
+  min-height: 170px;
+  background-position: center left;
+  background-repeat: no-repeat;
+  background-size: cover; /* Layout apenas até 380px */
+}

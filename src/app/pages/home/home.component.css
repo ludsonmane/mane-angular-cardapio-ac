@@ -2,12 +2,3 @@
 .container {
   padding: 20px;
 }
-
-.slide-item {
-  background-color: var(--green-500);
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: auto 170px; /* Layout apenas até 380px */
-  border-radius: 12px;
-  height: 200px;
-}

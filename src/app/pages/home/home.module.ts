@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { register } from 'swiper/element/bundle';
+import { BannerCarouselComponent } from './components/banner-carousel/banner-carousel.component';
 
 register()
 
 @NgModule({
     declarations: [
-        HomeComponent
+        HomeComponent,
+        BannerCarouselComponent
     ],
     imports: [
         CommonModule,
