@@ -9,11 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-    location: string = ''
+    locationId: string = ''
 
     constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit(): void {
-        this.location = this.activatedRoute.snapshot.paramMap.get('location') || ''
+        this.locationId = this.activatedRoute.snapshot.paramMap.get('location') || ''
     }
 }
