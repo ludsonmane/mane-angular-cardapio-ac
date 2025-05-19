@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HomeDataService } from '../../services/home-data.service';
+import { BannerCarouselModel } from '../../models/banner-carousel.model';
 
 @Component({
     selector: 'app-banner-carousel',
@@ -6,6 +8,14 @@ import { Component } from '@angular/core';
     templateUrl: './banner-carousel.component.html',
     styleUrl: './banner-carousel.component.css'
 })
-export class BannerCarouselComponent {
+export class BannerCarouselComponent implements OnInit{
 
+    imageList: BannerCarouselModel[] = []
+
+    constructor(private homeDataService: HomeDataService) {}
+
+    ngOnInit(): void {
+        this.homeDataService.getImagesCarousel()
+            .subscribe((response) => this.imageList = response)
+    }
 }

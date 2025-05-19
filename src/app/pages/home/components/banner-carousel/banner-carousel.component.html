@@ -1,20 +1,7 @@
-<swiper-container loop="true" pagination="true" >
-  <swiper-slide class="slide-item">
-    <div [style.background-image]="`url(img/cardapio-especial.png)`"></div>
-  </swiper-slide>
-  <swiper-slide class="slide-item">
-    <div [style.background-image]="`url(img/cardapio-especial.png)`"></div>
-  </swiper-slide>
-  <swiper-slide class="slide-item">
-    <div [style.background-image]="`url(img/cardapio-especial.png)`"></div>
-  </swiper-slide>
-  <swiper-slide class="slide-item">
-    <div [style.background-image]="`url(img/cardapio-especial.png)`"></div>
-  </swiper-slide>
-  <swiper-slide class="slide-item">
-    <div [style.background-image]="`url(img/cardapio-especial.png)`"></div>
-  </swiper-slide>
-  <swiper-slide class="slide-item">
-    <div [style.background-image]="`url(img/cardapio-especial.png)`"></div>
-  </swiper-slide>
+<swiper-container loop="true" pagination="true" autoPlay="true">
+  @for (image of imageList; track image) {
+    <swiper-slide class="slide-item">
+      <div [style.background-image]="'url(' + image.path + ')'"></div>
+    </swiper-slide>
+  }
 </swiper-container>
