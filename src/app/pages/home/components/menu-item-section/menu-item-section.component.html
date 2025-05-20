@@ -1,0 +1,16 @@
+<div class="menu-container">
+  <h2 class="menu-title">{{ title }}</h2>
+  <div class="menu-items-list">
+    @for(item of items; track items) {
+      <app-menu-item-card
+        [id]="item.id"
+        [title]="item.title"
+        [description]="item.description"
+        [currentPrice]="item.currentPrice"
+        [originalPrice]="item.originalPrice"
+        [imageUrl]="item.imageUrl"
+        [isFavorite]="item.isFavorite ?? false"
+      ></app-menu-item-card>
+    }
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.menu-container {
+  background-color: var(--yellow-100);
+  border-radius: 0.75rem; /* 12px */
+  padding: 1.5rem; /* 24px */
+}
+
+.menu-title {
+  color: var(--green-700);
+  font-size: 1.25rem; /* 20px */
+  font-weight: bolder;
+}
