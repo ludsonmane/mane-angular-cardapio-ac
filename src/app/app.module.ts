@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { HomeModule } from './pages/home/home.module';
 import { SharedModule } from './shared/shared.module';
+import { ProductModule } from './pages/product/product.module';
 
 // Função para carregar os arquivos JSON
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,7 +30,8 @@ export function HttpLoaderFactory(http: HttpClient) {
             }
         }),
         HomeModule,
-        SharedModule
+        SharedModule,
+        ProductModule
     ],
     providers: [
         provideHttpClient()
