@@ -1,4 +1,4 @@
-.menu-card {
+.product-card {
   display: flex;
   align-items: center;
   padding: 1.25rem 0; /* 20px */
@@ -7,7 +7,7 @@
   border-bottom: 1px solid var(--yellow-200);
 }
 
-.menu-image {
+.product-image {
   width: 66px;
   height: 66px;
   background-position: center;
@@ -16,7 +16,7 @@
   border-radius: 12px;
 }
 
-.menu-info {
+.product-info {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -24,14 +24,14 @@
   gap: 4px;
 }
 
-.menu-info .info-title,
+.product-info .info-title,
 .price-wrapper p {
   font-size: 0.875rem;
   color: var(--green-700);
   font-weight: bold;
 }
 
-.menu-info .info-description {
+.product-info .info-description {
   font-size: 0.75rem; /* 12px */
   color: var(--gray-500);
   font-weight: lighter;

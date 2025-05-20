@@ -2,7 +2,7 @@
   <h2 class="menu-title">{{ title }}</h2>
   <div class="menu-items-list">
     @for(item of items; track items) {
-      <app-menu-item-card
+      <app-product-card
         [id]="item.id"
         [title]="item.title"
         [description]="item.description"
@@ -10,7 +10,7 @@
         [originalPrice]="item.originalPrice"
         [imageUrl]="item.imageUrl"
         [isFavorite]="item.isFavorite ?? false"
-      ></app-menu-item-card>
+      ></app-product-card>
     }
   </div>
 </div>
