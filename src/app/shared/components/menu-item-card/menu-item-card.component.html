@@ -1,0 +1,16 @@
+<div class="menu-card">
+  <div class="menu-image" [style.background-image]="'url('+ imageUrl +')'"></div>
+  <div class="menu-info">
+    <p class="info-title">{{ title }}</p>
+    <p class="info-description">{{ description }}</p>
+    <div class="price-wrapper">
+      <p class="price-current">R$ {{ currentPrice | number: '1.2-2' }}</p>
+      @if (originalPrice && originalPrice > currentPrice) {
+        <p class="price-original">R$ {{ originalPrice | number: '1.2-2' }}</p>
+      }
+    </div>
+  </div>
+  <button class="btn-favorite">
+    <mat-icon [svgIcon]="isFavorite ? 'favorite' : 'favorite-border'"></mat-icon>
+  </button>
+</div>

@@ -1,0 +1,62 @@
+.menu-card {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem 0; /* 20px */
+  gap: 1rem;
+
+  border-bottom: 1px solid var(--yellow-100);
+}
+
+.menu-image {
+  width: 66px;
+  height: 66px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 12px;
+}
+
+.menu-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-info .info-title,
+.price-wrapper p {
+  font-size: 0.875rem;
+  color: var(--green-700);
+  font-weight: bold;
+}
+
+.menu-info .info-description {
+  font-size: 12px;
+  color: var(--gray-500);
+  font-weight: lighter;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-original {
+  text-decoration: line-through;
+  opacity: 32%;
+}
+
+.btn-favorite {
+  background: none;
+  border: none;
+}
+
+.btn-favorite mat-icon {
+  width: 15px;
+}

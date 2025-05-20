@@ -5,11 +5,13 @@ import { UnitLocationBottomSheetComponent } from './components/unit-location-bot
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list'
 import { TranslateModule } from '@ngx-translate/core';
+import { MenuItemCardComponent } from './components/menu-item-card/menu-item-card.component';
 
 
 @NgModule({
     declarations: [
-        UnitLocationBottomSheetComponent
+        UnitLocationBottomSheetComponent,
+        MenuItemCardComponent
     ],
     imports: [
         CommonModule,
@@ -19,7 +21,8 @@ import { TranslateModule } from '@ngx-translate/core';
         TranslateModule
     ],
     exports: [
-        UnitLocationBottomSheetComponent
+        UnitLocationBottomSheetComponent,
+        MenuItemCardComponent
     ]
 })
 export class SharedModule { }
