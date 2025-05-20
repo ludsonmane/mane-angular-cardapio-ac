@@ -2,6 +2,7 @@ export enum IconsEnum {
     Arrow = 'arrow',
     Comma = 'comma',
     Favorite = 'favorite',
+    FavoriteBorder = 'favorite-border',
     Marker = 'marker',
     NoLactose = 'no-lactose',
     Options = 'options',
