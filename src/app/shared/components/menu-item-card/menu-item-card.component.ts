@@ -14,7 +14,7 @@ export class MenuItemCardComponent {
     @Input() description!: string
     @Input() currentPrice!: number
     @Input() originalPrice?: number
-    @Input() isFavorite: boolean = false
+    @Input() isFavorite?: boolean = false
 
     constructor(private router: Router) {}
 
