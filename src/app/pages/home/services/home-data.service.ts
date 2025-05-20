@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BannerCarouselModel } from '../models/banner-carousel.model';
+import { MenuItemModel } from '../../../shared/models/menu-item.model';
 
 @Injectable({
     providedIn: 'root'
@@ -12,5 +13,13 @@ export class HomeDataService {
 
     getImagesCarousel(): Observable<BannerCarouselModel[]> {
         return this.http.get<BannerCarouselModel[]>('data/carousel.json')
+    }
+
+    getSuggestedItems(): Observable<MenuItemModel[]> {
+        return this.http.get<MenuItemModel[]>('data/suggested-items.json')
+    }
+
+    getPromotions(): Observable<MenuItemModel[]> {
+        return this.http.get<MenuItemModel[]>('data/promotions.json')
     }
 }
