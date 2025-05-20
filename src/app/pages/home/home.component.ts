@@ -1,5 +1,7 @@
+import { HomeDataService } from './services/home-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MenuItemModel } from '../../shared/models/menu-item.model';
 
 @Component({
     selector: 'app-home',
@@ -10,10 +12,28 @@ import { ActivatedRoute } from '@angular/router';
 export class HomeComponent implements OnInit {
 
     locationId: string = ''
+    suggestedItems: MenuItemModel[] = []
+    promotionItems: MenuItemModel[] = []
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private homeDataService: HomeDataService
+    ) {}
 
     ngOnInit(): void {
         this.locationId = this.activatedRoute.snapshot.paramMap.get('location') || ''
+
+        this.listSuggestedItems()
+        this.listPromotionItems()
+    }
+
+    listSuggestedItems(): void {
+        this.homeDataService.getSuggestedItems()
+            .subscribe((response) => this.suggestedItems = response)
+    }
+
+    listPromotionItems(): void {
+        this.homeDataService.getPromotions()
+            .subscribe((responnse) => this.promotionItems = responnse)
     }
 }

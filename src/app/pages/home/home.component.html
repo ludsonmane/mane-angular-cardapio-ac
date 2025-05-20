@@ -1,3 +1,11 @@
 <div class="container">
   <app-banner-carousel></app-banner-carousel>
+  <app-menu-item-section
+    title="{{ 'HOME.SUGGESTIONS' | translate }}"
+    [items]="suggestedItems"
+  ></app-menu-item-section>
+  <app-menu-item-section
+    title="{{ 'HOME.PROMOTIONS' | translate }}"
+    [items]="promotionItems"
+  ></app-menu-item-section>
 </div>
