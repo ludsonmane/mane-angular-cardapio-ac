@@ -4,7 +4,7 @@
   padding: 1.25rem 0; /* 20px */
   gap: 1rem;
 
-  border-bottom: 1px solid var(--yellow-100);
+  border-bottom: 1px solid var(--yellow-200);
 }
 
 .menu-image {
@@ -32,7 +32,7 @@
 }
 
 .menu-info .info-description {
-  font-size: 12px;
+  font-size: 0.75rem; /* 12px */
   color: var(--gray-500);
   font-weight: lighter;
 
@@ -44,12 +44,13 @@
 .price-wrapper {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem; /* 8px */
 }
 
 .price-original {
   text-decoration: line-through;
   opacity: 32%;
+  font-size: 0.75rem; /* 12px */
 }
 
 .btn-favorite {
