@@ -1,87 +1,13 @@
 [
   {
-    "id": 1,
-    "name": "Adega Mané",
-    "icon": "../img/restaurants/adega-mane"
-  },
-  {
-    "id": 2,
+    "id": "1",
     "name": "Bar do Mané",
-    "icon": "../img/restaurants/bar-mane"
-  },
-  {
-    "id": 3,
-    "name": "Café e um Chêro",
-    "icon": "../img/restaurants/cafe-e-um-chero"
-  },
-  {
-    "id": 4,
-    "name": "Casa Baco",
-    "icon": "../img/restaurants/casa-baco"
-  },
-  {
-    "id": 5,
-    "name": "Chêro Verde",
-    "icon": "../img/restaurants/chero-verde"
-  },
-  {
-    "id": 6,
-    "name": "De Paulina",
-    "icon": "../img/restaurants/de-paulina"
-  },
-  {
-    "id": 7,
-    "name": "Italianissimo",
-    "icon": "../img/restaurants/italianissimo"
-  },
-  {
-    "id": 8,
-    "name": "Mahalo Poke Sushi",
-    "icon": "../img/restaurants/mahalo-poke-sushi"
-  },
-  {
-    "id": 9,
-    "name": "Maré",
-    "icon": "../img/restaurants/mare"
-  },
-  {
-    "id": 10,
-    "name": "Marzuk",
-    "icon": "../img/restaurants/marzuki"
-  },
-  {
-    "id": 11,
-    "name": "Pastel Mix",
-    "icon": "../img/restaurants/pastel-mix"
-  },
-  {
-    "id": 12,
-    "name": "Perdomo Doces",
-    "icon": "../img/restaurants/perdomo-doces"
-  },
-  {
-    "id": 13,
-    "name": "Ricco",
-    "icon": "../img/restaurants/ricco"
-  },
-  {
-    "id": 14,
-    "name": "Strogonoff Paulo Tarso",
-    "icon": "../img/restaurants/strogonoff-paulo-tarso"
-  },
-  {
-    "id": 15,
-    "name": "Superquadra Bar",
-    "icon": "../img/restaurants/superquadra-bar"
-  },
-  {
-    "id": 16,
-    "name": "Tudo do Porco",
-    "icon": "../img/restaurants/tudo-do-porco"
-  },
-  {
-    "id": 17,
-    "name": "Véi Chico",
-    "icon": "../img/restaurants/vei-chico"
+    "description": "Drinks e Bebidas",
+    "imageLogoUrl": "../img/restaurants/bar-mane.png",
+    "imageUrl": "../img/restaurants/bar-mane.png",
+    "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
+    "color": "#40130F",
+    "chefTips": ["2" , "3"],
+    "locationId": "1"
   }
 ]
