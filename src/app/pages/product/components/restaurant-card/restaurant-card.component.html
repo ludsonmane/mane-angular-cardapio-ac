@@ -1,0 +1,10 @@
+<div class="restaurant-card">
+  <div class="restaurant-image" [style.background-image]="'url(' + imageUrl + ')'"></div>
+  <div class="restaurant-info">
+    <p class="info-name">{{ name }}</p>
+    <p class="info-category">{{ category }}</p>
+  </div>
+  <button class="btn-restaurant" (click)="onGoToRestaurant()">
+    <mat-icon svgIcon="arrow"></mat-icon>
+  </button>
+</div>
