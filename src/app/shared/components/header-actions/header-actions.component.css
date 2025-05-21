@@ -10,7 +10,7 @@
 }
 
 ::ng-deep .btn-favorite.active mat-icon svg path {
-  fill: var(--red-300);
+  fill: var(--red-500);
   stroke: none;
 }
 
