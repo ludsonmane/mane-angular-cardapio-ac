@@ -1,0 +1,10 @@
+<div class="header-container" [style.background-image]="'url(' + imageUrl + ')'">
+  <app-header-actions
+    [showFavorite]="true"
+    [showShare]="true"
+    [isFavorite]="true"
+    (back)="goBack()"
+    (favorite)="toggleFavorite()"
+    (share)="shareItem()"
+  ></app-header-actions>
+</div>
