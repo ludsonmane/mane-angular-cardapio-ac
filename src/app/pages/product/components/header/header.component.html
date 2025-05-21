@@ -1,8 +1,14 @@
-<div class="header-container" [style.background-image]="'url(' + imageUrl + ')'">
+<div
+  class="header-container"
+  [class.scrolled]="scrolled"
+  [style.background-image]="'url(' + imageUrl + ')'"
+>
   <app-header-actions
     [showFavorite]="true"
     [showShare]="true"
+    [showTitle]="scrolled"
     [isFavorite]="true"
+    title="Kafta Bovina"
     (back)="goBack()"
     (favorite)="toggleFavorite()"
     (share)="shareItem()"

@@ -4,10 +4,11 @@ import { Component, Input } from '@angular/core';
     selector: 'app-header',
     standalone: false,
     templateUrl: './header.component.html',
-    styleUrl: './header.component.css'
+    styleUrl: './header.component.css',
 })
 export class HeaderComponent {
     @Input() imageUrl!: string
+    @Input() scrolled: boolean = false
 
     goBack(): void {}
 

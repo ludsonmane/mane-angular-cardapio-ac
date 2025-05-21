@@ -4,4 +4,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding: 1.25rem; /* 20px */
+  transition: all .5s;
+}
+
+.header-container.scrolled {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 50px;
+  background-image: none !important;
 }
