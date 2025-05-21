@@ -10,7 +10,7 @@ export class HeaderActionsComponent {
     @Input() showFavorite: boolean = false
     @Input() showShare: boolean = false
     @Input() showInfo: boolean = false
-    @Input() isFavorite: boolean = false
+    @Input() isFavorite?: boolean = false
 
     @Output() back = new EventEmitter<void>()
     @Output() favorite = new EventEmitter<void>()
