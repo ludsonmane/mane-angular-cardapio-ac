@@ -1,0 +1,48 @@
+
+::ng-deep .btn-arrow mat-icon svg path {
+  fill: white;
+}
+
+::ng-deep .btn-favorite mat-icon svg path,
+::ng-deep .btn-share mat-icon svg path {
+  stroke: white;
+  transition: all .2s;
+}
+
+::ng-deep .btn-favorite.active mat-icon svg path {
+  fill: var(--red-300);
+  stroke: none;
+}
+
+.header-actions,
+.right-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 16px */
+}
+
+.header-actions {
+  justify-content: space-between;
+}
+
+.header-actions button {
+  width: 32px;
+  height: 32px;
+  background-color: #00000060;
+  border: none;
+  border-radius: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-arrow mat-icon {
+  transform: rotate(180deg);
+  width: 7px !important;
+}
+
+.header-actions button mat-icon {
+  width: 14px;
+}

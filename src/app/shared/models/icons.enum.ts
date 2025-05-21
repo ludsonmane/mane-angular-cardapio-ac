@@ -8,5 +8,7 @@ export enum IconsEnum {
     Options = 'options',
     Restaurant = 'restaurant',
     Search = 'search',
-    Vegetarian  = 'vegetarian'
+    Vegetarian  = 'vegetarian',
+    Share = 'share',
+    Info = 'Info'
 }

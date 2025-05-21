@@ -1,0 +1,16 @@
+<div class="header-actions">
+  <button class="btn-arrow" (click)="onBack()">
+    <mat-icon svgIcon="arrow"></mat-icon>
+  </button>
+  <div class="right-actions">
+    <button *ngIf="showInfo" class="btn-info" (click)="onInfo()">
+      <mat-icon svgIcon="info"></mat-icon>
+    </button>
+    <button *ngIf="showFavorite" class="btn-favorite" [class.active]="isFavorite" (click)="onFavorite()">
+      <mat-icon svgIcon="favorite-border"></mat-icon>
+    </button>
+    <button *ngIf="showShare" class="btn-share" (click)="onShare()">
+      <mat-icon svgIcon="share"></mat-icon>
+    </button>
+  </div>
+</div>

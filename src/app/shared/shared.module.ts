@@ -6,12 +6,14 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list'
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { HeaderActionsComponent } from './components/header-actions/header-actions.component';
 
 
 @NgModule({
     declarations: [
         UnitLocationBottomSheetComponent,
-        ProductCardComponent
+        ProductCardComponent,
+        HeaderActionsComponent
     ],
     imports: [
         CommonModule,
@@ -22,7 +24,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     ],
     exports: [
         UnitLocationBottomSheetComponent,
-        ProductCardComponent
+        ProductCardComponent,
+        HeaderActionsComponent
     ]
 })
 export class SharedModule { }
