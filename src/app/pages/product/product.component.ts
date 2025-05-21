@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
     selector: 'app-product',
@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class ProductComponent {
 
+    scrollY: number = 0
+
+    @HostListener('window:scroll', [])
+    onScroll(): void {
+        this.scrollY = window.scrollY
+    }
 }
