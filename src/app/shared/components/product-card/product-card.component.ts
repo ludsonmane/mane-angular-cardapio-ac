@@ -20,6 +20,6 @@ export class ProductCardComponent {
 
     onNavigate(): void {
         // Passar a rota da página menu-item-detail, quando for criada
-        this.router.navigate(['', this.id])
+        this.router.navigate(['/produto', this.id])
     }
 }
