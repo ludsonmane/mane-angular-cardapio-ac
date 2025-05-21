@@ -6,11 +6,13 @@ import { ProductComponent } from './product.component';
 import { ProductMaterialModule } from '../../shared/materials/product-material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
+import { ProductInfoComponent } from './components/product-info/product-info.component';
 
 @NgModule({
     declarations: [
         ProductComponent,
-        HeaderComponent
+        HeaderComponent,
+        ProductInfoComponent
     ],
     imports: [
         CommonModule,

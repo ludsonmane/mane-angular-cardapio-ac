@@ -1,1 +1,14 @@
-<p>product works!</p>
+<div class="container">
+  <app-header
+    [scrolled]="scrollY > 100"
+    [imageUrl]="product.imageUrl"
+  ></app-header>
+  <div class="content">
+    <app-product-info
+      [title]="product.name"
+      [description]="product.description"
+      [price]="product.price"
+    ></app-product-info>
+  </div>
+</div>
+
