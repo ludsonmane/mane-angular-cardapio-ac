@@ -2,6 +2,7 @@
   <button class="btn-arrow" (click)="onBack()">
     <mat-icon svgIcon="arrow"></mat-icon>
   </button>
+  <h3 class="header-title" *ngIf="showTitle">{{ title }}</h3>
   <div class="right-actions">
     <button *ngIf="showInfo" class="btn-info" (click)="onInfo()">
       <mat-icon svgIcon="info"></mat-icon>

@@ -38,6 +38,14 @@
   cursor: pointer;
 }
 
+.header-title {
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  flex: 1;
+  text-align: center;
+}
+
 .btn-arrow mat-icon {
   transform: rotate(180deg);
   width: 7px !important;
