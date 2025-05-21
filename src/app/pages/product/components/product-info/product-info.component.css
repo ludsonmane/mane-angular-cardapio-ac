@@ -1,0 +1,24 @@
+.info-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.info-title {
+  font-size: 1.5rem;
+  color: var(--green-700);
+  font-weight: bold;
+}
+
+.info-description {
+  font-size: 1rem;
+  font-weight: lighter;
+  color: var(--gray-500);
+  line-height: 170%;
+}
+
+.info-price {
+  font-size: 1.25rem;
+  color: var(--green-700);
+}
