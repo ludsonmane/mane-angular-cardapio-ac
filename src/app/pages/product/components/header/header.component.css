@@ -1,6 +1,6 @@
 .header-container {
-  height: 300px;
-  background-position: center;
+  height: 250px;
+  background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 1.25rem; /* 20px */
