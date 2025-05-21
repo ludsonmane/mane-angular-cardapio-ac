@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "restaurantId": 2,
+    "name": "Casquinha de Siri",
+    "description": "Carne de siri refogada com azeite de dendê, alho, cebola, tomate, leite de coco, coentro, suco de limão, leite e farinha de Panko.",
+    "price": 35.00,
+    "imageUrl": "../img/menu-item.png",
+    "tags": ["vegetariano", "vegano", "sem-lactose"],
+    "category": "Entradas",
+    "isFavorite": true,
+    "suggestions": ["p2", "p3", "p4"]
+  }
+]
