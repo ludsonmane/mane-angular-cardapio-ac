@@ -1,6 +1,6 @@
 export interface ProductModel {
     id: string
-    restauranteId: number
+    restaurantId: string
     name: string
     description: string
     price: number
