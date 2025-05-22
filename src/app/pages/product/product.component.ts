@@ -15,12 +15,14 @@ export class ProductComponent implements OnInit {
 
     product!: ProductModel
     productId!: string
+    restaurant!: RestaurantModel
 
     scrollY: number = 0
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private productService: ProductService
+        private productService: ProductService,
+        private restaurantService: RestaurantService
     ) {}
 
     ngOnInit(): void {
@@ -28,9 +30,19 @@ export class ProductComponent implements OnInit {
         this.getDetailsProduct(this.productId)
     }
 
-    @HostListener('window:scroll', [])
-    onScroll(): void {
-        this.scrollY = window.scrollY
+    loadDetailsProduct(id: string): void {
+        this.productService.getProductById(id)
+            .subscribe((response) => {
+                if (response) {
+                    this.product = response
+                    this.loadRestaurant(response.restaurantId)
+                }
+            })
+    }
+
+    loadRestaurant(id: string): void {
+        this.restaurantService.getRestaurantById(id)
+            .subscribe((response) => { if (response) this.restaurant = response })
     }
 
     onContentScroll(event: Event): void {
