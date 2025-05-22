@@ -2,6 +2,7 @@ import { HomeDataService } from './services/home-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItemModel } from '../../shared/models/menu-item.model';
+import { ProductService } from '../../shared/services/product/product.service';
 
 @Component({
     selector: 'app-home',
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit {
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private homeDataService: HomeDataService
+        private homeDataService: HomeDataService,
+        private productService: ProductService
     ) {}
 
     ngOnInit(): void {
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit {
     }
 
     listSuggestedItems(): void {
-        this.homeDataService.getSuggestedItems()
+        this.productService.getSuggestedItems()
             .subscribe((response) => this.suggestedItems = response)
     }
 

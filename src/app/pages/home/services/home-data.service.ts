@@ -15,10 +15,6 @@ export class HomeDataService {
         return this.http.get<BannerCarouselModel[]>('data/carousel.json')
     }
 
-    getSuggestedItems(): Observable<MenuItemModel[]> {
-        return this.http.get<MenuItemModel[]>('data/suggested-items.json')
-    }
-
     getPromotions(): Observable<MenuItemModel[]> {
         return this.http.get<MenuItemModel[]>('data/promotions.json')
     }
