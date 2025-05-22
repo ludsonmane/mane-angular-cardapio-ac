@@ -17,6 +17,20 @@
       [name]="restaurant.name"
       [description]="restaurant.description"
     ></app-restaurant-card>
+
+    <div class="content-suggestions">
+      <h3>{{ 'PRODUCT.FOLLOW_UP_SUGGESTION' | translate }}</h3>
+      <div class="cards-wrapper">
+        @for (item of listSuggestions; track item) {
+          <app-product-card-vertical
+            [id]="item.id"
+            [imageUrl]="item.imageUrl"
+            [title]="item.title"
+            [price]="item.currentPrice"
+          ></app-product-card-vertical>
+        }
+      </div>
+    </div>
   </div>
 </div>
 

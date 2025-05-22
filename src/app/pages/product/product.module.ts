@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { RestaurantCardComponent } from './components/restaurant-card/restaurant
         CommonModule,
         ProductRoutingModule,
         ProductMaterialModule,
-        SharedModule
+        SharedModule,
+        TranslateModule
     ]
 })
 export class ProductModule { }

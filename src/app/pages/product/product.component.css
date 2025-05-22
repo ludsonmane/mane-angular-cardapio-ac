@@ -27,3 +27,27 @@ app-header {
   overflow-y: auto;
   z-index: 2;
 }
+
+.content-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.content-suggestions h3 {
+  font-size: 1.25rem;
+  color: var(--green-700);
+  font-weight: bold;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+app-product-card-vertical {
+  flex: 1 1 0;
+  max-width: 30%;
+}

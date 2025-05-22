@@ -4,6 +4,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ProductModel } from '../../shared/models/product.model';
 import { RestaurantService } from '../../shared/services/restaurant/restaurant.service';
 import { RestaurantModel } from '../../shared/models/restaurant.model';
+import { MenuItemModel } from '../../shared/models/menu-item.model';
 
 @Component({
     selector: 'app-product',
@@ -16,6 +17,7 @@ export class ProductComponent implements OnInit {
     product!: ProductModel
     productId!: string
     restaurant!: RestaurantModel
+    listSuggestions: MenuItemModel[] = []
 
     scrollY: number = 0
 
@@ -38,8 +40,14 @@ export class ProductComponent implements OnInit {
                 if (response) {
                     this.product = response
                     this.loadRestaurant(response.restaurantId)
+                    this.loadFollowUpSuggestions(response.suggestions)
                 }
             })
+    }
+
+    loadFollowUpSuggestions(items: any): void {
+        this.productService.getSuggestedItems()
+            .subscribe((response) => this.listSuggestions = response)
     }
 
     loadRestaurant(id: string): void {
