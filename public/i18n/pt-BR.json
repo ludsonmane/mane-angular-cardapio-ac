@@ -31,6 +31,9 @@
     "NO_RESULTS_FOUND_PLATE": "Não encontramos nenhum prato com o termo que você buscou.",
     "NO_RESULTS_FOUND_TERM": "Não encontramos nenhum restaurante com o termo que você buscou."
   },
+  "PRODUCT": {
+    "FOLLOW_UP_SUGGESTION": "Sugestão de acompanhamento"
+  },
   "MENU": {
     "HOME": "Início",
     "RESTAURANTS": "Restaurantes",
