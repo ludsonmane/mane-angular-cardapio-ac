@@ -7,10 +7,14 @@ import { Component, Input } from '@angular/core';
     styleUrl: './restaurant-card.component.css'
     })
 export class RestaurantCardComponent {
-    @Input() imageUrl!: string
     @Input() id!: string
+    @Input() imageUrl!: string
     @Input() name!: string
-    @Input() category!: string
+    @Input() description!: string
 
-    onGoToRestaurant(): void { }
+    constructor(private router: Router) {}
+
+    onGoToRestaurant(): void {
+        this.router.navigate(['', this.id])
+    }
 }
