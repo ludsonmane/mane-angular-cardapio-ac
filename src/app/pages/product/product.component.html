@@ -3,7 +3,8 @@
     [scrolled]="scrollY > 10"
     [imageUrl]="product.imageUrl"
   ></app-header>
-  <div class="content">
+
+  <div class="content" (scroll)="onContentScroll($event)">
     <app-product-info
       [title]="product.name"
       [description]="product.description"

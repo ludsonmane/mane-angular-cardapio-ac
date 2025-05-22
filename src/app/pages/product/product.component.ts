@@ -33,8 +33,8 @@ export class ProductComponent implements OnInit {
         this.scrollY = window.scrollY
     }
 
-    getDetailsProduct(id: string): void {
-        this.productService.getProductById(id)
-            .subscribe((response) => { if (response) this.product = response })
+    onContentScroll(event: Event): void {
+        const target = event.target as HTMLElement
+        this.scrollY = target.scrollTop
     }
 }
