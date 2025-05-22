@@ -7,13 +7,15 @@ import { MatListModule } from '@angular/material/list'
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { HeaderActionsComponent } from './components/header-actions/header-actions.component';
+import { ProductCardVerticalComponent } from './components/product-card-vertical/product-card-vertical.component';
 
 
 @NgModule({
     declarations: [
         UnitLocationBottomSheetComponent,
         ProductCardComponent,
-        HeaderActionsComponent
+        HeaderActionsComponent,
+        ProductCardVerticalComponent
     ],
     imports: [
         CommonModule,
@@ -25,7 +27,8 @@ import { HeaderActionsComponent } from './components/header-actions/header-actio
     exports: [
         UnitLocationBottomSheetComponent,
         ProductCardComponent,
-        HeaderActionsComponent
+        HeaderActionsComponent,
+        ProductCardVerticalComponent
     ]
 })
 export class SharedModule { }

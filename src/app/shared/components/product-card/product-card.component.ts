@@ -15,6 +15,7 @@ export class ProductCardComponent {
     @Input() currentPrice!: number
     @Input() originalPrice?: number
     @Input() isFavorite?: boolean = false
+    @Input() layout: 'horizontal' | 'vertical' = 'horizontal'
 
     constructor(private router: Router) {}
 
