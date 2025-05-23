@@ -12,7 +12,9 @@
     "TITLE": "Restaurantes",
     "SEARCH": "Busque pelo nome ou pela categoria...",
     "MAKE_SUGGESTION": "Faça uma sugestão",
-    "SEARCH_RESTAURANT": "Busque no restaurante..."
+    "SEARCH_RESTAURANT": "Busque no restaurante...",
+    "CHEF_TIPS": "Dica do Chef",
+    "CHECKOUT_MENU": "Conheça nosso cardápio"
   },
   "FAVORITES": {
     "TITLE": "Favoritos",
