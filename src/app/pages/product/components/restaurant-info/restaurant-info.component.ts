@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-restaurant-card',
+    selector: 'app-restaurant-info',
     standalone: false,
-    templateUrl: './restaurant-card.component.html',
-    styleUrl: './restaurant-card.component.css'
+    templateUrl: './restaurant-info.component.html',
+    styleUrl: './restaurant-info.component.css'
     })
-export class RestaurantCardComponent {
+export class RestaurantInfoComponent {
     @Input() id!: string
     @Input() imageUrl!: string
     @Input() name!: string
