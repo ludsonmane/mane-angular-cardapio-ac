@@ -3,10 +3,10 @@ import { RestaurantService } from './../../shared/services/restaurant/restaurant
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-restaurants',
-  standalone: false,
-  templateUrl: './restaurants.component.html',
-  styleUrl: './restaurants.component.css'
+    selector: 'app-restaurants',
+    standalone: false,
+    templateUrl: './restaurants.component.html',
+    styleUrl: './restaurants.component.css'
 })
 export class RestaurantsComponent implements OnInit {
     search = ''
