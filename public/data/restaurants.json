@@ -6,7 +6,11 @@
     "imageLogoUrl": "../img/restaurants/adega-mane.png",
     "imageUrl": "../img/restaurants/adega-mane.png",
     "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
-    "color": "#431E15",
+    "theme": {
+      "headerBg": "#FCE6E4",
+      "colorText": "#40130F",
+      "buttonBg": "#DE5649"
+    },
     "chefTips": ["2" , "3"],
     "locationId": "1"
   },
@@ -17,7 +21,11 @@
     "imageLogoUrl": "../img/restaurants/bar-mane.png",
     "imageUrl": "../img/restaurants/bar-mane.png",
     "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
-    "color": "#40130F",
+    "theme": {
+      "headerBg": "#DEF2FF",
+      "colorText": "#04304D",
+      "buttonBg": "#006298"
+    },
     "chefTips": ["2" , "3"],
     "locationId": "1"
   },
@@ -28,29 +36,41 @@
     "imageLogoUrl": "../img/restaurants/cafe-e-um-cero.png",
     "imageUrl": "../img/restaurants/cafe-e-um-cero.png",
     "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
-    "color": "#EF9528",
+    "theme": {
+      "headerBg": "#E6E6E7",
+      "colorText": "#252527",
+      "buttonBg": "#3A3A3C"
+    },
     "chefTips": ["2" , "3"],
     "locationId": "1"
   },
   {
-    "id": "3",
+    "id": "4",
     "name": "Café e um Chêro",
     "description": "Drinks e Bebidas",
     "imageLogoUrl": "../img/restaurants/cafe-e-um-cero.png",
     "imageUrl": "../img/restaurants/cafe-e-um-cero.png",
     "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
-    "color": "#EF9528",
+    "theme": {
+      "headerBg": "#FBE9CA",
+      "colorText": "#421106",
+      "buttonBg": "#EF9628"
+    },
     "chefTips": ["2" , "3"],
     "locationId": "1"
   },
   {
-    "id": "3",
+    "id": "5",
     "name": "Café e um Chêro",
     "description": "Drinks e Bebidas",
     "imageLogoUrl": "../img/restaurants/cafe-e-um-cero.png",
     "imageUrl": "../img/restaurants/cafe-e-um-cero.png",
     "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
-    "color": "#EF9528",
+     "theme": {
+      "headerBg": "#FBE9CA",
+      "colorText": "#421106",
+      "buttonBg": "#EF9628"
+    },
     "chefTips": ["2" , "3"],
     "locationId": "1"
   }
