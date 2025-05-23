@@ -1,0 +1,24 @@
+<div class="container" *ngIf="restaurant">
+  <app-header
+    [title]="restaurant.name"
+    [description]="restaurant.description"
+    [imageLogoUrl]="restaurant.imageLogoUrl"
+    [scrolled]="search != ''"
+  ></app-header>
+
+  <div class="content">
+    <div class="content-field">
+      <div class="form-field">
+        <mat-icon class="icon-search" svgIcon="search"></mat-icon>
+        <input
+          type="text"
+          [(ngModel)]="search"
+          [placeholder]="'RESTAURANTS.SEARCH_RESTAURANT' | translate"
+          (input)="searchRestaurant()"
+        />
+        <mat-icon *ngIf="search" class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
+      </div>
+      <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
+    </div>
+  </div>
+</div>

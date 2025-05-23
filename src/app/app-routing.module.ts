@@ -17,6 +17,10 @@ const routes: Routes = [
     {
         path: 'restaurantes',
         loadChildren: () => import('./pages/restaurants/restaurants.module').then(m => m.RestaurantsModule)
+    },
+    {
+        path: 'restaurantes/:id',
+        loadChildren: () => import('./pages/details-restaurant/details-restaurant.module').then(m => m.DetailsRestaurantModule)
     }
 ];
 

@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+app-header {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  flex: 1;
+  margin-top: -1.25rem;
+  padding: 2rem 1.25rem;
+  background-color: white;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.content-field {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  box-sizing: border-box;
+}
+
+.form-field {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: 0.75rem;
+  background-color: var(--gray-100);
+}
+
+.form-field input {
+  border: none;
+  font-size: 1rem;
+  font-weight: lighter;
+  color: var(--gray-500);
+  outline: none;
+  background: none;
+}
+
+.form-field mat-icon {
+  width: 16px;
+}
+
+.icon-clear,
+.btn-cancel {
+  cursor: pointer;
+}
+
+.btn-cancel {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: lighter;
+  color: var(--gray-500);
+}
