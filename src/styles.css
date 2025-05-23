@@ -5,6 +5,7 @@
   --green-700: #062722;
   --gray-500: #868E96;
   --gray-300: #DEE2E6;
+  --gray-100: #F1F3F5;
   --red-300: #E7464416;
   --red-500: #E74644;
   --yellow-200: #F1DAB7;
@@ -15,6 +16,7 @@
   --swiper-pagination-bullet-height: 4px;
   --swiper-pagination-bullet-border-radius: 3px;
 }
+
 * {
   margin: 0;
   padding: 0;
