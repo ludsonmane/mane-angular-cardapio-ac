@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { HeaderActionsComponent } from './components/header-actions/header-actions.component';
 import { ProductCardVerticalComponent } from './components/product-card-vertical/product-card-vertical.component';
+import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ProductCardVerticalComponent } from './components/product-card-vertical
         UnitLocationBottomSheetComponent,
         ProductCardComponent,
         HeaderActionsComponent,
-        ProductCardVerticalComponent
+        ProductCardVerticalComponent,
+        RestaurantCardComponent
     ],
     imports: [
         CommonModule,
@@ -28,7 +30,8 @@ import { ProductCardVerticalComponent } from './components/product-card-vertical
         UnitLocationBottomSheetComponent,
         ProductCardComponent,
         HeaderActionsComponent,
-        ProductCardVerticalComponent
+        ProductCardVerticalComponent,
+        RestaurantCardComponent
     ]
 })
 export class SharedModule { }

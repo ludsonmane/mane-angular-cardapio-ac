@@ -9,6 +9,7 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { HomeModule } from './pages/home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './pages/product/product.module';
+import { RestaurantsModule } from './pages/restaurants/restaurants.module';
 
 // Função para carregar os arquivos JSON
 export function HttpLoaderFactory(http: HttpClient) {
@@ -17,7 +18,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
@@ -31,7 +32,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         }),
         HomeModule,
         SharedModule,
-        ProductModule
+        ProductModule,
+        RestaurantsModule
     ],
     providers: [
         provideHttpClient()

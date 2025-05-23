@@ -10,5 +10,6 @@ export enum IconsEnum {
     Search = 'search',
     Vegetarian  = 'vegetarian',
     Share = 'share',
-    Info = 'Info'
+    Info = 'info',
+    Close = 'close'
 }

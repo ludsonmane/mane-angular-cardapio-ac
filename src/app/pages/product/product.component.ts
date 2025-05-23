@@ -1,7 +1,7 @@
 import { ProductService } from './../../shared/services/product/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ProductModel } from '../../shared/models/product.model';
+import { ProductModel } from '../../shared/models/dish.model';
 import { RestaurantService } from '../../shared/services/restaurant/restaurant.service';
 import { RestaurantModel } from '../../shared/models/restaurant.model';
 import { MenuItemModel } from '../../shared/models/menu-item.model';

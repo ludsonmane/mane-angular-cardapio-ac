@@ -1,0 +1,16 @@
+.restaurant-item {
+  text-align: center;
+  cursor: pointer;
+}
+
+.restaurant-item img {
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.restaurant-item p {
+  font-size: 0.625rem;
+  color: var(--green-700);
+  font-weight: bold;
+  text-align: center;
+}
