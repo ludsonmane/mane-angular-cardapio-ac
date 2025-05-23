@@ -20,4 +20,8 @@ export class ProductService {
     getSuggestedItems(): Observable<MenuItemModel[]> {
         return this.http.get<MenuItemModel[]>('data/suggested-items.json')
     }
+
+    getChefTips(): Observable<MenuItemModel[]> {
+        return this.http.get<MenuItemModel[]>('data/chef-tips.json')
+    }
 }

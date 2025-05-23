@@ -20,5 +20,19 @@
       </div>
       <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
     </div>
+
+    <div class="content-tips">
+      <h3>{{ 'RESTAURANTS.CHEF_TIPS' | translate }}</h3>
+      <div class="cards-wrapper">
+        @for (item of listChefTips; track item) {
+          <app-product-card-vertical
+            [id]="item.id"
+            [imageUrl]="item.imageUrl"
+            [title]="item.title"
+            [price]="item.currentPrice"
+          ></app-product-card-vertical>
+        }
+      </div>
+    </div>
   </div>
 </div>

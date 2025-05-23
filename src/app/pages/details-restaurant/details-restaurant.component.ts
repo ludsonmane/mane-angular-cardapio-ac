@@ -3,6 +3,8 @@ import { RestaurantModel } from '../../shared/models/restaurant.model';
 import { RestaurantService } from '../../shared/services/restaurant/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import { ProductService } from '../../shared/services/product/product.service';
+import { MenuItemModel } from '../../shared/models/menu-item.model';
 
 @Component({
     selector: 'app-details-restaurant',
@@ -13,17 +15,22 @@ import { DOCUMENT } from '@angular/common';
 export class DetailsRestaurantComponent implements OnInit{
     restaurant!: RestaurantModel
     search: string = ''
+    listChefTips: MenuItemModel[] = []
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private restaurantService: RestaurantService,
-        @Inject(DOCUMENT) private document: Document
+        @Inject(DOCUMENT) private document: Document,
+        private productService: ProductService
     ) {}
 
     ngOnInit(): void {
         this.activatedRoute.paramMap.subscribe(params => {
             const id = params.get('id')
-            if (id) this.loadDetailsRestaurand(id)
+            if (id) {
+                this.loadDetailsRestaurand(id)
+                this.loadChefTips()
+            }
         })
     }
 
@@ -44,4 +51,9 @@ export class DetailsRestaurantComponent implements OnInit{
     searchRestaurant(): void {}
 
     cancelSearch(): void {}
+
+    loadChefTips(): void {
+        this.productService.getChefTips()
+            .subscribe((response) => this.listChefTips = response)
+    }
 }

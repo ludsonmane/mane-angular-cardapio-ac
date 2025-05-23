@@ -71,3 +71,27 @@ app-header {
   font-weight: lighter;
   color: var(--gray-500);
 }
+
+.content-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.content-tips h3 {
+  font-size: 1.25rem;
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+app-product-card-vertical {
+  flex: 1 1 0;
+  max-width: 30%;
+}

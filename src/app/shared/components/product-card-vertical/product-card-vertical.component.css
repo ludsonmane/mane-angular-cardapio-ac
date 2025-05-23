@@ -19,7 +19,7 @@
 
 .info-title {
   font-size: 0.875rem;
-  color: var(--green-700);
+  color: var(--color-text, --green-700);
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-overflow: ellipsis;
