@@ -6,6 +6,6 @@ export interface RestaurantModel {
     imageLogoUrl: string
     imageAboutUrl: string
     about: string
-    color: string
+    theme: { headerBg: string, colorText: string, buttonBg: string }
     chefTips: string[]
 }
