@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
     styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-    @Input() id!: number
+    @Input() id!: string
     @Input() imageUrl!: string
     @Input() title!: string
     @Input() description!: string
