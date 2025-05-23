@@ -40,7 +40,7 @@
 
 .header-title {
   font-weight: bold;
-  color: white;
+  color: var(--color-text, white);
   font-size: 1rem;
   flex: 1;
   text-align: center;
