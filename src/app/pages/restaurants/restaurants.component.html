@@ -1,0 +1,31 @@
+<div class="container">
+  <h1 class="title">{{ 'RESTAURANTS.TITLE' | translate }}</h1>
+  <div class="form-field">
+    <mat-icon class="icon-search" svgIcon="search"></mat-icon>
+    <input
+      type="text"
+      [(ngModel)]="search"
+      [placeholder]="'RESTAURANTS.SEARCH' | translate"
+      (input)="filterRestaurants()"
+    />
+    @if (search) {
+      <mat-icon class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
+      <button class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
+    }
+  </div>
+  <div class="restaurant-grid">
+    @for (restaurant of filteredRestaurants; track restaurant) {
+      <app-restaurant-card
+        [id]="restaurant.id"
+        [imageLogoUrl]="restaurant.imageLogoUrl"
+        [name]="restaurant.name"
+      ></app-restaurant-card>
+    } @empty {
+      <app-empty-state
+        [title]="'SEARCH_FIELD.NO_RESULTS_FOUND' | translate"
+        [description]="'SEARCH_FIELD.MISSING_RESTAURANT' | translate"
+        [showSuggestion]="true"
+      ></app-empty-state>
+    }
+  </div>
+</div>
