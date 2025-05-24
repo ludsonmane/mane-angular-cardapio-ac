@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { ProductService } from '../../shared/services/product/product.service';
 import { MenuItemModel } from '../../shared/models/menu-item.model';
+import { ProductModel } from '../../shared/models/product.model';
 
 @Component({
     selector: 'app-details-restaurant',
@@ -15,7 +16,12 @@ import { MenuItemModel } from '../../shared/models/menu-item.model';
 export class DetailsRestaurantComponent implements OnInit{
     restaurant!: RestaurantModel
     search: string = ''
+    selectedCategory: string = 'Tudo'
+
     listChefTips: MenuItemModel[] = []
+    listCategories: string[] = ['Tudo', 'Executivos', 'Sanduíches', 'Entradas']
+    listProducts: ProductModel[] = []
+    filteredProducts: ProductModel[] = []
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -30,6 +36,7 @@ export class DetailsRestaurantComponent implements OnInit{
             if (id) {
                 this.loadDetailsRestaurand(id)
                 this.loadChefTips()
+                this.loadAllProducts()
             }
         })
     }
@@ -55,5 +62,28 @@ export class DetailsRestaurantComponent implements OnInit{
     loadChefTips(): void {
         this.productService.getChefTips()
             .subscribe((response) => this.listChefTips = response)
+    }
+
+    loadAllProducts(): void {
+        this.productService.getProductByRestaurant()
+            .subscribe((response) => {
+                this.listProducts = response
+                this.filterProducts()
+            })
+    }
+
+    setCategory(category: string): void {
+        this.selectedCategory = category
+        this.filterProducts()
+    }
+
+    filterProducts() {
+        if (this.selectedCategory === 'Tudo') {
+            this.filteredProducts = this.listProducts
+        } else {
+            this.filteredProducts = this.listProducts.filter(
+                product => product.category === this.selectedCategory
+            )
+        }
     }
 }

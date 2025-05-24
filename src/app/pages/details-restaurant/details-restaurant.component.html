@@ -1,4 +1,4 @@
-<div class="container" *ngIf="restaurant">
+<div class="container" *ngIf="restaurant" [class.scrolled]="search != ''">
   <app-header
     [title]="restaurant.name"
     [description]="restaurant.description"
@@ -21,16 +21,46 @@
       <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
     </div>
 
-    <div class="content-tips">
-      <h3>{{ 'RESTAURANTS.CHEF_TIPS' | translate }}</h3>
-      <div class="cards-wrapper">
-        @for (item of listChefTips; track item) {
-          <app-product-card-vertical
+    @if (search === '') {
+      <div class="content-tips">
+        <h3>{{ 'RESTAURANTS.CHEF_TIPS' | translate }}</h3>
+        <div class="cards-wrapper">
+          @for (item of listChefTips; track item) {
+            <app-product-card-vertical
+              [id]="item.id"
+              [imageUrl]="item.imageUrl"
+              [title]="item.title"
+              [price]="item.currentPrice"
+            ></app-product-card-vertical>
+          }
+        </div>
+      </div>
+    }
+
+    <div class="content-menu">
+      <h3 *ngIf="search != ''">{{ 'RESTAURANTS.CHECKOUT_MENU' | translate }}</h3>
+      <div class="categories">
+        @for (item of listCategories; track item) {
+          <button
+            class="btn-category"
+            (click)="setCategory(item)"
+            [class.activate]="selectedCategory === item"
+          >
+            {{ item }}
+          </button>
+        }
+      </div>
+
+      <div class="products">
+        @for (item of filteredProducts; track item) {
+          <app-product-card
             [id]="item.id"
+            [title]="item.name"
+            [description]="item.description"
+            [currentPrice]="item.price"
             [imageUrl]="item.imageUrl"
-            [title]="item.title"
-            [price]="item.currentPrice"
-          ></app-product-card-vertical>
+            [isFavorite]="item.isFavorite ?? false"
+          ></app-product-card>
         }
       </div>
     </div>

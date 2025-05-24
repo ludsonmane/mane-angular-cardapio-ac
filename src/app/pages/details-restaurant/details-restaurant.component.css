@@ -2,12 +2,23 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden;
+}
+
+.container.scrolled {
+  overflow: hidden;
 }
 
 app-header {
   display: block;
   position: relative;
   z-index: 1;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--color-text);
 }
 
 .content {
@@ -25,6 +36,12 @@ app-header {
 
   overflow-y: auto;
   z-index: 2;
+}
+
+.container.scrolled .content,
+.container.scrolled .content-menu {
+  overflow: hidden;
+  min-height: 0;
 }
 
 .content-field {
@@ -78,12 +95,6 @@ app-header {
   gap: 1.5rem;
 }
 
-.content-tips h3 {
-  font-size: 1.25rem;
-  color: var(--color-text);
-  font-weight: bold;
-}
-
 .cards-wrapper {
   display: flex;
   flex-direction: row;
@@ -94,4 +105,48 @@ app-header {
 app-product-card-vertical {
   flex: 1 1 0;
   max-width: 30%;
+}
+
+.content-menu,
+.products {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-menu h3 {
+  margin-bottom: 1.5rem;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  overflow-x: auto;
+}
+
+.products::-webkit-scrollbar,
+.categories::-webkit-scrollbar {
+  display: none;
+}
+
+.btn-category {
+  background: none;
+  border: 1px solid var(--gray-400);
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: var(--gray-500);
+  transition: .3s;
+}
+
+.btn-category.activate {
+  border: none;
+  background-color: var(--button-bg);
+  color: white;
+}
+
+.container.scrolled .products {
+  overflow-y: auto;
 }

@@ -4,6 +4,7 @@
   --green-500: #004945;
   --green-700: #062722;
   --gray-500: #868E96;
+  --gray-400: #CED4DA;
   --gray-300: #DEE2E6;
   --gray-100: #F1F3F5;
   --red-300: #E7464416;
@@ -29,4 +30,4 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Merriweather';
 }
 
-p { font-family: 'Merriweather Sans';}
+p, button { font-family: 'Merriweather Sans'; }

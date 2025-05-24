@@ -24,4 +24,8 @@ export class ProductService {
     getChefTips(): Observable<MenuItemModel[]> {
         return this.http.get<MenuItemModel[]>('data/chef-tips.json')
     }
+
+    getProductByRestaurant(id?: string): Observable<ProductModel[]> {
+        return this.http.get<ProductModel[]>('data/products.json')
+    }
 }
