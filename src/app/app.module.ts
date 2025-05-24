@@ -10,6 +10,7 @@ import { HomeModule } from './pages/home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './pages/product/product.module';
 import { RestaurantsModule } from './pages/restaurants/restaurants.module';
+import { SearchModule } from './pages/search/search.module';
 
 // Função para carregar os arquivos JSON
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,7 +34,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         HomeModule,
         SharedModule,
         ProductModule,
-        RestaurantsModule
+        RestaurantsModule,
+        SearchModule
     ],
     providers: [
         provideHttpClient()

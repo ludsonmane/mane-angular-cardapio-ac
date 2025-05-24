@@ -21,6 +21,10 @@ const routes: Routes = [
     {
         path: 'restaurantes/:id',
         loadChildren: () => import('./pages/details-restaurant/details-restaurant.module').then(m => m.DetailsRestaurantModule)
+    },
+    {
+        path: 'buscar',
+        loadChildren: () => import('./pages/search/search.module').then(m => m.SearchModule)
     }
 ];
 
