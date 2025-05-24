@@ -5,17 +5,21 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 import { SearchMaterialModule } from '../../shared/materials/search-material.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { CategoryCardComponent } from './components/category-card/category-card.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
     declarations: [
-        SearchComponent
+        SearchComponent,
+        CategoryCardComponent
     ],
     imports: [
         CommonModule,
         SearchRoutingModule,
         SearchMaterialModule,
-        TranslateModule
+        TranslateModule,
+        SharedModule
     ]
 })
 export class SearchModule { }

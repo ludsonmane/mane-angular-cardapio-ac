@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="content-field">
+    <div class="form-field">
+      <mat-icon class="icon-search" svgIcon="search"></mat-icon>
+      <input
+        type="text"
+        [(ngModel)]="search"
+        [placeholder]="'SEARCH.PLACEHOLDER' | translate"
+        (input)="onSearch()"
+      />
+      <mat-icon *ngIf="search" class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
+    </div>
+    <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
+  </div>
+
+  @if (search === '') {
+    <div class="categories">
+      @for (item of listCategories; track item; let index = $index) {
+        <app-category-card
+          [isVertical]="index === 0"
+          [name]="item.name"
+          [imageUrl]="item.imageUrl"
+          [colorBg]="item.colorBg"
+          [colorText]="item.colorText"
+        ></app-category-card>
+      }
+    </div>
+  } @else {
+    <div class="result-search">
+      <div class="types">
+        @for (item of types; track item) {
+          <button
+            class="btn-category"
+            (click)="setType(item)"
+            [class.activate]="selectedType === item"
+            [attr.aria-pressed]="selectedType === item"
+          >
+            {{ item }} ({{ getCount(item) }})
+          </button>
+        }
+      </div>
+
+      @switch (selectedType) {
+        @case ('pratos') {
+          <div class="list-products">
+            @for (item of filteredProducts; track item.id) {
+              <app-product-card
+                [id]="item.id"
+                [title]="item.name"
+                [description]="item.description"
+                [currentPrice]="item.price"
+                [imageUrl]="item.imageUrl"
+                [isFavorite]="item.isFavorite ?? false"
+              ></app-product-card>
+            } @empty {
+              <app-empty-state
+                [title]="'SEARCH_FIELD.NO_RESULTS_FOUND' | translate"
+                [description]="'SEARCH_FIELD.NO_RESULTS_FOUND_PLATE' | translate"
+              ></app-empty-state>
+            }
+          </div>
+        }
+
+        @case ('restaurantes') {
+          <div class="list-restaurants">
+            @for (restaurant of filteredRestaurants; track restaurant.id) {
+              <app-restaurant-card
+                [id]="restaurant.id"
+                [imageLogoUrl]="restaurant.imageLogoUrl"
+                [name]="restaurant.name"
+              ></app-restaurant-card>
+            } @empty {
+              <app-empty-state
+                [title]="'SEARCH_FIELD.NO_RESULTS_FOUND' | translate"
+                [description]="'SEARCH_FIELD.NO_RESULTS_FOUND_TERM' | translate"
+              ></app-empty-state>
+            }
+          </div>
+        }
+      }
+    </div>
+  }
+</div>

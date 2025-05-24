@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [],
@@ -10,7 +10,8 @@ import { FormsModule } from '@angular/forms';
         MatIconModule,
         MatInputModule,
         MatFormFieldModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: []
 })
