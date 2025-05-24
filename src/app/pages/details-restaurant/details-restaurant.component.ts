@@ -55,9 +55,10 @@ export class DetailsRestaurantComponent implements OnInit{
             })
     }
 
-    searchRestaurant(): void {}
-
-    cancelSearch(): void {}
+    cancelSearch(): void {
+        this.search = ''
+        this.loadAllProducts()
+    }
 
     loadChefTips(): void {
         this.productService.getChefTips()
