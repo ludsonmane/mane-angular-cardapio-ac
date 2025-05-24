@@ -28,4 +28,8 @@ export class ProductService {
     getProductByRestaurant(id?: string): Observable<ProductModel[]> {
         return this.http.get<ProductModel[]>('data/products.json')
     }
+
+    getProductByCategory(categoryId?: string): Observable<ProductModel[]> {
+        return this.http.get<ProductModel[]>('data/products.json')
+    }
 }

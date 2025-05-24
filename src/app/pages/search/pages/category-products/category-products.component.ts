@@ -1,4 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { SearchDataService } from '../../services/search-data.service';
+import { ProductService } from '../../../../shared/services/product/product.service';
+import { ProductModel } from '../../../../shared/models/product.model';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-category-products',
@@ -6,5 +11,65 @@ import { Component, Input } from '@angular/core';
     templateUrl: './category-products.component.html',
     styleUrl: './category-products.component.css'
 })
-export class CategoryProductsComponent {
+export class CategoryProductsComponent implements OnInit {
+
+    listPortion: string[] = ['Tudo', 'Individual', 'Pra galera']
+    selectedPortion: string = 'Tudo'
+
+    listProducts: ProductModel[] = []
+    filteredProducts: ProductModel[] = []
+
+    categoryData: any
+
+    constructor(
+        private productService: ProductService,
+        @Inject(DOCUMENT) private document: Document,
+        private searchDataService: SearchDataService,
+        private activatedRoute: ActivatedRoute
+    ) {}
+
+    ngOnInit(): void {
+        this.activatedRoute.paramMap.subscribe(params => {
+            const id = params.get('id')
+            if (id) {
+                this.loadCategory(id)
+                this.loadProducts()
+            }
+        })
+    }
+
+    setPortion(item: string) {
+        this.selectedPortion = item
+        this.filterProducts()
+    }
+
+    loadCategory(id: string): void {
+        this.searchDataService.getCategoryById(id)
+            .subscribe((response) => {
+                if (response) {
+                    this.categoryData = response
+                    console.log(response)
+
+                    this.document.documentElement.style.setProperty('--header-bg', response.colorBg)
+                    if (response.colorText)
+                        this.document.documentElement.style.setProperty('--color-text', response.colorText)
+                }
+            })
+    }
+
+    loadProducts(): void {
+        this.productService.getProductByCategory()
+            .subscribe((response) => {
+                this.listProducts = response
+
+                this.filterProducts()
+            })
+    }
+
+    filterProducts(): void {
+        this.filteredProducts = this.listProducts.filter(product => {
+            return this.selectedPortion === 'Tudo' ||
+                product.portion === this.selectedPortion
+        })
+    }
 }

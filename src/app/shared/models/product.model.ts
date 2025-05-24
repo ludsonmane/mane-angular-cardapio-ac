@@ -7,6 +7,7 @@ export interface ProductModel {
     imageUrl: string,
     tags: string[]
     category: string
+    portion: string
     isFavorite: boolean
     suggestions: number[]
 }

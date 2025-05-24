@@ -1,0 +1,33 @@
+<div class="container" *ngIf="categoryData">
+  <app-category-header
+    [title]="categoryData.name"
+    [imageUrl]="categoryData.imageUrl"
+  ></app-category-header>
+
+  <div class="content">
+    <div class="portions">
+      @for (item of listPortion; track item) {
+        <button
+          class="btn-portion"
+          (click)="setPortion(item)"
+          [class.activate]="selectedPortion === item"
+        >
+          {{ item }}
+        </button>
+      }
+    </div>
+
+    <div class="products">
+      @for (item of filteredProducts; track item) {
+        <app-product-card
+          [id]="item.id"
+          [title]="item.name"
+          [description]="item.description"
+          [currentPrice]="item.price"
+          [imageUrl]="item.imageUrl"
+          [isFavorite]="item.isFavorite"
+        ></app-product-card>
+      }
+    </div>
+  </div>
+</div>

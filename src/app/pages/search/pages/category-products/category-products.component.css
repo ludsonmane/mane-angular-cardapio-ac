@@ -20,8 +20,44 @@
 
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 
   overflow-y: auto;
   z-index: 2;
+}
+
+.products {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.portions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+}
+
+.products::-webkit-scrollbar {
+  display: none;
+}
+
+.btn-portion {
+  background: none;
+  border: 1px solid var(--gray-400);
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: var(--gray-500);
+  transition: .3s;
+}
+
+.btn-portion.activate {
+  border: none;
+  background-color: var(--header-bg);
+  color: var(--color-text, --green-700);
+}
+
+.container.scrolled .products {
+  overflow-y: auto;
 }
