@@ -16,6 +16,11 @@
     "CHEF_TIPS": "Dica do Chef",
     "CHECKOUT_MENU": "Conheça nosso cardápio"
   },
+  "SEARCH": {
+    "PLACEHOLDER": "O que voce quer comer?",
+    "DISH": "Pratos",
+    "RESTAURANT": "Restaurantes"
+  },
   "FAVORITES": {
     "TITLE": "Favoritos",
     "SEARCH": "Busque nos seus favoritos"
