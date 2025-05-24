@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="title">{{ 'FAVORITES.TITLE' | translate }}</h1>
+  <div class="content-field">
+    <div class="form-field">
+      <mat-icon class="icon-search" svgIcon="search"></mat-icon>
+      <input
+        type="text"
+        [(ngModel)]="search"
+        [placeholder]="'SEARCH.PLACEHOLDER' | translate"
+        (input)="filterProducts()"
+      />
+      <mat-icon *ngIf="search" class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
+    </div>
+    <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
+  </div>
+  <div class="products">
+    @for (item of filteredProducts; track item) {
+      <app-product-card
+        [id]="item.id"
+        [title]="item.name"
+        [description]="item.description"
+        [currentPrice]="item.price"
+        [imageUrl]="item.imageUrl"
+        [isFavorite]="item.isFavorite"
+      ></app-product-card>
+    } @empty {
+      <app-empty-state
+        [title]="'SEARCH_FIELD.NO_RESULTS_FOUND' | translate"
+        [description]="'SEARCH_FIELD.NO_RESULTS_FOUND_FAVORITE' | translate"
+        [showSuggestion]="true"
+      ></app-empty-state>
+    }
+  </div>
+</div>

@@ -32,4 +32,10 @@ export class ProductService {
     getProductByCategory(categoryId?: string): Observable<ProductModel[]> {
         return this.http.get<ProductModel[]>('data/products.json')
     }
+
+    getFavoriteProducts(): Observable<ProductModel[]> {
+        return this.http.get<ProductModel[]>('data/products.json').pipe(
+            map((products) => products.filter(item => item.isFavorite))
+        )
+    }
 }

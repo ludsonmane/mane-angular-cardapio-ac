@@ -37,7 +37,8 @@
     "NO_RESULTS_FOUND": "Não encontramos resultados",
     "MISSING_RESTAURANT": "Sente falta de algum restaurante que não encontrou no Mané?",
     "NO_RESULTS_FOUND_PLATE": "Não encontramos nenhum prato com o termo que você buscou.",
-    "NO_RESULTS_FOUND_TERM": "Não encontramos nenhum restaurante com o termo que você buscou."
+    "NO_RESULTS_FOUND_TERM": "Não encontramos nenhum restaurante com o termo que você buscou.",
+    "NO_RESULTS_FOUND_FAVORITE" :"Não encontramos nenhum prato favorito com o termo que você buscou"
   },
   "PRODUCT": {
     "FOLLOW_UP_SUGGESTION": "Sugestão de acompanhamento"
