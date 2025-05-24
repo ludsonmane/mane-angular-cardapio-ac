@@ -78,12 +78,15 @@ export class DetailsRestaurantComponent implements OnInit{
     }
 
     filterProducts() {
-        if (this.selectedCategory === 'Tudo') {
-            this.filteredProducts = this.listProducts
-        } else {
-            this.filteredProducts = this.listProducts.filter(
-                product => product.category === this.selectedCategory
-            )
-        }
+        this.filteredProducts = this.listProducts.filter(product => {
+            const matchesCategory = this.selectedCategory === 'Tudo' ||
+                product.category === this.selectedCategory
+
+            const matchesSearch = this.search
+                ? product.name.toLowerCase().includes(this.search.toLowerCase())
+                : true
+
+            return matchesCategory && matchesSearch
+        })
     }
 }

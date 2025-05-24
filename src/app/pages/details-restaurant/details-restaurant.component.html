@@ -14,7 +14,7 @@
           type="text"
           [(ngModel)]="search"
           [placeholder]="'RESTAURANTS.SEARCH_RESTAURANT' | translate"
-          (input)="searchRestaurant()"
+          (input)="filterProducts()"
         />
         <mat-icon *ngIf="search" class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
       </div>
@@ -61,6 +61,11 @@
             [imageUrl]="item.imageUrl"
             [isFavorite]="item.isFavorite ?? false"
           ></app-product-card>
+        } @empty {
+          <app-empty-state
+            [title]="'SEARCH_FIELD.NO_RESULTS_FOUND' | translate"
+            [description]="'SEARCH_FIELD.NO_RESULTS_FOUND_PLATE' | translate"
+          ></app-empty-state>
         }
       </div>
     </div>
