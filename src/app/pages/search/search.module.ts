@@ -7,12 +7,16 @@ import { SearchMaterialModule } from '../../shared/materials/search-material.mod
 import { TranslateModule } from '@ngx-translate/core';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { SharedModule } from '../../shared/shared.module';
+import { CategoryProductsComponent } from './pages/category-products/category-products.component';
+import { CategoryHeaderComponent } from './components/category-header/category-header.component';
 
 
 @NgModule({
     declarations: [
         SearchHomeComponent,
-        CategoryCardComponent
+        CategoryCardComponent,
+        CategoryProductsComponent,
+        CategoryHeaderComponent
     ],
     imports: [
         CommonModule,
