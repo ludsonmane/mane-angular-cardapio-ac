@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './search.component';
+import { SearchHomeComponent } from './pages/search-home/search-home.component';
 
 const routes: Routes = [
-    { path: '', component: SearchComponent }
-];
+    { path: '', component: SearchHomeComponent }
+]
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

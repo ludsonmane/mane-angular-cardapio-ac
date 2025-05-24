@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchDataService } from './services/search-data.service';
-import { ProductService } from '../../shared/services/product/product.service';
-import { ProductModel } from '../../shared/models/product.model';
-import { RestaurantModel } from '../../shared/models/restaurant.model';
-import { RestaurantService } from '../../shared/services/restaurant/restaurant.service';
-import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { SearchDataService } from '../../services/search-data.service';
+import { ProductService } from '../../../../shared/services/product/product.service';
+import { ProductModel } from '../../../../shared/models/product.model';
+import { RestaurantModel } from '../../../../shared/models/restaurant.model';
+import { RestaurantService } from '../../../../shared/services/restaurant/restaurant.service';
 
 @Component({
-    selector: 'app-search',
+    selector: 'app-search-home',
     standalone: false,
-    templateUrl: './search.component.html',
-    styleUrl: './search.component.css'
+    templateUrl: './search-home.component.html',
+    styleUrl: './search-home.component.css'
 })
-export class SearchComponent implements OnInit {
+export class SearchHomeComponent implements OnInit {
 
     search: string = ''
     selectedType: string = 'pratos'

@@ -50,7 +50,7 @@
                 [description]="item.description"
                 [currentPrice]="item.price"
                 [imageUrl]="item.imageUrl"
-                [isFavorite]="item.isFavorite ?? false"
+                [isFavorite]="item.isFavorite"
               ></app-product-card>
             } @empty {
               <app-empty-state
