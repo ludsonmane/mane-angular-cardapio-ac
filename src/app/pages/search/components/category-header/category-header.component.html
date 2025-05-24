@@ -1,0 +1,12 @@
+<div class="header-container">
+  <app-header-actions
+    [showTitle]="scrolled"
+    [title]="title"
+    (back)="goBack()"
+  ></app-header-actions>
+
+  <div class="category-info">
+    <h2 class="info-title">{{ title }}</h2>
+    <div class="info-img" [style.background-image]="'url(' + imageUrl + ')'"></div>
+  </div>
+</div>
