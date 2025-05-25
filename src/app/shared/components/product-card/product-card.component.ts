@@ -23,4 +23,8 @@ export class ProductCardComponent {
         // Passar a rota da página menu-item-detail, quando for criada
         this.router.navigate(['/produto', this.id])
     }
+
+    setFavorite(): void {
+        this.isFavorite = !this.isFavorite
+    }
 }

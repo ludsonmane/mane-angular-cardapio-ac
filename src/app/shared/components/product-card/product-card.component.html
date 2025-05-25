@@ -1,6 +1,6 @@
-<div class="product-card" (click)="onNavigate()">
+<div class="product-card">
   <div class="product-image" [style.background-image]="'url('+ imageUrl +')'"></div>
-  <div class="product-info">
+  <div class="product-info" (click)="onNavigate()">
     <p class="info-title">{{ title }}</p>
     <p class="info-description">{{ description }}</p>
     <div class="price-wrapper">
@@ -10,7 +10,7 @@
       }
     </div>
   </div>
-  <button class="btn-favorite">
+  <button class="btn-favorite" (click)="setFavorite()">
     <mat-icon [svgIcon]="isFavorite ? 'favorite' : 'favorite-border'"></mat-icon>
   </button>
 </div>
