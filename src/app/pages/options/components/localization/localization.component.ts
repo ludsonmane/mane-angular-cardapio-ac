@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { UnitLocationBottomSheetComponent } from '../../../../shared/components/unit-location-bottom-sheet/unit-location-bottom-sheet.component';
 
 @Component({
     selector: 'app-localization',
@@ -8,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class LocalizationComponent {
 
+    constructor(private matBottomSheet: MatBottomSheet) {}
+
+    openBottomSheetLocation(): void {
+        this.matBottomSheet.open(UnitLocationBottomSheetComponent)
+    }
 }

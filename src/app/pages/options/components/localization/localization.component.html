@@ -4,5 +4,9 @@
     <p>{{ 'OPTIONS.LOCATION' | translate }}</p>
     <p class="location">Águas Claras, Distrito Federal</p>
   </div>
-  <mat-icon class="icon-arrow" svgIcon="arrow"></mat-icon>
+  <mat-icon
+    class="icon-arrow"
+    svgIcon="arrow"
+    (click)="openBottomSheetLocation()"
+  ></mat-icon>
 </div>
