@@ -29,6 +29,10 @@ const routes: Routes = [
     {
         path: 'favoritos',
         loadChildren: () => import('./pages/favorites/favorites.module').then(m => m.FavoritesModule)
+    },
+    {
+        path: 'opcoes',
+        loadChildren: () => import('./pages/options/options.module').then(m => m.OptionsModule)
     }
 ];
 

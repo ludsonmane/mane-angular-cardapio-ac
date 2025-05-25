@@ -1,0 +1,13 @@
+<div class="container">
+  <h1 class="title">{{ 'OPTIONS.TITLE' | translate }}</h1>
+  <app-localization></app-localization>
+
+  <mat-nav-list>
+    @for (option of options; track option) {
+      <div class="nav-item" mat-list-item (click)="navigateTo(option.route)">
+        <h4>{{ option.label}}</h4>
+        <mat-icon class="icon-arrow" svgIcon="arrow"></mat-icon>
+      </div>
+    }
+  </mat-nav-list>
+</div>

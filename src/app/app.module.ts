@@ -12,6 +12,7 @@ import { ProductModule } from './pages/product/product.module';
 import { RestaurantsModule } from './pages/restaurants/restaurants.module';
 import { SearchModule } from './pages/search/search.module';
 import { FavoritesModule } from './pages/favorites/favorites.module';
+import { OptionsModule } from './pages/options/options.module';
 
 // Função para carregar os arquivos JSON
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ProductModule,
         RestaurantsModule,
         SearchModule,
-        FavoritesModule
+        FavoritesModule,
+        OptionsModule
     ],
     providers: [
         provideHttpClient()

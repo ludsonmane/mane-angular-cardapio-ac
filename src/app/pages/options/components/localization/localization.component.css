@@ -1,0 +1,56 @@
+::ng-deep .localization-icon mat-icon svg path {
+  fill: white;
+}
+
+::ng-deep mat-icon.icon-arrow svg path {
+  fill: var(--green-700);
+}
+
+.localization-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--yellow-100);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.localization-icon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--red-500);
+  border-radius: 0.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.localization-icon mat-icon {
+  width: 16px;
+}
+
+.localization-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.localization-info p {
+  color: var(--gray-500);
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.localization-info .location {
+  color: var(--green-700);
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.icon-arrow {
+  width: 8px;
+}
