@@ -1,0 +1,53 @@
+::ng-deep button.active mat-icon:not(.icon-restaurant) svg path {
+  fill: var(--red-500);
+  stroke: none;
+}
+
+::ng-deep button.active mat-icon.icon-search svg path {
+  fill: var(--red-500);
+  stroke: var(--red-500);
+}
+
+
+::ng-deep button:last-child.active mat-icon svg path {
+  stroke: var(--red-500)
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid var(--gray-100);
+  padding: 0.5rem 0;
+  z-index: 1000;
+}
+
+button {
+  height: 40px;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+  gap: 0.313rem;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+button.active {
+  color: var(--red-500);
+}
+
+mat-icon {
+  height: 18px;
+}
+
+button:last-child mat-icon {
+  height: 11px;
+}

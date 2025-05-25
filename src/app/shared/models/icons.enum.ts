@@ -7,6 +7,7 @@ export enum IconsEnum {
     NoLactose = 'no-lactose',
     Options = 'options',
     Restaurant = 'restaurant',
+    RestaurantBorder = 'restaurant-border',
     Search = 'search',
     Vegetarian  = 'vegetarian',
     Share = 'share',

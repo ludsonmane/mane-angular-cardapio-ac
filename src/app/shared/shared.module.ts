@@ -10,6 +10,7 @@ import { HeaderActionsComponent } from './components/header-actions/header-actio
 import { ProductCardVerticalComponent } from './components/product-card-vertical/product-card-vertical.component';
 import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
+import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { EmptyStateComponent } from './components/empty-state/empty-state.compon
         HeaderActionsComponent,
         ProductCardVerticalComponent,
         RestaurantCardComponent,
-        EmptyStateComponent
+        EmptyStateComponent,
+        BottomNavComponent
     ],
     imports: [
         CommonModule,
@@ -34,7 +36,8 @@ import { EmptyStateComponent } from './components/empty-state/empty-state.compon
         HeaderActionsComponent,
         ProductCardVerticalComponent,
         RestaurantCardComponent,
-        EmptyStateComponent
+        EmptyStateComponent,
+        BottomNavComponent
     ]
 })
 export class SharedModule { }

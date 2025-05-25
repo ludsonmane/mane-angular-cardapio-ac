@@ -1,0 +1,11 @@
+<nav class="bottom-nav">
+  @for (item of navItems; track item) {
+    <button
+      [class.active]="isActive(item.route)"
+      (click)="router.navigate([item.route])"
+    >
+      <mat-icon [class]="'icon-' + item.icon" [svgIcon]="getIcon(item)"></mat-icon>
+      <span>{{ item.label | translate }}</span>
+    </button>
+  }
+</nav>

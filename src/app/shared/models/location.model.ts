@@ -1,4 +1,4 @@
 export interface LocationModel {
-    id: number
+    id: string
     name: string
 }

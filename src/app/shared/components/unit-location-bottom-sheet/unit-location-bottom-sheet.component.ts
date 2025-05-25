@@ -29,7 +29,8 @@ export class UnitLocationBottomSheetComponent implements OnInit {
             .subscribe((response) => this.locations = response)
     }
 
-    selectLocation(locationId: number): void {
+    selectLocation(locationId: string): void {
+        localStorage.setItem('location_id', locationId)
         this.router.navigate(['/home', locationId])
         this.matBottomSheetRef.dismiss()
     }
