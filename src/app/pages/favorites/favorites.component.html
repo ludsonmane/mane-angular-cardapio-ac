@@ -6,7 +6,7 @@
       <input
         type="text"
         [(ngModel)]="search"
-        [placeholder]="'SEARCH.PLACEHOLDER' | translate"
+        [placeholder]="'FAVORITES.SEARCH' | translate"
         (input)="filterProducts()"
       />
       <mat-icon *ngIf="search" class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
