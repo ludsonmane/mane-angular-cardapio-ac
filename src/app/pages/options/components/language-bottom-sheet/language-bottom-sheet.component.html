@@ -1,0 +1,14 @@
+
+<div class="container">
+  <h1>{{ 'LANGUAGES.TITLE' | translate }}</h1>
+  <p>{{ 'LANGUAGES.DESCRIPTION' | translate }}</p>
+  <mat-nav-list>
+    @for (language of languages; track language) {
+      <div class="nav-item" mat-list-item (click)="selectLanguage(language.slug)">
+        <div class="icon-flag" [style.background-image]="'url('+ language.imageUrl +')'"></div>
+        <p>{{ language.label | translate }}</p>
+        <mat-icon class="icon-arrow" svgIcon="arrow"></mat-icon>
+      </div>
+    }
+  </mat-nav-list>
+</div>

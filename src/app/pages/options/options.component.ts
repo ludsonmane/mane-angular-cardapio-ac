@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
+import { LanguageBottomSheetComponent } from './components/language-bottom-sheet/language-bottom-sheet.component';
 
 @Component({
     selector: 'app-options',
@@ -16,9 +18,15 @@ export class OptionsComponent {
         { label: 'Clube Mané', route: '/clube-mane' }
     ]
 
-    constructor(private router: Router) {}
+    constructor(
+        private router: Router,
+        private matBottomSheet: MatBottomSheet
+    ) {}
 
     navigateTo(route: string) {
-        this.router.navigate([route])
+        if (route === '/idioma')
+            this.matBottomSheet.open(LanguageBottomSheetComponent)
+        else
+            this.router.navigate([route])
     }
 }
