@@ -11,7 +11,7 @@ export class ProductCardComponent {
     @Input() id!: string
     @Input() imageUrl!: string
     @Input() title!: string
-    @Input() description!: string
+    @Input() description?: string
     @Input() currentPrice!: number
     @Input() originalPrice?: number
     @Input() isFavorite?: boolean = false
