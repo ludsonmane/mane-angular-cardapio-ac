@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Casquinha de siri",
     "description": "Carne de siri refogada com azeite de dendê, alho, cebola, tomate, leite de coco, coentro, suco de limão, leite e farinha de Panko. Acompanhada de farofinha de Panko, refogada no azeite, cebola, alho e finalizada com crisp de cebola.",
-    "currentPrice": 13,
+    "originalPrice": 13,
     "imageUrl": "img/menu-item.png",
     "isFavorite": true
   },
@@ -11,14 +11,14 @@
     "id": 2,
     "title": "Kafta Bovina",
     "description": "Carne moída preparada à moda árabe, com pimentões vermelho e amarelo, temperada com salsa, hortelã e especiarias.",
-    "currentPrice": 18.5,
+    "originalPrice": 18.5,
     "imageUrl": "img/menu-item.png"
   },
   {
     "id": 3,
     "title": "Pastelzinho de Pirão de Leite",
     "description": "Uma criação do Véi! Pastel de massa de pirão de leite recheado com carne de sol na nata, refogadinho de banana da terra ou queijo manteiga!",
-    "currentPrice": 13,
+    "originalPrice": 13,
     "imageUrl": "img/menu-item.png"
   }
 ]
