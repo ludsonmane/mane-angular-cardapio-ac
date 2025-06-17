@@ -7,7 +7,6 @@ import { MatListModule } from '@angular/material/list'
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { HeaderActionsComponent } from './components/header-actions/header-actions.component';
-import { ProductCardVerticalComponent } from './components/product-card-vertical/product-card-vertical.component';
 import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
@@ -18,7 +17,6 @@ import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component
         UnitLocationBottomSheetComponent,
         ProductCardComponent,
         HeaderActionsComponent,
-        ProductCardVerticalComponent,
         RestaurantCardComponent,
         EmptyStateComponent,
         BottomNavComponent
@@ -34,7 +32,6 @@ import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component
         UnitLocationBottomSheetComponent,
         ProductCardComponent,
         HeaderActionsComponent,
-        ProductCardVerticalComponent,
         RestaurantCardComponent,
         EmptyStateComponent,
         BottomNavComponent
