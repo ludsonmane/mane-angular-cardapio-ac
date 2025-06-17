@@ -8,14 +8,16 @@ import { Router } from '@angular/router';
     styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-    @Input() id!: string
-    @Input() imageUrl!: string
-    @Input() title!: string
-    @Input() description?: string
-    @Input() currentPrice!: number
-    @Input() originalPrice?: number
-    @Input() isFavorite?: boolean = false
     @Input() layout: 'horizontal' | 'vertical' = 'horizontal'
+
+    @Input() id?: string
+    @Input() title!: string
+    @Input() imageUrl!: string
+    @Input() description?: string
+
+    @Input() price!: number // preço original
+    @Input() currentPrice?: number // preço atual|desconto
+    @Input() isFavorite: boolean = false
 
     constructor(private router: Router) {}
 

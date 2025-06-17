@@ -1,16 +1,30 @@
-<div class="product-card">
-  <div class="product-image" [style.background-image]="'url('+ imageUrl +')'"></div>
-  <div class="product-info" (click)="onNavigate()">
+<div class="product-card" [ngClass]="layout" (click)="onNavigate()">
+  <div class="product-image" [style.background-image]="'url(' + imageUrl + ')'"></div>
+
+  <div class="product-info">
     <p class="info-title">{{ title }}</p>
-    <p class="info-description">{{ description }}</p>
+
+    @if (layout === 'horizontal' && description) {
+      <p class="info-description">{{ description }}</p>
+    }
+
     <div class="price-wrapper">
-      <p class="price-current">R$ {{ currentPrice | number: '1.2-2' }}</p>
-      @if (originalPrice && originalPrice > currentPrice) {
-        <p class="price-original">R$ {{ originalPrice | number: '1.2-2' }}</p>
+      <p class="price-current">
+        R$ {{
+          (currentPrice && currentPrice < price) ? currentPrice : price
+          | number: '1.2-2'
+        }}
+      </p>
+
+      @if (currentPrice && currentPrice < price) {
+        <p class="price-original">R$ {{ price | number: '1.2-2' }}</p>
       }
     </div>
   </div>
-  <button class="btn-favorite" (click)="setFavorite()">
-    <mat-icon [svgIcon]="isFavorite ? 'favorite' : 'favorite-border'"></mat-icon>
-  </button>
+
+  @if (layout === 'horizontal') {
+    <button class="btn-favorite" (click)="setFavorite(); $event.stopPropagation()">
+      <mat-icon [svgIcon]="isFavorite ? 'favorite' : 'favorite-border'"></mat-icon>
+    </button>
+  }
 </div>
