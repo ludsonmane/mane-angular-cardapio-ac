@@ -27,6 +27,7 @@
         <div class="cards-wrapper">
           @for (item of listChefTips; track item) {
             <app-product-card
+              class="product-card-vertical"
               layout="vertical"
               [id]="item.id"
               [imageUrl]="item.imageUrl"
