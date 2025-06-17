@@ -107,7 +107,7 @@ h3 {
   box-sizing: border-box;
 }
 
-app-product-card-vertical {
+app-product-card {
   flex: 1 1 0;
   max-width: 30%;
 }

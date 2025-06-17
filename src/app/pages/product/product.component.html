@@ -22,12 +22,13 @@
       <h3>{{ 'PRODUCT.FOLLOW_UP_SUGGESTION' | translate }}</h3>
       <div class="cards-wrapper">
         @for (item of listSuggestions; track item) {
-          <app-product-card-vertical
+          <app-product-card
+            layout="vertical"
             [id]="item.id"
             [imageUrl]="item.imageUrl"
             [title]="item.title"
             [price]="item.currentPrice"
-          ></app-product-card-vertical>
+          ></app-product-card>
         }
       </div>
     </div>
