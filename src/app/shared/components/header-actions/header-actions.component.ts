@@ -18,7 +18,6 @@ export class HeaderActionsComponent {
     @Input() title?: string
 
     @Output() favorite = new EventEmitter<void>()
-    @Output() share = new EventEmitter<void>()
     @Output() info = new EventEmitter<void>()
 
     constructor(

@@ -11,6 +11,4 @@ export class HeaderComponent {
     @Input() scrolled: boolean = false
 
     toggleFavorite(): void {}
-
-    shareItem(): void {}
 }

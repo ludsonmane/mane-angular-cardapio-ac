@@ -14,7 +14,5 @@ export class HeaderComponent {
     @Input() headerBg!: string
     @Input() colorTitle!: string
 
-    shareItem(): void {}
-
     openInfo(): void {}
 }
