@@ -55,7 +55,7 @@
 .btn-portion.activate {
   border: none;
   background-color: var(--header-bg);
-  color: var(--color-text, --green-700);
+  color: var(--color-text, var(--green-700));
 }
 
 .container.scrolled .products {
