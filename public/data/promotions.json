@@ -4,7 +4,7 @@
     "title": "Carne e Quejo",
     "description": "Burger da Casa - Simples, honesto e memorável - Pão brioche, blend Ricco 160g, dobro de queijo e maionese da casa.",
     "currentPrice": 49.9,
-    "originalPrice": 59.9,
+    "price": 59.9,
     "imageUrl": "img/menu-item.png"
   },
   {
@@ -12,7 +12,7 @@
     "title": "Trufado",
     "description": "Pão brioche, blend ricco 160g, maionese da casa trufada, chips de parma, telha de parmesão e ruculetas.",
     "currentPrice": 59.9,
-    "originalPrice": 70,
+    "price": 70,
     "imageUrl": "img/menu-item.png"
   },
   {
@@ -20,7 +20,7 @@
     "title": "Baco Burger",
     "description": "Hambúrguer de 180g grelhado, assado no forno a lenha na massa napoletana com queijo da canastra, cebola caramelizada e bacon, Acompanhado de batata frita.",
     "currentPrice": 58,
-    "originalPrice": 65,
+    "price": 65,
     "imageUrl": "img/menu-item.png"
   }
 ]
