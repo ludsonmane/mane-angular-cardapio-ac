@@ -36,3 +36,22 @@ p, button { font-family: 'Merriweather Sans'; }
 .pd-bottom-90 {
   padding-bottom: 5.625rem !important; /* 90px */
 }
+
+.mat-mdc-snack-bar-container .mat-mdc-snackbar-surface{
+  border-radius: 0.75rem;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  font-family: 'Merriweather' !important;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.mat-mdc-snack-bar-container.snack-success .mat-mdc-snackbar-surface {
+  background-color: var(--green-500);
+}
+
+.mat-mdc-snack-bar-container.snack-error .mat-mdc-snackbar-surface {
+  background-color: var(--green-500);
+}

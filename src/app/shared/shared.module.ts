@@ -10,6 +10,7 @@ import { HeaderActionsComponent } from './components/header-actions/header-actio
 import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component
         MatIconModule,
         MatBottomSheetModule,
         MatListModule,
+        MatSnackBarModule,
         TranslateModule
     ],
     exports: [
