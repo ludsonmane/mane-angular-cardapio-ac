@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         private iconService: IconService,
+        private languageService: LanguageService,
         private router: Router
     ) {
         this.router.events
