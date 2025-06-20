@@ -16,7 +16,6 @@ export class HeaderActionsComponent {
     @Input() isFavorite?: boolean = false
     @Input() title?: string
 
-    @Output() back = new EventEmitter<void>()
     @Output() favorite = new EventEmitter<void>()
     @Output() share = new EventEmitter<void>()
     @Output() info = new EventEmitter<void>()

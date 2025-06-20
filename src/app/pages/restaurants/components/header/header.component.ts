@@ -14,8 +14,6 @@ export class HeaderComponent {
     @Input() headerBg!: string
     @Input() colorTitle!: string
 
-    goBack(): void {}
-
     shareItem(): void {}
 
     openInfo(): void {}

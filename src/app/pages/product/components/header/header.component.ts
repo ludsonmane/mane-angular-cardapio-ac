@@ -10,8 +10,6 @@ export class HeaderComponent {
     @Input() imageUrl!: string
     @Input() scrolled: boolean = false
 
-    goBack(): void {}
-
     toggleFavorite(): void {}
 
     shareItem(): void {}

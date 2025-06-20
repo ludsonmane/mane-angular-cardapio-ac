@@ -10,6 +10,4 @@ export class CategoryHeaderComponent {
     @Input() title!: string
     @Input() imageUrl!: string
     @Input() scrolled: boolean = false
-
-    goBack(): void {}
 }
