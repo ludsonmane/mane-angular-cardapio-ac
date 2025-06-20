@@ -1,7 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { RestaurantModel } from '../../../../shared/models/restaurant.model';
-import { MenuItemModel } from '../../../../shared/models/menu-item.model';
-import { ProductModel } from '../../../../shared/models/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { RestaurantService } from '../../../../shared/services/restaurant/restaurant.service';
 import { DOCUMENT } from '@angular/common';
@@ -14,14 +11,14 @@ import { ProductService } from '../../../../shared/services/product/product.serv
     styleUrl: './details-restaurant.component.css'
 })
 export class DetailsRestaurantComponent {
-    restaurant!: RestaurantModel
+    restaurant!: any
     search: string = ''
     selectedCategory: string = 'Tudo'
 
-    listChefTips: MenuItemModel[] = []
+    listChefTips: any[] = []
     listCategories: string[] = ['Tudo', 'Executivos', 'Sanduíches', 'Entradas']
-    listProducts: ProductModel[] = []
-    filteredProducts: ProductModel[] = []
+    listProducts: any[] = []
+    filteredProducts: any[] = []
 
     constructor(
         private activatedRoute: ActivatedRoute,

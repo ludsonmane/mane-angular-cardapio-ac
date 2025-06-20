@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel } from '../../shared/models/product.model';
 import { ProductService } from '../../shared/services/product/product.service';
 
 @Component({
@@ -12,8 +11,8 @@ export class FavoritesComponent implements OnInit {
 
     search: string = ''
 
-    listProducts: ProductModel[] = []
-    filteredProducts: ProductModel[] = []
+    listProducts: any[] = []
+    filteredProducts: any[] = []
 
     constructor(private productService: ProductService) {}
 

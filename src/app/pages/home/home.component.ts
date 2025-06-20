@@ -1,7 +1,6 @@
 import { HomeDataService } from './services/home-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MenuItemModel } from '../../shared/models/menu-item.model';
 import { ProductService } from '../../shared/services/product/product.service';
 
 @Component({
@@ -13,8 +12,8 @@ import { ProductService } from '../../shared/services/product/product.service';
 export class HomeComponent implements OnInit {
 
     locationId: string = ''
-    suggestedItems: MenuItemModel[] = []
-    promotionItems: MenuItemModel[] = []
+    suggestedItems: any[] = []
+    promotionItems: any[] = []
 
     constructor(
         private activatedRoute: ActivatedRoute,

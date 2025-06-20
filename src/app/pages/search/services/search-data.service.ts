@@ -14,8 +14,8 @@ export class SearchDataService {
         return this.http.get<any>('data/categories.json')
     }
 
-    getCategoryById(id: string): Observable<CategoryModel | undefined> {
-        return this.http.get<CategoryModel[]>('data/categories.json').pipe(
+    getCategoryById(id: string): Observable<any> {
+        return this.http.get<any[]>('data/categories.json').pipe(
             map((items) => items.find((item: any) => item.id === id))
         )
     }

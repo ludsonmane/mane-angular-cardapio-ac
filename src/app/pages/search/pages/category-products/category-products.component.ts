@@ -2,7 +2,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { SearchDataService } from '../../services/search-data.service';
 import { ProductService } from '../../../../shared/services/product/product.service';
-import { ProductModel } from '../../../../shared/models/product.model';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -16,8 +15,8 @@ export class CategoryProductsComponent implements OnInit {
     listPortion: string[] = ['Tudo', 'Individual', 'Pra galera']
     selectedPortion: string = 'Tudo'
 
-    listProducts: ProductModel[] = []
-    filteredProducts: ProductModel[] = []
+    listProducts: any[] = []
+    filteredProducts: any[] = []
 
     categoryData: any
 

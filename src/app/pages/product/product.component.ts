@@ -1,10 +1,7 @@
 import { ProductService } from './../../shared/services/product/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, HostListener, OnInit } from '@angular/core';
-import { ProductModel } from '../../shared/models/product.model';
+import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../../shared/services/restaurant/restaurant.service';
-import { RestaurantModel } from '../../shared/models/restaurant.model';
-import { MenuItemModel } from '../../shared/models/menu-item.model';
 
 @Component({
     selector: 'app-product',
@@ -14,10 +11,10 @@ import { MenuItemModel } from '../../shared/models/menu-item.model';
 })
 export class ProductComponent implements OnInit {
 
-    product!: ProductModel
+    product!: any
     productId!: string
-    restaurant!: RestaurantModel
-    listSuggestions: MenuItemModel[] = []
+    restaurant!: any
+    listSuggestions: any[] = []
 
     scrollY: number = 0
 

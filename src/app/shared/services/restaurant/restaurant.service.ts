@@ -10,13 +10,13 @@ export class RestaurantService {
 
     constructor(private http: HttpClient) { }
 
-    getRestaurantById(id: string): Observable<RestaurantModel | undefined> {
-        return this.http.get<RestaurantModel[]>('data/restaurants.json').pipe(
+    getRestaurantById(id: string): Observable<any> {
+        return this.http.get<any[]>('data/restaurants.json').pipe(
             map((restaurants) => restaurants.find(item => item.id === id))
         )
     }
 
-    getAllRestaurants(): Observable<RestaurantModel[]> {
-        return this.http.get<RestaurantModel[]>('data/restaurants.json')
+    getAllRestaurants(): Observable<any[]> {
+        return this.http.get<any[]>('data/restaurants.json')
     }
 }

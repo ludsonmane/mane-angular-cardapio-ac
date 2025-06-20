@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ProductModel } from '../../models/product.model';
-import { MenuItemModel } from '../../models/menu-item.model';
 
 @Injectable({
     providedIn: 'root'
@@ -11,30 +9,30 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-    getProductById(id: string): Observable<ProductModel | undefined> {
-        return this.http.get<ProductModel[]>('data/products.json').pipe(
+    getProductById(id: string): Observable<any> {
+        return this.http.get<any[]>('data/products.json').pipe(
             map((products) => products.find(item => item.id === id))
         )
     }
 
-    getSuggestedItems(): Observable<MenuItemModel[]> {
-        return this.http.get<MenuItemModel[]>('data/suggested-items.json')
+    getSuggestedItems(): Observable<any[]> {
+        return this.http.get<any[]>('data/suggested-items.json')
     }
 
-    getChefTips(): Observable<MenuItemModel[]> {
-        return this.http.get<MenuItemModel[]>('data/chef-tips.json')
+    getChefTips(): Observable<any[]> {
+        return this.http.get<any[]>('data/chef-tips.json')
     }
 
-    getProductByRestaurant(id?: string): Observable<ProductModel[]> {
-        return this.http.get<ProductModel[]>('data/products.json')
+    getProductByRestaurant(id?: string): Observable<any[]> {
+        return this.http.get<any[]>('data/products.json')
     }
 
-    getProductByCategory(categoryId?: string): Observable<ProductModel[]> {
-        return this.http.get<ProductModel[]>('data/products.json')
+    getProductByCategory(categoryId?: string): Observable<any[]> {
+        return this.http.get<any[]>('data/products.json')
     }
 
-    getFavoriteProducts(): Observable<ProductModel[]> {
-        return this.http.get<ProductModel[]>('data/products.json').pipe(
+    getFavoriteProducts(): Observable<any[]> {
+        return this.http.get<any[]>('data/products.json').pipe(
             map((products) => products.filter(item => item.isFavorite))
         )
     }

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchDataService } from '../../services/search-data.service';
 import { ProductService } from '../../../../shared/services/product/product.service';
-import { ProductModel } from '../../../../shared/models/product.model';
-import { RestaurantModel } from '../../../../shared/models/restaurant.model';
 import { RestaurantService } from '../../../../shared/services/restaurant/restaurant.service';
 
 @Component({
@@ -18,10 +16,10 @@ export class SearchHomeComponent implements OnInit {
 
     listCategories: any[] = []
     types: string[] = ['pratos', 'restaurantes']
-    listProducts: ProductModel[] = []
-    listRestaurants: RestaurantModel[] = []
-    filteredProducts: ProductModel[] = []
-    filteredRestaurants: RestaurantModel[] = []
+    listProducts: any[] = []
+    listRestaurants: any[] = []
+    filteredProducts: any[] = []
+    filteredRestaurants: any[] = []
 
     constructor(
         private searchDataService: SearchDataService,

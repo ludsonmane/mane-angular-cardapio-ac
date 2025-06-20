@@ -1,6 +1,5 @@
 
 import { Component, OnInit } from '@angular/core';
-import { RestaurantModel } from '../../../../shared/models/restaurant.model';
 import { RestaurantService } from '../../../../shared/services/restaurant/restaurant.service';
 import { Router } from '@angular/router';
 
@@ -13,8 +12,8 @@ import { Router } from '@angular/router';
 export class RestaurantsComponent implements OnInit {
     search = ''
 
-    listRestaurants: RestaurantModel[] = []
-    filteredRestaurants: RestaurantModel[] = []
+    listRestaurants: any[] = []
+    filteredRestaurants: any[] = []
 
     constructor(
         private restaurantService: RestaurantService,

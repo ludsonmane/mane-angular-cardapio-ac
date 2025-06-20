@@ -10,7 +10,7 @@ export class UnitLocationService {
 
     constructor(private http: HttpClient) { }
 
-    public getLocations(): Observable<LocationModel[]> {
-        return this.http.get<LocationModel[]>('data/location.json')
+    public getLocations(): Observable<any[]> {
+        return this.http.get<any[]>('data/location.json')
     }
 }

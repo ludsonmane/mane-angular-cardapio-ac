@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UnitLocationService } from '../../services/unit-location/unit-location.service';
-import { LocationModel } from '../../models/location.model';
 import { Router } from '@angular/router';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
@@ -12,7 +11,7 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 })
 export class UnitLocationBottomSheetComponent implements OnInit {
 
-    locations: LocationModel[] = []
+    locations: any[] = []
 
     constructor(
         private unitLocationService: UnitLocationService,

@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { MenuItemModel } from '../../../../shared/models/menu-item.model';
 
 @Component({
     selector: 'app-menu-item-section',
@@ -9,5 +8,5 @@ import { MenuItemModel } from '../../../../shared/models/menu-item.model';
 })
 export class MenuItemSectionComponent {
     @Input() title!: string
-    @Input() items!: MenuItemModel[]
+    @Input() items!: any[]
 }

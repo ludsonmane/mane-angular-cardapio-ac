@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeDataService } from '../../services/home-data.service';
-import { BannerCarouselModel } from '../../models/banner-carousel.model';
 
 @Component({
     selector: 'app-banner-carousel',
@@ -10,7 +9,7 @@ import { BannerCarouselModel } from '../../models/banner-carousel.model';
 })
 export class BannerCarouselComponent implements OnInit{
 
-    imageList: BannerCarouselModel[] = []
+    imageList: any[] = []
 
     constructor(private homeDataService: HomeDataService) {}
 
