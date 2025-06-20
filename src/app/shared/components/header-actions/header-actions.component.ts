@@ -27,11 +27,9 @@ export class HeaderActionsComponent {
     ) {}
 
     onBack(): void {
-        if (window.history.length > 1) {
+        if (window.history.length > 1)
             this.location.back()
-        } else {
-            this.router.navigate(['/home'])
-        }
+        else this.router.navigate(['/home'])
     }
 
     onFavorite(): void { this.favorite.emit() }
