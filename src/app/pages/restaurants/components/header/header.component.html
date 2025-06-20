@@ -1,0 +1,19 @@
+<div class="header-container" [class.scrolled]="scrolled">
+  <app-header-actions
+    [showShare]="true"
+    [showTitle]="scrolled"
+    [showInfo]="true"
+    [title]="title"
+    (back)="goBack()"
+    (share)="shareItem()"
+    (info)="openInfo()"
+  ></app-header-actions>
+
+  @if (!scrolled) {
+    <div class="restaurant-info">
+      <div class="info-logo" [style.background-image]="'url(' + imageLogoUrl + ')'"></div>
+      <h2 class="info-title" [style.color]="colorTitle">{{ title }}</h2>
+      <p class="info-description">{{ description }}</p>
+    </div>
+  }
+</div>

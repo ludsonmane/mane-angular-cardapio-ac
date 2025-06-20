@@ -19,6 +19,7 @@
         [id]="restaurant.id"
         [imageLogoUrl]="restaurant.imageLogoUrl"
         [name]="restaurant.name"
+        (click)="openDetailsRestaurant(restaurant.id)"
       ></app-restaurant-card>
     } @empty {
       <app-empty-state

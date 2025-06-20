@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantModel } from '../../../../shared/models/restaurant.model';
 import { RestaurantService } from '../../../../shared/services/restaurant/restaurant.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-restaurants',
@@ -15,7 +16,10 @@ export class RestaurantsComponent implements OnInit {
     listRestaurants: RestaurantModel[] = []
     filteredRestaurants: RestaurantModel[] = []
 
-    constructor(private restaurantService: RestaurantService) {}
+    constructor(
+        private restaurantService: RestaurantService,
+        private router: Router
+    ) {}
 
     ngOnInit(): void {
         this.loadRestaurants()
@@ -38,5 +42,9 @@ export class RestaurantsComponent implements OnInit {
     cancelSearch(): void {
         this.search = ''
         this.loadRestaurants()
+    }
+
+    openDetailsRestaurant(id: string): void {
+        this.router.navigate(['restaurantes/', id])
     }
 }

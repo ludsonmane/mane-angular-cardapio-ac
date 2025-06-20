@@ -6,11 +6,15 @@ import { RestaurantsComponent } from './pages/restaurants/restaurants.component'
 import { TranslateModule } from '@ngx-translate/core';
 import { RestaurantsMaterialModule } from '../../shared/materials/restaurants-material.module';
 import { SharedModule } from '../../shared/shared.module';
+import { DetailsRestaurantComponent } from './pages/details-restaurant/details-restaurant.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
     declarations: [
-        RestaurantsComponent
+        RestaurantsComponent,
+        DetailsRestaurantComponent,
+        HeaderComponent
     ],
     imports: [
         CommonModule,

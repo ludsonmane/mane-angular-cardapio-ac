@@ -1,0 +1,75 @@
+<div class="container" *ngIf="restaurant" [class.scrolled]="search != ''">
+  <app-header
+    [title]="restaurant.name"
+    [description]="restaurant.description"
+    [imageLogoUrl]="restaurant.imageLogoUrl"
+    [scrolled]="search != ''"
+  ></app-header>
+
+  <div class="content">
+    <div class="content-field">
+      <div class="form-field">
+        <mat-icon class="icon-search" svgIcon="search"></mat-icon>
+        <input
+          type="text"
+          [(ngModel)]="search"
+          [placeholder]="'RESTAURANTS.SEARCH_RESTAURANT' | translate"
+          (input)="filterProducts()"
+        />
+        <mat-icon *ngIf="search" class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
+      </div>
+      <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
+    </div>
+
+    @if (search === '') {
+      <div class="content-tips">
+        <h3>{{ 'RESTAURANTS.CHEF_TIPS' | translate }}</h3>
+        <div class="cards-wrapper">
+          @for (item of listChefTips; track item) {
+            <app-product-card
+              class="product-card-vertical"
+              layout="vertical"
+              [id]="item.id"
+              [imageUrl]="item.imageUrl"
+              [title]="item.title"
+              [price]="item.currentPrice"
+            ></app-product-card>
+          }
+        </div>
+      </div>
+    }
+
+    <div class="content-menu">
+      <h3 *ngIf="search != ''">{{ 'RESTAURANTS.CHECKOUT_MENU' | translate }}</h3>
+      <div class="categories">
+        @for (item of listCategories; track item) {
+          <button
+            class="btn-category"
+            (click)="setCategory(item)"
+            [class.activate]="selectedCategory === item"
+          >
+            {{ item }}
+          </button>
+        }
+      </div>
+
+      <div class="products">
+        @for (item of filteredProducts; track item) {
+          <app-product-card
+            [id]="item.id"
+            [title]="item.name"
+            [description]="item.description"
+            [currentPrice]="item.price"
+            [imageUrl]="item.imageUrl"
+            [isFavorite]="item.isFavorite"
+          ></app-product-card>
+        } @empty {
+          <app-empty-state
+            [title]="'SEARCH_FIELD.NO_RESULTS_FOUND' | translate"
+            [description]="'SEARCH_FIELD.NO_RESULTS_FOUND_PLATE' | translate"
+          ></app-empty-state>
+        }
+      </div>
+    </div>
+  </div>
+</div>
