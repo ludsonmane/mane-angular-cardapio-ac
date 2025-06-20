@@ -1,4 +1,10 @@
-<swiper-container loop="true" pagination="true" autoPlay="true">
+<swiper-container
+  [loop]="imageList.length > 1"
+  pagination="true"
+  autoPlay="true"
+  slides-per-view="1"
+  slides-per-group="1"
+>
   @for (image of imageList; track image) {
     <swiper-slide class="slide-item">
       <div [style.background-image]="'url(' + image.path + ')'"></div>
