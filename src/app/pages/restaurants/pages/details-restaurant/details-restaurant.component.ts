@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestaurantService } from '../../../../shared/services/restaurant/restaurant.service';
 import { DOCUMENT } from '@angular/common';
@@ -10,7 +10,7 @@ import { ProductService } from '../../../../shared/services/product/product.serv
     templateUrl: './details-restaurant.component.html',
     styleUrl: './details-restaurant.component.css'
 })
-export class DetailsRestaurantComponent implements OnInit {
+export class DetailsRestaurantComponent implements OnInit, OnDestroy {
     restaurant!: any
     search: string = ''
     selectedCategory: string = 'Tudo'
@@ -36,6 +36,10 @@ export class DetailsRestaurantComponent implements OnInit {
                 this.loadAllProducts()
             }
         })
+    }
+
+    ngOnDestroy(): void {
+        this.clearInlineTheme()
     }
 
     loadDetailsRestaurand(id: string): void {
@@ -86,5 +90,11 @@ export class DetailsRestaurantComponent implements OnInit {
 
             return matchesCategory && matchesSearch
         })
+    }
+
+    clearInlineTheme(): void {
+        this.document.documentElement.style.removeProperty('--header-bg')
+        this.document.documentElement.style.removeProperty('--color-text')
+        this.document.documentElement.style.removeProperty('--button-bg')
     }
 }

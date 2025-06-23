@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { SearchDataService } from '../../services/search-data.service';
 import { ProductService } from '../../../../shared/services/product/product.service';
 import { DOCUMENT } from '@angular/common';
@@ -10,7 +10,7 @@ import { DOCUMENT } from '@angular/common';
     templateUrl: './category-products.component.html',
     styleUrl: './category-products.component.css'
 })
-export class CategoryProductsComponent implements OnInit {
+export class CategoryProductsComponent implements OnInit, OnDestroy {
 
     listPortion: string[] = ['Tudo', 'Individual', 'Pra galera']
     selectedPortion: string = 'Tudo'
@@ -35,6 +35,10 @@ export class CategoryProductsComponent implements OnInit {
                 this.loadProducts()
             }
         })
+    }
+
+    ngOnDestroy(): void {
+        this.clearInlineTheme()
     }
 
     setPortion(item: string) {
@@ -70,5 +74,10 @@ export class CategoryProductsComponent implements OnInit {
             return this.selectedPortion === 'Tudo' ||
                 product.portion === this.selectedPortion
         })
+    }
+
+    clearInlineTheme(): void {
+        this.document.documentElement.style.removeProperty('--header-bg')
+        this.document.documentElement.style.removeProperty('--color-text')
     }
 }
