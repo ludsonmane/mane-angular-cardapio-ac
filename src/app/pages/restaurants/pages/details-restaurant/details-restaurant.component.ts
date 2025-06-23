@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestaurantService } from '../../../../shared/services/restaurant/restaurant.service';
 import { DOCUMENT } from '@angular/common';
@@ -10,7 +10,7 @@ import { ProductService } from '../../../../shared/services/product/product.serv
     templateUrl: './details-restaurant.component.html',
     styleUrl: './details-restaurant.component.css'
 })
-export class DetailsRestaurantComponent {
+export class DetailsRestaurantComponent implements OnInit {
     restaurant!: any
     search: string = ''
     selectedCategory: string = 'Tudo'
