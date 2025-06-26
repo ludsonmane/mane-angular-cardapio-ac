@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-category-card',
@@ -12,4 +13,10 @@ export class CategoryCardComponent {
     @Input() imageUrl!: string
     @Input() colorBg!: string
     @Input() colorText!: string
+
+    constructor(private router: Router) {}
+
+    openCategoryProducts(): void {
+        this.router.navigate(['categoria/', '1'])
+    }
 }
