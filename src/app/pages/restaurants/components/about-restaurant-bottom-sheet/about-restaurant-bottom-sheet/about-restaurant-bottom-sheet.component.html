@@ -1,0 +1,7 @@
+
+<div class="container">
+  <h3 [style.color]="data.titleColor">{{ 'RESTAURANTS.GET_KNOW' | translate }} {{ data.title }}</h3>
+  <mat-icon class="icon-arrow" svgIcon="close" (click)="matBottomSheetRef.dismiss()"></mat-icon>
+  <img [src]="data.imageUrl" alt="">
+  <p>{{ data.text }}</p>
+</div>

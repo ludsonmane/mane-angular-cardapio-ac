@@ -8,13 +8,15 @@ import { RestaurantsMaterialModule } from '../../shared/materials/restaurants-ma
 import { SharedModule } from '../../shared/shared.module';
 import { DetailsRestaurantComponent } from './pages/details-restaurant/details-restaurant.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AboutRestaurantBottomSheetComponent } from './components/about-restaurant-bottom-sheet/about-restaurant-bottom-sheet/about-restaurant-bottom-sheet.component';
 
 
 @NgModule({
     declarations: [
         RestaurantsComponent,
         DetailsRestaurantComponent,
-        HeaderComponent
+        HeaderComponent,
+        AboutRestaurantBottomSheetComponent
     ],
     imports: [
         CommonModule,
