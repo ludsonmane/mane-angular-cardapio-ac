@@ -4,8 +4,8 @@
     "name": "Adega Mané",
     "description": "Drinks e Bebidas",
     "imageLogoUrl": "../img/restaurants/adega-mane.png",
-    "imageUrl": "../img/restaurants/adega-mane.png",
-    "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
+    "imageUrl": "../img/about-restaurant.png",
+    "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores. ",
     "theme": {
       "headerBg": "#FCE6E4",
       "colorText": "#40130F",
@@ -19,7 +19,7 @@
     "name": "Bar do Mané",
     "description": "Drinks e Bebidas",
     "imageLogoUrl": "../img/restaurants/bar-mane.png",
-    "imageUrl": "../img/restaurants/bar-mane.png",
+    "imageUrl": "../img/restaurants/adega-mane.png",
     "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
     "theme": {
       "headerBg": "#DEF2FF",
@@ -34,7 +34,7 @@
     "name": "Café e um Chêro",
     "description": "Drinks e Bebidas",
     "imageLogoUrl": "../img/restaurants/cafe-e-um-cero.png",
-    "imageUrl": "../img/restaurants/cafe-e-um-cero.png",
+    "imageUrl": "../img/restaurants/adega-mane.png",
     "about": "Proporcionamos uma jornada sensorial que transporta você para uma casa acolhedora no interior do Maranhão. Inspirados pela riqueza da terra e pelo calor da hospitalidade, buscamos criar uma atmosfera onde cada cliente se sinta parte de nossa história. Nossa paixão pela qualidade reflete em cada elemento cuidadosamente selecionado, enquanto celebramos o frescor dos alimentos e a generosidade da natureza. Aqui, cada garfada é uma celebração da vida simples e repleta de sabores.",
     "theme": {
       "headerBg": "#E6E6E7",
