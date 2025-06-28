@@ -14,6 +14,11 @@
   background-image: none !important;
 }
 
+app-header-actions {
+  position: relative;
+  z-index: 2;
+}
+
 .restaurant-info {
   display: flex;
   flex-direction: column;
@@ -25,6 +30,8 @@
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .info-logo {
