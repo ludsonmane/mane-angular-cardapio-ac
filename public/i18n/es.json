@@ -14,7 +14,8 @@
     "MAKE_SUGGESTION": "Haz una sugerencia",
     "SEARCH_RESTAURANT": "Busca en el restaurante...",
     "CHEF_TIPS": "Consejo del Chef",
-    "CHECKOUT_MENU": "Conoce nuestro menú"
+    "CHECKOUT_MENU": "Conoce nuestro menú",
+    "GET_KNOW": "Conoce"
   },
   "SEARCH": {
     "PLACEHOLDER": "¿Qué quieres comer?",
