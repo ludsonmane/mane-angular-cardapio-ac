@@ -1,0 +1,20 @@
+[
+  {
+    "id": "vegetariano",
+    "name": "Vegetariano",
+    "icon": "icon/vegetarian.svg",
+    "color": "#0C4942"
+  },
+  {
+    "id": "vegano",
+    "name": "Vegano",
+    "icon": "icon/vegetarian.svg",
+    "color": "#6A8364"
+  },
+  {
+    "id": "sem-lactose",
+    "name": "Sem lactose",
+    "icon": "icon/no-lactose.svg",
+    "color": "#9AD6E3"
+  }
+]
