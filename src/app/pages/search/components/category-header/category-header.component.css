@@ -15,6 +15,11 @@
   height: 50px;
 }
 
+app-header-actions {
+  position: relative;
+  z-index: 2;
+}
+
 .category-info {
   display: flex;
   flex-direction: row;
