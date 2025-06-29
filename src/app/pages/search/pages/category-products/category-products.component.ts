@@ -29,10 +29,11 @@ export class CategoryProductsComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.activatedRoute.paramMap.subscribe(params => {
-            const id = params.get('id')
-            if (id) {
-                this.loadCategory(id)
-                this.loadProducts()
+            const data = params.get('data')
+            if (data) {
+                const parseData = JSON.parse(data)
+                this.loadCategory(parseData)
+                this.loadProducts(parseData.name)
             }
         })
     }
@@ -46,25 +47,20 @@ export class CategoryProductsComponent implements OnInit, OnDestroy {
         this.filterProducts()
     }
 
-    loadCategory(id: string): void {
-        this.searchDataService.getCategoryById(id)
-            .subscribe((response) => {
-                if (response) {
-                    this.categoryData = response
+    loadCategory(data: any): void {
+        this.categoryData = data
 
-                    this.document.documentElement.style.setProperty('--header-bg', response.colorBg)
-                    if (response.colorText)
-                        this.document.documentElement.style.setProperty('--color-text', response.colorText)
-                }
-            })
+        this.document.documentElement.style.setProperty('--header-bg', data.theme.colorBg)
+        if (data.theme.colorText)
+            this.document.documentElement.style.setProperty('--color-text', data.theme.colorText)
     }
 
-    loadProducts(): void {
-        this.productService.getProductByCategory()
-            .subscribe((response) => {
-                this.listProducts = response
+    loadProducts(category: string): void {
+        this.productService.getProductByCategory(category)
+            .subscribe((response: any) => {
+                this.listProducts = response.data
 
-                this.filterProducts()
+                // this.filterProducts()
             })
     }
 

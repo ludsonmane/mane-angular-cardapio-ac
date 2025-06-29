@@ -1,11 +1,11 @@
 <div class="container pd-bottom-90" *ngIf="categoryData">
   <app-category-header
     [title]="categoryData.name"
-    [imageUrl]="categoryData.imageUrl"
+    [imageUrl]="categoryData.theme.imageUrl"
   ></app-category-header>
 
   <div class="content">
-    <div class="portions">
+    <!-- <div class="portions">
       @for (item of listPortion; track item) {
         <button
           class="btn-portion"
@@ -15,17 +15,18 @@
           {{ item }}
         </button>
       }
-    </div>
+    </div> -->
 
     <div class="products">
-      @for (item of filteredProducts; track item) {
+      @for (item of listProducts; track item) {
         <app-product-card
           [id]="item.id"
           [title]="item.name"
           [description]="item.description"
-          [price]="item.price"
+          [price]="item.price/100"
           [imageUrl]="item.imageUrl"
           [isFavorite]="item.isFavorite"
+          [productData]="item"
         ></app-product-card>
       }
     </div>
