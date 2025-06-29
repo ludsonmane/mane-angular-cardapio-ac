@@ -51,7 +51,6 @@ export class CategoryProductsComponent implements OnInit, OnDestroy {
             .subscribe((response) => {
                 if (response) {
                     this.categoryData = response
-                    console.log(response)
 
                     this.document.documentElement.style.setProperty('--header-bg', response.colorBg)
                     if (response.colorText)

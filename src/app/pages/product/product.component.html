@@ -1,12 +1,9 @@
 <div class="container" *ngIf="product">
   <app-header
-    [headerHeight]="headerHeight"
     [imageUrl]="product.imageUrl"
   ></app-header>
 
-  <div class="content"
-    [ngStyle]="{'margin-top.px': headerHeight-20}"
-    >
+  <div class="content">
     <app-product-info
       [title]="product.name"
       [description]="product.description"
