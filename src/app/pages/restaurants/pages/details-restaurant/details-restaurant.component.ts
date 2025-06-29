@@ -16,7 +16,7 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
     selectedCategory: string = 'Tudo'
 
     listChefTips: any[] = []
-    listCategories: string[] = ['Tudo', 'Executivos', 'Sanduíches', 'Entradas']
+    listCategories: any[] = []
     listProducts: any[] = []
     filteredProducts: any[] = []
 
@@ -28,12 +28,12 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.activatedRoute.paramMap.subscribe(params => {
-            const id = params.get('id')
+        this.activatedRoute.params.subscribe(params => {
+            const id = params['id']
             if (id) {
                 this.loadDetailsRestaurand(id)
                 this.loadChefTips()
-                this.loadAllProducts()
+                this.loadAllProducts(id)
             }
         })
     }
@@ -46,9 +46,9 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
         this.restaurantService.getRestaurantById(id)
             .subscribe((response) => {
                 if (response) {
-                    this.restaurant = response
+                    this.restaurant = response.data[0]
 
-                    const theme = response.theme
+                    const theme = response.data[0].theme
                     this.document.documentElement.style.setProperty('--header-bg', theme.headerBg)
                     this.document.documentElement.style.setProperty('--color-text', theme.colorText)
                     this.document.documentElement.style.setProperty('--button-bg', theme.buttonBg)
@@ -58,7 +58,7 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
 
     cancelSearch(): void {
         this.search = ''
-        this.loadAllProducts()
+        // this.loadAllProducts()
     }
 
     loadChefTips(): void {
@@ -66,10 +66,20 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
             .subscribe((response) => this.listChefTips = response)
     }
 
-    loadAllProducts(): void {
-        this.productService.getProductByRestaurant()
-            .subscribe((response) => {
-                this.listProducts = response
+    loadAllProducts(zigBarId: string): void {
+        this.productService.getProductByRestaurant(zigBarId)
+            .subscribe((response: any) => {
+                this.listProducts = response.data
+
+                const categories = response.data.map((element: any) => element.categories)
+                const refinedCategories = ['Tudo']
+                for(let i = 0; i < categories.length; i++) {
+                    for (let j = 0; j< categories[i].length; j++) {
+                        refinedCategories.push(categories[i][j].name)
+
+                    }
+                }
+                this.listCategories = [... new Set(refinedCategories)]
                 this.filterProducts()
             })
     }
@@ -81,8 +91,9 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
 
     filterProducts() {
         this.filteredProducts = this.listProducts.filter(product => {
+            const allCategories = product.categories.map((element: any) => element.name)
             const matchesCategory = this.selectedCategory === 'Tudo' ||
-                product.category === this.selectedCategory
+                allCategories.includes(this.selectedCategory)
 
             const matchesSearch = this.search
                 ? product.name.toLowerCase().includes(this.search.toLowerCase())

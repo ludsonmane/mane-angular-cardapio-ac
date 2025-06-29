@@ -19,11 +19,13 @@ export class ProductCardComponent {
     @Input() currentPrice?: number // preço atual|desconto
     @Input() isFavorite: boolean = false
 
+    @Input() productData: any
+
     constructor(private router: Router) {}
 
     onNavigate(): void {
         // Passar a rota da página menu-item-detail, quando for criada
-        this.router.navigate(['/produto', this.id])
+        this.router.navigate(['/produto', JSON.stringify(this.productData)])
     }
 
     setFavorite(): void {

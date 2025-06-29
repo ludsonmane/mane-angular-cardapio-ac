@@ -4,12 +4,12 @@
     @for(item of items; track item.id) {
       <app-product-card
         [id]="item.id"
-        [title]="item.title"
+        [title]="item.name"
         [description]="item.description"
-        [currentPrice]="item.currentPrice"
-        [price]="item.price"
+        [price]="item.price/100"
         [imageUrl]="item.imageUrl"
         [isFavorite]="item.isFavorite ?? false"
+        [productData]="item"
       ></app-product-card>
     }
   </div>

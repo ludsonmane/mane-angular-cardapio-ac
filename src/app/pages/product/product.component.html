@@ -1,24 +1,26 @@
 <div class="container" *ngIf="product">
   <app-header
-    [scrolled]="scrollY > 10"
+    [headerHeight]="headerHeight"
     [imageUrl]="product.imageUrl"
   ></app-header>
 
-  <div class="content">
+  <div class="content"
+    [ngStyle]="{'margin-top.px': headerHeight-20}"
+    >
     <app-product-info
       [title]="product.name"
       [description]="product.description"
-      [price]="product.price"
+      [price]="product.price/100"
     ></app-product-info>
 
     <app-restaurant-info
-      [id]="restaurant.id"
+      [id]="restaurant.zibBarId"
       [imageUrl]="restaurant.imageLogoUrl"
       [name]="restaurant.name"
       [description]="restaurant.description"
     ></app-restaurant-info>
 
-    <div class="content-suggestions">
+    <!-- <div class="content-suggestions">
       <h3>{{ 'PRODUCT.FOLLOW_UP_SUGGESTION' | translate }}</h3>
       <div class="cards-wrapper">
         @for (item of listSuggestions; track item) {
@@ -31,7 +33,7 @@
           ></app-product-card>
         }
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 

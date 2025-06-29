@@ -26,9 +26,9 @@ export class RestaurantsComponent implements OnInit {
 
     loadRestaurants(): void {
         this.restaurantService.getAllRestaurants()
-            .subscribe((response) => {
-                this.listRestaurants = response
-                this.filteredRestaurants = response
+            .subscribe((response: any) => {
+                this.listRestaurants = response.data
+                this.filteredRestaurants = response.data
             })
     }
 

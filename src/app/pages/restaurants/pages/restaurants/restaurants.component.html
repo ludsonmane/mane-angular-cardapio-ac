@@ -16,10 +16,10 @@
   <div class="restaurant-grid">
     @for (restaurant of filteredRestaurants; track restaurant) {
       <app-restaurant-card
-        [id]="restaurant.id"
+        [id]="restaurant.zigBarId"
         [imageLogoUrl]="restaurant.imageLogoUrl"
         [name]="restaurant.name"
-        (click)="openDetailsRestaurant(restaurant.id)"
+        (click)="openDetailsRestaurant(restaurant.zigBarId)"
       ></app-restaurant-card>
     } @empty {
       <app-empty-state
