@@ -35,7 +35,7 @@ export class SearchHomeComponent implements OnInit {
 
     loadCategories(): void {
         this.searchDataService.getCategories()
-            .subscribe((response) => this.listCategories = response)
+            .subscribe((response) => this.listCategories = response.data )
     }
 
     loadAllProducts(): void {

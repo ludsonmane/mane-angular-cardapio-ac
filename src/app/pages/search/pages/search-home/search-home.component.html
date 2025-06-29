@@ -19,9 +19,10 @@
         <app-category-card
           [isVertical]="index === 0"
           [name]="item.name"
-          [imageUrl]="item.imageUrl"
-          [colorBg]="item.colorBg"
-          [colorText]="item.colorText"
+          [imageUrl]="item.theme.imageUrl"
+          [colorBg]="item.theme.colorBg"
+          [colorText]="item.theme.colorText"
+          [dataCategory]="item"
         ></app-category-card>
       }
     </div>
