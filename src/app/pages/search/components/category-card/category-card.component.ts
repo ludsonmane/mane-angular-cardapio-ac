@@ -13,10 +13,11 @@ export class CategoryCardComponent {
     @Input() imageUrl!: string
     @Input() colorBg!: string
     @Input() colorText!: string
+    @Input() dataCategory: any
 
     constructor(private router: Router) {}
 
     openCategoryProducts(): void {
-        this.router.navigate(['categoria/', '1'])
+        this.router.navigate(['categoria/', JSON.stringify(this.dataCategory)])
     }
 }
