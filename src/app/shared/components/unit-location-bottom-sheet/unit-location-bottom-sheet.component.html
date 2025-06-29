@@ -4,7 +4,7 @@
   <p>{{ 'UNIT_SELECTION.DESCRIPTION' | translate }}</p>
   <mat-nav-list>
     @for (location of locations; track location) {
-      <div class="nav-item" mat-list-item (click)="selectLocation(location.id)">
+      <div class="nav-item" mat-list-item (click)="selectLocation(location.placeId, location.name)">
         <div class="icon-marker"><mat-icon svgIcon="marker"></mat-icon></div>
         <p>{{ location.name | translate }}</p>
         <mat-icon class="icon-arrow" svgIcon="arrow"></mat-icon>
