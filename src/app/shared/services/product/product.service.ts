@@ -34,8 +34,8 @@ export class ProductService {
         return this.http.get<any[]>(this.apiBaseUrl + `products?filters[bars][zigBarId][$eq]=${zigBarId}&populate=*`, { headers:  this.headers })
     }
 
-    getProductByCategory(categoryId?: string): Observable<any[]> {
-        return this.http.get<any[]>('data/products.json')
+    getProductByCategory(category: string): Observable<any[]> {
+        return this.http.get<any[]>(this.apiBaseUrl + `products?filters[categories][name][$eq]=${category}&populate=*`, { headers: this.headers })
     }
 
     getFavoriteProducts(): Observable<any[]> {
