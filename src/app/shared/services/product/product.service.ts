@@ -23,7 +23,7 @@ export class ProductService {
     }
 
     getSuggestedItems(): Observable<any[]> {
-        return this.http.get<any[]>('data/suggested-items.json')
+        return this.http.get<any[]>(this.apiBaseUrl + 'products?filters[isSugestion][$eq]=true&populate=*', { headers: this.headers })
     }
 
     getChefTips(): Observable<any[]> {

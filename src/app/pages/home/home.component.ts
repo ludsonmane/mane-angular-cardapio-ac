@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
 
     listSuggestedItems(): void {
         this.productService.getSuggestedItems()
-            .subscribe((response) => this.suggestedItems = response)
+            .subscribe((response: any) => this.suggestedItems = response.data)
     }
 
     listPromotionItems(): void {
