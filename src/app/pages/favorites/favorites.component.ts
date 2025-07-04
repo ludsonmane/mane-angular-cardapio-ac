@@ -22,9 +22,10 @@ export class FavoritesComponent implements OnInit {
 
     loadAllProducts(): void {
         this.productService.getFavoriteProducts()
-            .subscribe((response) => {
+            .subscribe((response: any) => {
                 if (response) {
-                    this.listProducts = response
+                    console.log(response)
+                    this.listProducts = response.data
                     this.filterProducts()
                 }
             })

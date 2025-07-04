@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1",
+    "restaurantId": "1",
+    "name": "Casquinha de Siri",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "price": 35.00,
+    "imageUrl": "img/menu-item.png",
+    "tags": ["vegetariano", "vegano", "sem-lactose"],
+    "category": "Executivos",
+    "portion": "Tudo",
+    "isFavorite": true,
+    "suggestions": ["p2", "p3", "p4"]
+  },
+  {
+    "id": "2",
+    "restaurantId": "1",
+    "name": "Kafta Bovina",
+    "description": "Carne moída preparada à moda árabe, com pimentões vermelho e amarelo, temperada com salsa, hortelã e especiarias.",
+    "price": 35.00,
+    "imageUrl": "img/menu-item.png",
+    "tags": ["vegetariano", "vegano", "sem-lactose"],
+    "category": "Sanduíches",
+    "portion": "Pra galera",
+    "isFavorite": true,
+    "suggestions": ["p2", "p3", "p4"]
+  },
+  {
+    "id": "3",
+    "restaurantId": "1",
+    "name": " Kafta de Frango",
+    "description": "Carne moída preparada à moda árabe, com pimentões vermelho e amarelo, temperada com salsa, hortelã e especiarias.",
+    "price": 35.00,
+    "imageUrl": "img/menu-item.png",
+    "tags": ["vegetariano", "vegano", "sem-lactose"],
+    "category": "Entradas",
+    "portion": "Individual",
+    "isFavorite": true,
+    "suggestions": ["p2", "p3", "p4"]
+  }
+]

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +17,7 @@ export class HomeDataService {
     constructor(private http: HttpClient) { }
 
     getImagesCarousel(): Observable<any[]> {
-        return this.http.get<any[]>('data/carousel.json')
+        return this.http.get<any[]>(this.apiBaseUrl + 'banners?populate=*', { headers: this.headers })
     }
 
     getPromotions(): Observable<any[]> {

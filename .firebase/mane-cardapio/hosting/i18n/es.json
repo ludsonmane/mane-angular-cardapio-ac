@@ -1,0 +1,62 @@
+{
+  "UNIT_SELECTION": {
+    "TITLE": "Elige la unidad",
+    "DESCRIPTION": "Elige la unidad en la que te encuentras actualmente."
+  },
+  "HOME": {
+    "SUGGESTIONS": "Sugerencias del día",
+    "PROMOTIONS": "Promociones",
+    "SEE_ALL": "Ver todo"
+  },
+  "RESTAURANTS": {
+    "TITLE": "Restaurantes",
+    "SEARCH": "Busca por nombre o categoría...",
+    "MAKE_SUGGESTION": "Haz una sugerencia",
+    "SEARCH_RESTAURANT": "Busca en el restaurante...",
+    "CHEF_TIPS": "Consejo del Chef",
+    "CHECKOUT_MENU": "Conoce nuestro menú",
+    "GET_KNOW": "Conoce"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "¿Qué quieres comer?",
+    "DISH": "Platos",
+    "RESTAURANT": "Restaurantes"
+  },
+  "FAVORITES": {
+    "TITLE": "Favoritos",
+    "SEARCH": "Busca en tus favoritos"
+  },
+  "OPTIONS": {
+    "TITLE": "Opciones",
+    "LOCATION": "Estás en",
+    "ABOUT_US": "Sobre nosotros",
+    "LANGUAGE": "Idioma",
+    "RESERVATION": "Reservas",
+    "MUSIC_HUNGRY": "Hambre de Música",
+    "MANE_CLUB": "Club Mané"
+  },
+  "PRODUCT": {
+    "FOLLOW_UP_SUGGESTION": "Sugerencia de acompañamiento"
+  },
+  "LANGUAGES": {
+    "TITLE": "Elige el idioma",
+    "DESCRIPTION": "Elige el idioma del menú digital"
+  },
+  "SEARCH_FIELD": {
+    "NO_RESULTS_FOUND": "No se encontraron resultados",
+    "MISSING_RESTAURANT": "¿Falta algún restaurante que no encontraste en Mané?",
+    "NO_RESULTS_FOUND_PLATE": "No encontramos ningún plato con el término que buscaste.",
+    "NO_RESULTS_FOUND_TERM": "No encontramos ningún restaurante con el término que buscaste.",
+    "NO_RESULTS_FOUND_FAVORITE": "No encontramos ningún plato favorito con el término que buscaste"
+  },
+  "MENU": {
+    "HOME": "Inicio",
+    "RESTAURANTS": "Restaurantes",
+    "SEARCH": "Buscar",
+    "FAVORITES": "Favoritos",
+    "OPTIONS": "Opciones"
+  },
+  "BUTTONS": {
+    "CANCEL": "Cancelar"
+  }
+}

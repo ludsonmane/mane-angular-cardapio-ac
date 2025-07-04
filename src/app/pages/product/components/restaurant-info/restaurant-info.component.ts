@@ -16,6 +16,7 @@ export class RestaurantInfoComponent {
     constructor(private router: Router) {}
 
     onGoToRestaurant(): void {
-        this.router.navigate(['', this.id])
+        console.log(this.id)
+        this.router.navigate([`/restaurantes/${this.id}`])
     }
 }

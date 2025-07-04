@@ -20,8 +20,15 @@ export class ProductCardComponent {
     @Input() isFavorite: boolean = false
 
     @Input() productData: any
+    myFavorites: string[] = [];
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) {
+        this.loadFavorites();
+    }
+
+    loadFavorites(): void {
+        this.myFavorites = JSON.parse(localStorage.getItem('favoriteProducts') || '[]');
+    }
 
     onNavigate(): void {
         // Passar a rota da página menu-item-detail, quando for criada
@@ -29,6 +36,17 @@ export class ProductCardComponent {
     }
 
     setFavorite(): void {
-        this.isFavorite = !this.isFavorite
+        // Recupera favoritos do localStorage
+        const favorites = JSON.parse(localStorage.getItem('favoriteProducts') || '[]');
+        if (this.productData) {
+            const index = favorites.indexOf(this.productData.documentId);
+            if (index === -1) {
+                favorites.push(this.productData.documentId);
+            } else {
+                favorites.splice(index, 1);
+            }
+            localStorage.setItem('favoriteProducts', JSON.stringify(favorites));
+            this.myFavorites = favorites
+        }
     }
 }
