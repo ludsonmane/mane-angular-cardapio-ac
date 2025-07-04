@@ -2,7 +2,7 @@
   background-color: var(--green-500);
   background-image: url('/img/background-location.png');
   background-position: top center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 
   height: 100%;
