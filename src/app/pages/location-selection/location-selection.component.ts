@@ -11,20 +11,9 @@ import { Router } from '@angular/router';
 })
 export class LocationSelectionComponent implements OnInit {
 
-    constructor(
-        private matBottomSheet: MatBottomSheet,
-        private router: Router
-    ) {}
+    constructor(private matBottomSheet: MatBottomSheet) {}
 
     ngOnInit(): void {
-        const placeId = localStorage.getItem('place_id')
-
-        if (placeId && placeId != '') {
-            this.router.navigate(['/home'])
-        } else { this.openBottomSheet() }
-    }
-
-    openBottomSheet(): void {
         this.matBottomSheet.open(UnitLocationBottomSheetComponent,
             { hasBackdrop: false }
         )
