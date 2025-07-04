@@ -15,7 +15,7 @@ export class BottomNavComponent implements OnInit {
         {
             label: 'MENU.HOME',
             icon: 'comma',
-            route: `/home/${this.unitLocation}`,
+            route: '/home',
         },
         {
             label: 'MENU.RESTAURANTS',
