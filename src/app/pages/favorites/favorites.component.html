@@ -19,9 +19,10 @@
         [id]="item.id"
         [title]="item.name"
         [description]="item.description"
-        [price]="item.price"
+        [price]="item.price/100"
         [imageUrl]="item.imageUrl"
         [isFavorite]="item.isFavorite"
+        [productData]="item"
       ></app-product-card>
     } @empty {
       <app-empty-state

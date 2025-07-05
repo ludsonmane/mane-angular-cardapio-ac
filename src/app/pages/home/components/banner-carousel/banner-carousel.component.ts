@@ -15,6 +15,11 @@ export class BannerCarouselComponent implements OnInit{
 
     ngOnInit(): void {
         this.homeDataService.getImagesCarousel()
-            .subscribe((response) => this.imageList = response)
+            .subscribe((response: any) => this.imageList = response.data)
+    }
+
+    onGoToRestaurant(cardapioId: any): void {
+        console.log(cardapioId)
+        //this.router.navigate([`/restaurantes/${this.id}`])
     }
 }

@@ -1,0 +1,4 @@
+export const environment = {
+    apiBaseUrl: 'https://worthy-friend-9aefd98722.strapiapp.com/api/',
+    token: 'db814218985fd5dac42fb58fcff64dc9cfd4fa8a95b35a962bd97c2dddfad3dd9c4de88da8d0d34bc12b304fb56678577c3419dbc05e4768ef2f420bd2a88694ec9388c938098770e5539c15e7638cc815d2b32937f2e897dcc66e8fc65161b662a8dc38b775b6857699a9b4d113e46510773d6f933677edb52abe7c13d052b4'
+}

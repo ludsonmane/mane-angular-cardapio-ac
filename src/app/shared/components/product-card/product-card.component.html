@@ -24,7 +24,7 @@
 
   @if (layout === 'horizontal') {
     <button class="btn-favorite" (click)="setFavorite(); $event.stopPropagation()">
-      <mat-icon [svgIcon]="isFavorite ? 'favorite' : 'favorite-border'"></mat-icon>
+      <mat-icon [svgIcon]="myFavorites.includes(productData.documentId)  ? 'favorite' : 'favorite-border'"></mat-icon>
     </button>
   }
 </div>

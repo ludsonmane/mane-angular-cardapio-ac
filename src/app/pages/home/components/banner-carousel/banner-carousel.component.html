@@ -7,7 +7,7 @@
 >
   @for (image of imageList; track image) {
     <swiper-slide class="slide-item">
-      <div [style.background-image]="'url(' + image.path + ')'"></div>
+      <div [style.background-image]="'url(' + image.path.url + ')'" (click)="onGoToRestaurant(image.cardapioId)"></div>
     </swiper-slide>
   }
 </swiper-container>

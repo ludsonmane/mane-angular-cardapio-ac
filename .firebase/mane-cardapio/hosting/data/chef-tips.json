@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Casquinha de siri",
+    "currentPrice": 13,
+    "imageUrl": "img/menu-item.png"
+  },
+  {
+    "id": 2,
+    "title": "Kafta Bovina",
+    "currentPrice": 18.5,
+    "imageUrl": "img/menu-item.png"
+  },
+  {
+    "id": 3,
+    "title": "Pastelzinho de Pirão de Leite",
+    "currentPrice": 13,
+    "imageUrl": "img/menu-item.png"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "name": "Happy Hour",
+    "colorText": "#062722",
+    "colorBg": "#F6EBD5",
+    "imageUrl": "img/taboa-frios.png"
+  },
+  {
+    "id": "2",
+    "name": "Entradas",
+    "colorText": "#062722",
+    "colorBg": "#84C9D7",
+    "imageUrl": "img/taboa-frios.png"
+  },
+  {
+    "id": "3",
+    "name": "Entradas",
+    "colorBg": "#184B46",
+    "colorText": "#062722",
+    "imageUrl": "img/taboa-frios.png"
+  },
+  {
+    "id": "4",
+    "name": "Aperitivos",
+    "colorBg": "#638A6E",
+    "colorText": "#062722",
+    "imageUrl": "img/taboa-frios.png"
+  },
+  {
+    "id": "5",
+    "name": "Drinks",
+    "colorBg": "#DE5649",
+    "colorText": "#062722",
+    "imageUrl": "img/taboa-frios.png"
+  }
+]
