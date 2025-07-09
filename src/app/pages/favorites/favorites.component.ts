@@ -24,7 +24,6 @@ export class FavoritesComponent implements OnInit {
         this.productService.getFavoriteProducts()
             .subscribe((response: any) => {
                 if (response) {
-                    console.log(response)
                     this.listProducts = response.data
                     this.filterProducts()
                 }

@@ -18,7 +18,8 @@ export class RestaurantsComponent implements OnInit {
     constructor(
         private restaurantService: RestaurantService,
         private router: Router
-    ) {}
+    ) {
+    }
 
     ngOnInit(): void {
         this.loadRestaurants()
