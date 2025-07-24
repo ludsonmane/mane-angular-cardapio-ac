@@ -5,20 +5,21 @@
   ></app-category-header>
 
   <div class="content">
-    <!-- <div class="portions">
-      @for (item of listPortion; track item) {
-        <button
-          class="btn-portion"
-          (click)="setPortion(item)"
-          [class.activate]="selectedPortion === item"
-        >
-          {{ item }}
-        </button>
-      }
-    </div> -->
+    <div class="content-menu">
+      <div class="categories">
+        @for (item of listCategories; track item) {
+          <button
+            class="btn-category"
+            (click)="setCategory(item)"
+            [class.activate]="selectedCategory === item"
+          >
+            {{ item }}
+          </button>
+        }
+      </div>
 
     <div class="products">
-      @for (item of listProducts; track item) {
+      @for (item of filteredProducts; track item) {
         <app-product-card
           [id]="item.id"
           [title]="item.name"
@@ -29,6 +30,7 @@
           [productData]="item"
         ></app-product-card>
       }
+    </div>
     </div>
   </div>
 </div>

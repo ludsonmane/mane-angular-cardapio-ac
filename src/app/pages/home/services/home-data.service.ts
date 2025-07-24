@@ -17,7 +17,7 @@ export class HomeDataService {
     constructor(private http: HttpClient) { }
 
     getImagesCarousel(): Observable<any[]> {
-        return this.http.get<any[]>(this.apiBaseUrl + 'banners?populate=*', { headers: this.headers })
+        return this.http.get<any[]>(this.apiBaseUrl + 'banners?populate[0]=menu&populate[1]=menu.days&populate[2]=path', { headers: this.headers })
     }
 
     getPromotions(): Observable<any[]> {

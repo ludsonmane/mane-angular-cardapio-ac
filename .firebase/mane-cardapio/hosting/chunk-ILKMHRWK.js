@@ -1,1 +1,0 @@
-import{a}from"./chunk-7DO42FDQ.js";import"./chunk-7HGNUUOO.js";import"./chunk-SSMQ3YPF.js";import"./chunk-7HNQAFRX.js";import"./chunk-RMGNXLDE.js";import"./chunk-KCTWOUKL.js";import"./chunk-3PWWSCAR.js";import"./chunk-J3JBHRUM.js";import"./chunk-5DVAFENP.js";export{a as RestaurantsModule};

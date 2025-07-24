@@ -18,6 +18,12 @@ export class CategoryCardComponent {
     constructor(private router: Router) {}
 
     openCategoryProducts(): void {
-        this.router.navigate(['categoria/', JSON.stringify(this.dataCategory)])
+        console.log(this.dataCategory)
+        const categoryObject = {
+            name: this.dataCategory.name,
+            theme: this.dataCategory.theme,
+            selectedItem: 'Tudo'
+        }
+        this.router.navigate(['categoria/', JSON.stringify(categoryObject)])
     }
 }

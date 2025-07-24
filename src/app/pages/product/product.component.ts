@@ -16,16 +16,20 @@ export class ProductComponent implements OnInit {
     restaurant!: any
     listSuggestions: any[] = []
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(private activatedRoute: ActivatedRoute, private productService: ProductService) {}
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe(params => {
             const data = params['data']
+
             if (data) {
-                const parseData = JSON.parse(data)
-                this.product = parseData
-                this.restaurant = parseData.bars[0]
-                this.listSuggestions = parseData.suggestions
+
+                this.productService.getProductById(data).subscribe((response: any) => {
+                    this.product = response.data[0]
+                    this.restaurant = response.data[0].bars[0]
+                    this.listSuggestions = response.data[0].suggestions
+                    console.log(this.product)
+                })
             }
         })
     }

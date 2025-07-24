@@ -36,7 +36,7 @@
 .product-card.horizontal .info-title,
 .product-card.horizontal .price-wrapper p {
   font-size: 0.875rem;
-  color: var(--color-text, var(--green-700));
+  /*color: var(--color-text, var(--green-700));*/
   font-weight: bold;
 }
 

@@ -29,6 +29,7 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe(params => {
+            
             const id = params['id']
             if (id) {
                 this.loadDetailsRestaurand(id)
@@ -47,7 +48,6 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
             .subscribe((response) => {
                 if (response) {
                     this.restaurant = response.data[0]
-
                     const theme = response.data[0].theme
                     this.document.documentElement.style.setProperty('--header-bg', theme.headerBg)
                     this.document.documentElement.style.setProperty('--color-text', theme.colorText)

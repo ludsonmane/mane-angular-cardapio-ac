@@ -2,13 +2,12 @@
   top: 0;
   position: sticky;
   height: 250px;
-  background-position: top center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 1.25rem; /* 20px */
+  padding: 2rem; /* 20px */
   transition: all .5s;
   overflow: hidden;
-
 }
 
 .header-container.scrolled {

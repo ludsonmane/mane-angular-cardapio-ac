@@ -23,17 +23,19 @@ export class AppComponent implements OnInit {
             .pipe(filter(event => event instanceof NavigationEnd))
             .subscribe((event) => {
                 const url =  (event as NavigationEnd).urlAfterRedirects
-
+                console.log(url)
                 // Rotas que devem mostrar o menu
                 const routesWithMenu = [
                     '/home',
                     '/restaurantes',
                     '/buscar',
                     '/favoritos',
-                    '/opcoes'
+                    '/opcoes',
+                    '/menus'
                 ]
 
-                this.showMenu = routesWithMenu.some(route => url.startsWith(route))
+                //this.showMenu = routesWithMenu.some(route => url.startsWith(route))
+                this.showMenu = routesWithMenu.includes(url)
             })
     }
 

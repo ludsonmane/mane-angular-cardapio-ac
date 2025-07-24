@@ -18,7 +18,7 @@ export class RestaurantService {
     constructor(private http: HttpClient) { }
 
     getRestaurantById(id: string): Observable<any> {
-        return this.http.get<any[]>(this.apiBaseUrl + 'bars', { headers: this.headers })
+        return this.http.get<any[]>(this.apiBaseUrl + `bars?filters[zigBarId][$eq]=${id}`, { headers: this.headers })
     }
 
     getAllRestaurants(): Observable<any[]> {

@@ -32,12 +32,13 @@ export class ProductCardComponent {
 
     onNavigate(): void {
         // Passar a rota da página menu-item-detail, quando for criada
-        this.router.navigate(['/produto', JSON.stringify(this.productData)])
+        this.router.navigate(['/produto', this.productData.zigId])
     }
 
     setFavorite(): void {
         // Recupera favoritos do localStorage
         const favorites = JSON.parse(localStorage.getItem('favoriteProducts') || '[]');
+        console.log(this.productData)
         if (this.productData) {
             const index = favorites.indexOf(this.productData.documentId);
             if (index === -1) {

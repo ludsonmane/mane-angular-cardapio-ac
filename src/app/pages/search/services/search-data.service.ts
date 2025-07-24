@@ -18,12 +18,16 @@ export class SearchDataService {
     constructor(private http: HttpClient) { }
 
     getCategories(): Observable<any> {
-        return this.http.get<any>(this.apiBaseUrl + 'categories', { headers: this.headers })
+        return this.http.get<any>(this.apiBaseUrl + 'segmentations?populate=*', { headers: this.headers })
     }
 
     getCategoryById(id: string): Observable<any> {
         return this.http.get<any[]>('data/categories.json').pipe(
             map((items) => items.find((item: any) => item.id === id))
         )
+    }
+
+    getProductsSearch(product: string): Observable<any> {
+        return this.http.get<any>(this.apiBaseUrl + `products?filters[name][$containsi]=${product}&populate=*`, { headers: this.headers })
     }
 }

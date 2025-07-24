@@ -62,39 +62,47 @@
   overflow-y: auto;
 }
 
-.categories {
+.category-info {
   display: flex;
   flex-direction: row;
-  gap: 0.75rem;
-  overflow-x: auto;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1.25rem; /* 20px */
+  margin-bottom: 1.5rem;
+  /*position: absolute;*/
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
-.products::-webkit-scrollbar,
-
-.categories::-webkit-scrollbar {
-  display: none;
+.info-img {
+  width: 120px;
+  height: 120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  mask-image: url('/img/comma-mask.png');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center right;
 }
 
-.btn-category {
-  background: none;
-  border: 1px solid var(--gray-400);
-  padding: 0.5rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.75rem;
-  font-weight: normal;
-  color: var(--gray-500);
-  transition: .3s;
-}
-
-.btn-category.activate {
-  border: none;
-  background-color: var(--button-bg);
+.info-title {
+  font-size: 2rem;
+  font-weight: bold;
   color: white;
+  line-height: 2.5rem;
+  letter-spacing: 0.025rem;
 }
 
-.content-menu,
-.products {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.header-container {
+  top: 0;
+  position: sticky;
+  height: 180px;
+  background-color: #184b46;
+  padding: 1.25rem; /* 20px */
+  transition: all .5s;
+  overflow: hidden;
+
+  background-image: url('/img/background-location.png');
 }

@@ -11,11 +11,11 @@ import { LanguageBottomSheetComponent } from './components/language-bottom-sheet
 })
 export class OptionsComponent {
     options = [
-        { label: 'Sobre nós', route: '/sobre-nos' },
+        //{ label: 'Sobre nós', route: '/sobre-nos' },
         { label: 'Idioma', route: '/idioma' },
-        { label: 'Reservas', route: '/reservas' },
-        { label: 'Fome de música', route: '/musica' },
-        { label: 'Clube Mané', route: '/clube-mane' }
+        //{ label: 'Reservas', route: '/reservas' },
+        //{ label: 'Fome de música', route: '/musica' },
+        //{ label: 'Clube Mané', route: '/clube-mane' }
     ]
 
     constructor(

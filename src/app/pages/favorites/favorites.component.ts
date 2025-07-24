@@ -21,13 +21,23 @@ export class FavoritesComponent implements OnInit {
     }
 
     loadAllProducts(): void {
-        this.productService.getFavoriteProducts()
-            .subscribe((response: any) => {
-                if (response) {
-                    this.listProducts = response.data
-                    this.filterProducts()
-                }
-            })
+        const favorites = JSON.parse(localStorage.getItem('favoriteProducts') || '[]');
+        let favoritesToFilter = ''
+        console.log(favorites)
+        if (favorites.length > 0) {
+            for(let i = 0; i<favorites.length;i++) {
+                console.log(favorites[i])
+                favoritesToFilter = favoritesToFilter + `filters[documentId][$eq]=${favorites[i]}&`
+            } 
+            this.productService.getFavoriteProducts(favoritesToFilter)
+                .subscribe((response: any) => {
+                    if (response) {
+                        console.log(response)
+                        this.listProducts = response.data
+                        this.filterProducts()
+                    }
+                })
+        }
     }
 
     filterProducts() {

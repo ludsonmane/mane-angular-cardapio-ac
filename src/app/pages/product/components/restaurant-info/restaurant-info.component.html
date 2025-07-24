@@ -1,6 +1,6 @@
-<div class="restaurant-card" (click)="onGoToRestaurant()">
+<div class="restaurant-card">
   <div class="restaurant-image" [style.background-image]="'url(' + imageUrl + ')'"></div>
-  <div class="restaurant-info">
+  <div class="restaurant-info" (click)="navigateToRestaurant(id)">
     <p class="info-name">{{ name }}</p>
     <p class="info-description">{{ description }}</p>
   </div>

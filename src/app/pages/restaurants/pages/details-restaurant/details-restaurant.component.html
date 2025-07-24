@@ -22,7 +22,7 @@
       </div>
       <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
     </div>
-
+    <!--
     @if (search === '') {
       <div class="content-tips">
         <h3>{{ 'RESTAURANTS.CHEF_TIPS' | translate }}</h3>
@@ -40,7 +40,7 @@
         </div>
       </div>
     }
-
+  -->
     <div class="content-menu">
       <h3 *ngIf="search != ''">{{ 'RESTAURANTS.CHECKOUT_MENU' | translate }}</h3>
       <div class="categories">
@@ -64,6 +64,7 @@
             [price]="item.price/100"
             [imageUrl]="item.imageUrl"
             [isFavorite]="item.isFavorite"
+            [productData]="item"
           ></app-product-card>
         } @empty {
           <app-empty-state

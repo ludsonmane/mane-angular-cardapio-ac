@@ -1,0 +1,32 @@
+<div class="container pd-bottom-90">
+
+  
+    <div class="header-container">   
+      <app-header-actions
+          [showShare]="true"
+          [showTitle]=headerConf.showMenu
+          [title]="headerConf.menuTitle"
+      ></app-header-actions>
+
+      <div class="category-info">
+        <h2 class="info-title">{{menus.name}}</h2>
+      </div>
+    </div>
+
+    <div class="content">
+    <div class="products">
+        @for (menu of menus.products; track menu) {
+            <app-product-card
+              class="product-card-vertical"
+              layout="horizontal"
+              [id]="menu.documentId"
+              [description]="menu.description"
+              [imageUrl]="menu.imageUrl"
+              [title]="menu.name"
+              [price]="menu.price/100"
+              [productData]="menu"
+            ></app-product-card>
+        }
+    </div>
+  </div>
+</div>

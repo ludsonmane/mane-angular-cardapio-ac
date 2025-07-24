@@ -37,6 +37,11 @@ const routes: Routes = [
         loadChildren: () => import('./pages/options/options.module').then(m => m.OptionsModule),
         canActivate: [ placeGuard ]
     },
+    {
+        path: 'menus',
+        loadChildren: () => import('./pages/menus/menus.module').then(m => m.MenusModule),
+        canActivate: [placeGuard]
+    },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

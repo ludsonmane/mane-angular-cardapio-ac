@@ -61,13 +61,22 @@ export class SearchHomeComponent implements OnInit {
     }
 
     onSearch(): void {
-        const term = this.search.toLowerCase().trim() || ''
+        if(this.search.length > 3) {
+            const term = this.search.toLowerCase().trim() || ''
 
+            this.searchDataService.getProductsSearch(term)
+                .subscribe((response) => {
+                    this.filteredProducts = response.data
+                    //this.filteredProducts = response
+            })
+        }
+        /*
         this.filteredProducts = this.listProducts
             .filter(product => product.name.toLowerCase().includes(term))
 
         this.filteredRestaurants = this.listRestaurants
             .filter(restaurant => restaurant.name.toLowerCase().includes(term))
+            */
     }
 
     setType(type: string): void {
