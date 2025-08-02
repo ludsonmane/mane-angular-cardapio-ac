@@ -66,26 +66,42 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
             .subscribe((response) => this.listChefTips = response)
     }
 
+    refineProducts(listData: any): void {
+        const categories = listData.map((element: any) => element.categories)
+        const refinedCategories = []
+        for(let i = 0; i < categories.length; i++) {
+            for (let j = 0; j< categories[i].length; j++) {
+                refinedCategories.push(categories[i][j].name)
+            }
+        }
+        this.listCategories = [... new Set(refinedCategories)]
+        this.filterProducts()
+    }
+
     loadAllProducts(zigBarId: string): void {
         this.productService.getProductByRestaurant(zigBarId)
             .subscribe((response: any) => {
-                this.listProducts = response.data
+                const dataResult = response.data
 
-                const categories = response.data.map((element: any) => element.categories)
-                const refinedCategories = ['Tudo']
-                for(let i = 0; i < categories.length; i++) {
-                    for (let j = 0; j< categories[i].length; j++) {
-                        refinedCategories.push(categories[i][j].name)
-
-                    }
+                if (response.meta.pagination.pageCount > 1) {
+                    this.productService.getProductByRestaurant(zigBarId, 2)
+                        .subscribe((response: any) => {
+                            this.listProducts = [...dataResult, ...response.data]
+                            //console.log(this.listProducts)
+                            this.refineProducts(this.listProducts)
+                            this.filterProducts()
+                        })
+                } else {
+                    this.listProducts = response.data
+                    //console.log(this.listProducts)
+                    this.refineProducts(this.listProducts)
+                    this.filterProducts()
                 }
-                this.listCategories = [... new Set(refinedCategories)]
-                this.filterProducts()
             })
     }
 
     setCategory(category: string): void {
-        this.selectedCategory = category
+        (this.selectedCategory == category) ? this.selectedCategory = 'Tudo' : this.selectedCategory = category
         this.filterProducts()
     }
 

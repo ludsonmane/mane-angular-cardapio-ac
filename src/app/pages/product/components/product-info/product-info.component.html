@@ -1,4 +1,14 @@
 <div class="info-container">
+        <div class="categories">
+        @for (item of tags; track item) {
+          <button
+            class="btn-category"
+            [ngStyle]="{'background-color': item.color}"
+          >
+            <img src="{{item.icon}}" class="icon-img">&nbsp;&nbsp; {{ item.name }}
+          </button>
+        }
+      </div>
   <h2 class="info-title">{{ title }}</h2>
   <p class="info-description">{{ description }}</p>
   <h3 class="info-price">R$ {{ price | number: '1.2-2' }}</h3>

@@ -17,7 +17,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
     getProductById(id: string): Observable<any> {
-        return this.http.get<any[]>(this.apiBaseUrl + `products?filters[zigId][$eq]=${id}&populate=*`, { headers: this.headers })
+        return this.http.get<any[]>(this.apiBaseUrl + `products?filters[zigId][$eq]=${id}&populate[0]=bars&populate[1]=categories&populate[2]=suggestions.bars&populate[3]=tags&populate[4]=suggestions.tags`, { headers: this.headers })
     }
 
     getSuggestedItems(): Observable<any[]> {
@@ -28,12 +28,12 @@ export class ProductService {
         return this.http.get<any[]>('data/chef-tips.json')
     }
 
-    getProductByRestaurant(zigBarId?: string): Observable<any[]> {
-        return this.http.get<any[]>(this.apiBaseUrl + `products?filters[bars][zigBarId][$eq]=${zigBarId}&filters[isActive][$eq]=true&populate=*&pagination[pageSize]=100`, { headers:  this.headers })
+    getProductByRestaurant(zigBarId?: string, page=1): Observable<any[]> {
+        return this.http.get<any[]>(this.apiBaseUrl + `products?filters[bars][zigBarId][$eq]=${zigBarId}&filters[isActive][$eq]=true&populate=*&pagination[pageSize]=100&pagination[page]=${page}`, { headers:  this.headers })
     }
 
-    getProductByCategory(category: string): Observable<any[]> {
-        return this.http.get<any[]>(this.apiBaseUrl + `products?filters[segmentations][name][$eq]=${category}&filters[isActive][$eq]=true&populate=*&pagination[pageSize]=100`, { headers: this.headers })
+    getProductByCategory(category: string, page=1): Observable<any[]> {
+        return this.http.get<any[]>(this.apiBaseUrl + `products?filters[segmentations][name][$eq]=${category}&filters[isActive][$eq]=true&populate=*&pagination[pageSize]=100&pagination[page]=${page}`, { headers: this.headers })
     }
 
     getFavoriteProducts(favoritesToFilter:any): Observable<any[]> {
@@ -41,6 +41,6 @@ export class ProductService {
     }
 
     getMenus(menuId:any): Observable<any[]> {
-        return this.http.get<any[]>(this.apiBaseUrl + `menus?filters[documentId][$eq]=${menuId}&populate[0]=products.bars&populate[1]=days`, { headers: this.headers })
+        return this.http.get<any[]>(this.apiBaseUrl + `menus?filters[documentId][$eq]=${menuId}&populate[0]=products.bars&populate[1]=days&populate[2]=products.tags`, { headers: this.headers })
     }
 }

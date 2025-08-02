@@ -11,7 +11,6 @@ import { filter } from 'rxjs';
     styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-
     showMenu: boolean = false
 
     constructor(
@@ -19,15 +18,15 @@ export class AppComponent implements OnInit {
         private languageService: LanguageService,
         private router: Router
     ) {
+        /*
         this.router.events
             .pipe(filter(event => event instanceof NavigationEnd))
             .subscribe((event) => {
                 const url =  (event as NavigationEnd).urlAfterRedirects
-                console.log(url)
                 // Rotas que devem mostrar o menu
                 const routesWithMenu = [
                     '/home',
-                    '/restaurantes',
+                    '/restaurantes/home',
                     '/buscar',
                     '/favoritos',
                     '/opcoes',
@@ -37,6 +36,8 @@ export class AppComponent implements OnInit {
                 //this.showMenu = routesWithMenu.some(route => url.startsWith(route))
                 this.showMenu = routesWithMenu.includes(url)
             })
+            */
+    
     }
 
     ngOnInit(): void {

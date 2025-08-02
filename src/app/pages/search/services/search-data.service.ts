@@ -28,6 +28,6 @@ export class SearchDataService {
     }
 
     getProductsSearch(product: string): Observable<any> {
-        return this.http.get<any>(this.apiBaseUrl + `products?filters[name][$containsi]=${product}&populate=*`, { headers: this.headers })
+        return this.http.get<any>(this.apiBaseUrl + `products?filters[name][$containsi]=${product}&filters[isActive][$eq]=true&populate=*`, { headers: this.headers })
     }
 }

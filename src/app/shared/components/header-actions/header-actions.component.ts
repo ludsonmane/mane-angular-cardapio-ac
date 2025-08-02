@@ -31,9 +31,15 @@ export class HeaderActionsComponent {
     onInfo(): void { this.info.emit() }
 
     onBack(): void {
-        if (window.history.length > 1)
+        console.log(this.router.url)
+        this.location.back()
+        /*
+        if (this.router.url.includes('/restaurantes/')) {
+            console.log('entrou')
+            this.router.navigate(['/restaurantes/home'])
+        } else {
             this.location.back()
-        else this.router.navigate(['/home'])
+        }*/
     }
 
     onShare(): void {

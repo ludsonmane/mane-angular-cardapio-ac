@@ -29,13 +29,18 @@ export class SearchHomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadCategories()
-        this.loadAllProducts()
-        this.loadAllRestaurants()
+        //this.loadAllProducts()
+        //this.loadAllRestaurants()
     }
 
     loadCategories(): void {
         this.searchDataService.getCategories()
-            .subscribe((response) => this.listCategories = response.data )
+            .subscribe((response) => {
+                const principalCategoriesArr = response.data.filter((el:any) => el.theme.principal)
+                const ordinaryCategoriesArr = response.data.filter((el:any) => el.theme.principal === undefined)
+                //console.log(principalCategoriesArr, ordinaryCategoriesArr)
+            this.listCategories = [...principalCategoriesArr, ...ordinaryCategoriesArr]
+        })
     }
 
     loadAllProducts(): void {

@@ -21,8 +21,8 @@
 }
 
 .product-card.horizontal .product-image {
-  width: 66px;
-  height: 66px;
+  width: 100px;
+  height: 100px;
 }
 
 .product-card.horizontal .product-info {
@@ -35,13 +35,13 @@
 
 .product-card.horizontal .info-title,
 .product-card.horizontal .price-wrapper p {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   /*color: var(--color-text, var(--green-700));*/
   font-weight: bold;
 }
 
 .product-card.horizontal .info-description {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--gray-500);
   font-weight: lighter;
   overflow: hidden;
@@ -82,7 +82,7 @@
 }
 
 .product-card.vertical .info-title {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--color-text, var(--green-700));
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -97,4 +97,22 @@
   font-size: 0.75rem;
   color: var(--gray-500);
   font-weight: normal;
+}
+
+.circle-image {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0; /* cor de fundo opcional */
+  border: 2px solid #ddd; /* borda opcional */
+}
+
+.circle-image img {
+  width: 8px;
+  /*height: 100%;*/
+  object-fit: cover;
 }

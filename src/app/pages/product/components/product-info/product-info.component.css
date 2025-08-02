@@ -22,3 +22,24 @@
   font-size: 1.25rem;
   color: var(--green-700);
 }
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  overflow-x: auto;
+}
+
+.btn-category {
+  background: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: white;
+  transition: .3s;
+}
+
+.icon-img {
+  width: 10px;
+}

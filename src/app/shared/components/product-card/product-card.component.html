@@ -2,8 +2,9 @@
   <div class="product-image" [style.background-image]="'url(' + imageUrl + ')'"></div>
 
   <div class="product-info">
-    <p class="info-title">{{ title }}</p>
-    
+    <p class="info-title">
+      {{ title }}
+    </p>
 
     @if (layout === 'horizontal' && description) {
       <p class="info-description">{{ productData.bars[0].name }}</p>
@@ -24,6 +25,13 @@
     </div>
   </div>
 
+  <div *ngIf="productData.tags.length > 0" style="display:flex">
+  @for (item of productData.tags; track item) {
+  <span class="circle-image"  [ngStyle]="{'background-color': item.color}">
+    <img src="{{item.icon}}" alt="Imagem Circular" />
+  </span>
+  }
+  </div>
   @if (layout === 'horizontal') {
     <button class="btn-favorite" (click)="setFavorite(); $event.stopPropagation()">
       <mat-icon [svgIcon]="myFavorites.includes(productData.documentId)  ? 'favorite' : 'favorite-border'"></mat-icon>

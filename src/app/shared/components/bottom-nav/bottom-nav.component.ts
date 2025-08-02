@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class BottomNavComponent implements OnInit {
 
-    unitLocation: string = localStorage.getItem('location_id') || ''
+    unitLocation: string = localStorage.getItem('place_id') || ''
 
     navItems = [
         {
@@ -21,7 +21,7 @@ export class BottomNavComponent implements OnInit {
             label: 'MENU.RESTAURANTS',
             icon: 'restaurant-border',
             activeIcon: 'restaurant',
-            route: '/restaurantes',
+            route: '/restaurantes/home',
         },
         {
             label: 'MENU.SEARCH',

@@ -12,7 +12,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class CategoryProductsComponent implements OnInit, OnDestroy {
 
-    listPortion: string[] = ['Tudo', 'Individual', 'Pra galera']
+    //listPortion: string[] = ['Tudo', 'Individual', 'Pra galera']
     //selectedPortion: string = 'Tudo'
     selectedCategory: string = 'Tudo'
     listProducts: any[] = []
@@ -61,21 +61,37 @@ export class CategoryProductsComponent implements OnInit, OnDestroy {
             this.document.documentElement.style.setProperty('--color-text', data.theme.colorText)
     }
 
+    refineProducts(listData: any): void {
+        const categories = listData.map((element: any) => element.categories)
+        const refinedCategories = []
+        for(let i = 0; i < categories.length; i++) {
+            for (let j = 0; j< categories[i].length; j++) {
+                refinedCategories.push(categories[i][j].name)
+            }
+        }
+        this.listCategories = [... new Set(refinedCategories)]
+        this.filterProducts()
+    }
+
     loadProducts(category: string): void {
         this.productService.getProductByCategory(category)
             .subscribe((response: any) => {
-                this.listProducts = response.data
-                const categories = response.data.map((element: any) => element.categories)
-                const refinedCategories = ['Tudo']
-                for(let i = 0; i < categories.length; i++) {
-                    for (let j = 0; j< categories[i].length; j++) {
-                        refinedCategories.push(categories[i][j].name)
-                    }
+                //this.listProducts = response.data
+                const dataResult = response.data
+                if (response.meta.pagination.pageCount > 1) {
+                    this.productService.getProductByCategory(category, 2)
+                        .subscribe((response: any) => {
+                            this.listProducts = [...dataResult, ...response.data]
+                            //console.log(this.listProducts.filter(el => el.bars.length == 0))
+                            this.refineProducts(this.listProducts)
+                            //this.filterProducts()
+                        })
+                } else {
+                    this.listProducts = response.data
+                    //console.log(this.listProducts)
+                    this.refineProducts(this.listProducts)
+                    //this.filterProducts()
                 }
-                this.listCategories = [... new Set(refinedCategories)]
-                this.filterProducts()
-
-                // this.filterProducts()
             })
     }
 /*
@@ -88,7 +104,7 @@ export class CategoryProductsComponent implements OnInit, OnDestroy {
         */
 
     setCategory(category: string): void {
-        this.selectedCategory = category
+        (this.selectedCategory == category) ? this.selectedCategory = 'Tudo' : this.selectedCategory = category
         this.filterProducts()
     }
 

@@ -32,7 +32,19 @@ export class MenusComponent {
                 .subscribe((response: any) => {
                     if (response) {
                       console.log(response)
-                      this.menus = response.data[0]
+                      const p = response.data[0].products.filter((el:any) => {
+                        if (el.isActive == true) return el 
+                      })
+                      this.menus = {
+                        name: response.data[0].name,
+                        days: response.data[0].days,
+                        documentId: response.data[0].documentId,
+                        endDate: response.data[0].endDate,
+                        id: response.data[0].id,
+                        startDate: response.data[0].startDate,
+                        products: p
+                      }
+                      console.log(this.menus)
                     }
                 })
             }
