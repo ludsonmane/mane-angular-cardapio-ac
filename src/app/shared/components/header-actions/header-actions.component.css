@@ -3,7 +3,7 @@
   fill: white;
 }
 
-::ng-deep .btn-favorite mat-icon svg path,
+::ng-deep #btn-favorite mat-icon svg path,
 ::ng-deep .btn-share mat-icon svg path {
   stroke: white;
   transition: all .2s;

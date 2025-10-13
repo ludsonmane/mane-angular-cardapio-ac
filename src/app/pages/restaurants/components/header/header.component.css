@@ -3,7 +3,7 @@
   position: sticky;
   height: 250px;
   background-color: var(--header-bg);
-  padding: 1.25rem; /* 20px */
+  padding: 1.25rem 1.25rem 0; /* 20px */
   transition: all .5s;
   overflow: hidden;
 }
@@ -35,8 +35,8 @@ app-header-actions {
 }
 
 .info-logo {
-  width: 64px;
-  height: 64px;
+  width: 90px;
+  height: 90px;
   border-radius: 100%;
   background-position: center;
   background-repeat: no-repeat;

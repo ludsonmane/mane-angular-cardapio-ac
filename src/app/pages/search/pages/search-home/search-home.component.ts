@@ -36,10 +36,34 @@ export class SearchHomeComponent implements OnInit {
     loadCategories(): void {
         this.searchDataService.getCategories()
             .subscribe((response) => {
-                const principalCategoriesArr = response.data.filter((el:any) => el.theme.principal)
-                const ordinaryCategoriesArr = response.data.filter((el:any) => el.theme.principal === undefined)
+                //const principalCategoriesArr = response.data.filter((el:any) => el.theme.principal)
+                //const ordinaryCategoriesArr = response.data.filter((el:any) => el.theme.principal === undefined)
                 //console.log(principalCategoriesArr, ordinaryCategoriesArr)
-            this.listCategories = [...principalCategoriesArr, ...ordinaryCategoriesArr]
+                this.listCategories = response.data.sort((a:any, b:any) => {
+                    // Acessa o valor de 'order' de cada elemento. 
+                    // O '?' (optional chaining) evita erros se 'theme' não existir.
+                    const orderA = a.theme?.order;
+                    const orderB = b.theme?.order;
+
+                    // Verifica se os elementos possuem a propriedade 'order'
+                    const hasOrderA = orderA !== undefined && orderA !== null;
+                    const hasOrderB = orderB !== undefined && orderB !== null;
+
+                    if (hasOrderA && hasOrderB) {
+                        // Se ambos têm 'order', ordena por seus valores numéricos
+                        return orderA - orderB;
+                    } else if (hasOrderA) {
+                        // Se apenas 'a' tem 'order', 'a' vem primeiro
+                        return -1;
+                    } else if (hasOrderB) {
+                        // Se apenas 'b' tem 'order', 'b' vem primeiro (e 'a' vai para o fim)
+                        return 1;
+                    } else {
+                        // Se nenhum tem 'order', mantém a ordem original entre eles
+                        return 0;
+                    }
+                });
+            //this.listCategories = [...principalCategoriesArr, ...ordinaryCategoriesArr]
         })
     }
 

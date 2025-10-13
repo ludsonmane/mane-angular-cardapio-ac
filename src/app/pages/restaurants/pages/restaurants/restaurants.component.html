@@ -1,6 +1,6 @@
 <div class="container pd-bottom-90">
   <h1 class="title">{{ 'RESTAURANTS.TITLE' | translate }}</h1>
-  <div class="form-field">
+  <!--<div class="form-field">
     <mat-icon class="icon-search" svgIcon="search"></mat-icon>
     <input
       type="text"
@@ -12,7 +12,8 @@
       <mat-icon class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
       <button class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
     }
-  </div>
+  </div>-->
+  <br/>
   <div class="restaurant-grid">
     @for (restaurant of filteredRestaurants; track restaurant) {
       <app-restaurant-card

@@ -25,16 +25,22 @@
     </div>
   </div>
 
+<!--
   <div *ngIf="productData.tags.length > 0" style="display:flex">
   @for (item of productData.tags; track item) {
   <span class="circle-image"  [ngStyle]="{'background-color': item.color}">
     <img src="{{item.icon}}" alt="Imagem Circular" />
   </span>
   }
-  </div>
+  
   @if (layout === 'horizontal') {
     <button class="btn-favorite" (click)="setFavorite(); $event.stopPropagation()">
       <mat-icon [svgIcon]="myFavorites.includes(productData.documentId)  ? 'favorite' : 'favorite-border'"></mat-icon>
     </button>
   }
+</div>
+-->
+    <button class="btn-favorite" (click)="setFavorite(); $event.stopPropagation()">
+      <mat-icon [svgIcon]="myFavorites.includes(productData.documentId)  ? 'favorite' : 'favorite-border'"></mat-icon>
+    </button>
 </div>

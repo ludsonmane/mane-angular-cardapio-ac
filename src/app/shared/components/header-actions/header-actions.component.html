@@ -7,7 +7,7 @@
     <button *ngIf="showInfo" class="btn-info" (click)="onInfo()">
       <mat-icon svgIcon="info"></mat-icon>
     </button>
-    <button *ngIf="showFavorite" class="btn-favorite" [class.active]="isFavorite" (click)="onFavorite()">
+    <button *ngIf="showFavorite" id="btn-favorite" [class.active]="isFavorite" (click)="onFavorite()">
       <mat-icon svgIcon="favorite-border"></mat-icon>
     </button>
     <button *ngIf="showShare" class="btn-share" (click)="onShare()">

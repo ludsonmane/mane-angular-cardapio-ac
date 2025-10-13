@@ -1,6 +1,6 @@
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { RestaurantsModule } from './pages/restaurants/restaurants.module';
 import { SearchModule } from './pages/search/search.module';
 import { FavoritesModule } from './pages/favorites/favorites.module';
 import { OptionsModule } from './pages/options/options.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 // Função para carregar os arquivos JSON
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,7 +40,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         RestaurantsModule,
         SearchModule,
         FavoritesModule,
-        OptionsModule
+        OptionsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: !isDevMode(),
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        })
     ],
     providers: [
         provideHttpClient()

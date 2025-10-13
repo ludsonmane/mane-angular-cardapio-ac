@@ -63,7 +63,7 @@
             [description]="item.description"
             [price]="item.price/100"
             [imageUrl]="item.imageUrl"
-            [isFavorite]="item.isFavorite"
+            [isFavorite]="item.isFavorite ?? false"
             [productData]="item"
           ></app-product-card>
         } @empty {
