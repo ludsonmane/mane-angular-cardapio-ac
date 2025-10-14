@@ -15,42 +15,38 @@ import { FavoritesModule } from './pages/favorites/favorites.module';
 import { OptionsModule } from './pages/options/options.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-// Função para carregar os arquivos JSON
+// loader de i18n
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, 'i18n/', '.json')
+  return new TranslateHttpLoader(http, 'i18n/', '.json');
 }
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
-        HomeModule,
-        SharedModule,
-        ProductModule,
-        RestaurantsModule,
-        SearchModule,
-        FavoritesModule,
-        OptionsModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-          enabled: !isDevMode(),
-          // Register the ServiceWorker as soon as the application is stable
-          // or after 30 seconds (whichever comes first).
-          registrationStrategy: 'registerWhenStable:30000'
-        })
-    ],
-    providers: [
-        provideHttpClient()
-    ],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    HomeModule,
+    SharedModule,
+    ProductModule,
+    RestaurantsModule,
+    SearchModule,
+    FavoritesModule,
+    OptionsModule,
+
+    // SW: registra imediatamente em produção → evita precisar de F5
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerImmediately',
+    }),
+  ],
+  providers: [provideHttpClient()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
