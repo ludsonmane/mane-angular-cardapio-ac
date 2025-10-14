@@ -38,18 +38,19 @@ export class LocationSelectionComponent implements OnInit {
   }
 
   /**
-   * Clique = aceite LGPD + seta unidade + navegação
-   * Eventos (PageView/MenuOpen/New/Recurring) serão disparados pelo AcquisitionService
+   * Clique = aceita LGPD + seta unidade + garante pixel pronto e drena fila
+   * Só depois navega para o cardápio da unidade (Pixel Helper já enxerga os eventos).
    */
-  private acceptAndGo(slug: string) {
+  private async acceptAndGo(slug: string) {
+    console.log('[selection] slug=', slug);
     try { localStorage.setItem('place_id', slug); } catch {}
 
-    // aceita LGPD e inicia fluxo (geofence + pixel + eventos)
-    this.zone.runOutsideAngular(() => {
-      try { this.acq.acceptAndRun(); } catch {}
-    });
+    try {
+      await this.acq.activateAndFlush({ path: `/cardapio/${slug}`, trigger: 'selection' });
+    } catch {
+      // mesmo que falhe a espera, seguimos para não travar UX
+    }
 
-    // navega para o cardápio da unidade
     this.router.navigate(['/cardapio', slug]);
   }
 

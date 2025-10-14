@@ -1,131 +1,193 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-type Coords = { lat: number; lng: number };
-
 @Injectable({ providedIn: 'root' })
 export class AcquisitionService {
   /* ====== CONFIG ====== */
-  private META_PIXEL_ID = '1160688802149033';       // ← novo ID
+  private META_PIXEL_ID = '1160688802149033';
   private BRAND = 'Mané Mercado';
   private COOKIE_DAYS = 365;
-
-  /* ====== GEOFENCE (IP only) ====== */
-  private GEOFENCE = {
-    center: { lat: -15.7833425, lng: -47.9019692 }, // Estádio Mané
-    radiusKm: 4,                                    // raio 2 km
-    ipTimeoutMs: 3500,
-    ipinfoToken: '2fd811bd4356a1',
-  };
 
   /* ====== KEYS ====== */
   private K = {
     consent: 'ma_consent_v1',
     visits:  'ma_visit_count_v1',
     first:   'ma_first_seen_v1',
-    ipgeo:   'ma_ip_geo_cache_v1',
+    queue:   'ma_evt_queue_v1',
   } as const;
+
+  /** flags internas */
+  private jsLoaded = false;         // fbevents.js carregado (onload)
+  private fbInited = false;         // fbq('init') concluído (flag)
+  private readyWait?: Promise<void>; // memoize do ensurePixelReady
 
   constructor(@Inject(DOCUMENT) private doc: Document) {}
 
   /* ========= PUBLIC API ========= */
-  /** Chame no bootstrap do app (se já houver consentimento salvo). */
-  boot() {
+
+  /** Pré-aquecer conexões (use no ngOnInit do App) */
+  public prime(): void {
+    try {
+      const p1 = this.doc.createElement('link'); p1.rel = 'preconnect'; p1.href = 'https://connect.facebook.net';
+      const p2 = this.doc.createElement('link'); p2.rel = 'preconnect'; p2.href = 'https://www.facebook.com';
+      this.doc.head.appendChild(p1); this.doc.head.appendChild(p2);
+      this.d('[prime] preconnect ok');
+    } catch {}
+  }
+
+  /** Se já houver consentimento salvo, garante pixel e dispara base */
+  public async boot(): Promise<void> {
     const consent = this.readKV(this.K.consent);
-    if (consent === 'granted') this.startFlowWithGeofence();
+    if (consent === 'granted') {
+      this.d('[boot] consent granted → ensure & init flow');
+      try { await this.ensurePixelReady(); } catch (e) { this.d('[boot] ensure error', e); }
+      this.initTrackingFlow();
+    } else {
+      this.d('[boot] no consent, skipping');
+    }
   }
 
-  /** Chame ao escolher a unidade — isso equivale ao aceite LGPD. */
-  acceptAndRun() {
+  /** Aceite no clique da unidade: salva consent, garante pixel e drena fila */
+  public async activateAndFlush(extra?: Record<string, any>): Promise<void> {
     this.saveKV(this.K.consent, 'granted');
-    this.startFlowWithGeofence();
+    this.d('[activateAndFlush] consent=granted; ensuring pixel...');
+    try { await this.ensurePixelReady(); } catch (e) { this.d('[activateAndFlush] ensure error', e); }
+    this.initTrackingFlow(extra);
+    this.drain(extra);
+
+    // rede de segurança: re-flush 1s depois
+    setTimeout(() => {
+      this.d('[activateAndFlush] safety re-flush');
+      this.drain(extra);
+    }, 1000);
   }
 
-  /** Opcional: negar explicitamente (não rodar tracking). */
-  deny() {
+  /** Back-compat */
+  public acceptAndRun(extra?: Record<string, any>): Promise<void> {
+    return this.activateAndFlush(extra);
+  }
+
+  public deny(): void {
     this.saveKV(this.K.consent, 'denied');
+    this.d('[deny] consent=denied');
   }
 
-  /** Disparo manual de eventos customizados, se precisar. */
-  fireNow(name: string, params?: Record<string, any>) {
-    this.loadMetaPixel();
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('trackCustom', name, params || {});
+  /** Envia agora; se ainda não puder, enfileira */
+  public async fireNow(name: string, params?: Record<string, any>): Promise<void> {
+    const consent = this.readKV(this.K.consent);
+    if (consent !== 'granted') {
+      this.d('[fireNow] no consent → enqueue', name, params);
+      this.enqueue(name, params);
+      return;
+    }
+    try {
+      await this.ensurePixelReady();
+      this.d('[fireNow] sending', name, params);
+      (window as any).fbq?.('trackCustom', name, params || {});
+    } catch (e) {
+      this.d('[fireNow] ensure failed → enqueue', name, e);
+      this.enqueue(name, params);
     }
   }
 
   /* ========= CORE FLOW ========= */
-  private async startFlowWithGeofence() {
-    // cache de ip-geo por 10 minutos
-    const cached = this.getLS(this.K.ipgeo) as any;
-    if (cached && isFinite(cached.lat) && isFinite(cached.lng) && cached.ts && (Date.now() - cached.ts) < 10 * 60 * 1000) {
-      const d = this.distKm({ lat: cached.lat, lng: cached.lng }, this.GEOFENCE.center);
-      if (d <= this.GEOFENCE.radiusKm) return this.initTrackingFlow({ geofenceMode: 'ip-cache', geofenceDistanceKm: +d.toFixed(3) });
-      return;
-    }
 
-    const ip = await this.tryIpProviders();
-    if (!ip) return;
+  private initTrackingFlow(extra?: Record<string, any>): void {
+    this.loadMetaPixel(); // idempotente
 
-    this.setLS(this.K.ipgeo, { lat: ip.lat, lng: ip.lng, ts: Date.now() });
-    const d = this.distKm({ lat: ip.lat, lng: ip.lng }, this.GEOFENCE.center);
-
-    if (d <= this.GEOFENCE.radiusKm) {
-      return this.initTrackingFlow({ geofenceMode: 'ip', geofenceSource: ip.source, geofenceDistanceKm: +d.toFixed(3) });
-    }
-    // fora do raio → não dispara
-  }
-
-  private initTrackingFlow(extraParams?: Record<string, any>) {
     const visits = this.bumpVisitCount();
     const status = visits === 1 ? 'NewCustomer' : 'RecurringCustomer';
+    const base = { brand: this.BRAND, customerStatus: status, visitNumber: visits, ...(extra || {}) };
 
-    this.loadMetaPixel();
-
-    const base = Object.assign(
-      { brand: this.BRAND, customerStatus: status, visitNumber: visits },
-      extraParams || {}
-    );
-
-    // Eventos
-    this.track('PageView'); // para garantir PageView
+    this.d('[initFlow] PageView + MenuOpen + New/Recurring', base);
+    this.track('PageView');
     this.trackCustom('MenuOpen', base);
     if (visits === 1) this.trackCustom('NewCustomer', base);
     else              this.trackCustom('RecurringCustomer', base);
   }
 
   /* ========= META PIXEL ========= */
-  private loadMetaPixel() {
+
+  private loadMetaPixel(): void {
     if (typeof window === 'undefined') return;
-    if (!this.META_PIXEL_ID || window.__MA_FB_INIT__) return;
+    const w = window as any;
 
-    (function (f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
-      if (f.fbq) return;
-      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-      if (!f._fbq) f._fbq = n;
-      n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
-      t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s);
-    })(window, this.doc, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    // já inicializado?
+    if (w.__MA_FB_INIT__ || this.fbInited) return;
 
-    window.fbq!('init', this.META_PIXEL_ID);
-    window.fbq!('track', 'PageView');
-    window.__MA_FB_INIT__ = true;
-  }
+    // garantir script único
+    let s = this.doc.getElementById('ma-fb-script') as HTMLScriptElement | null;
+    if (!s) {
+      s = this.doc.createElement('script');
+      s.id = 'ma-fb-script';
+      s.async = true;
+      s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      s.onload = () => { this.jsLoaded = true; this.d('[pixel] fbevents.js onload'); };
+      s.onerror = () => { this.d('[pixel] fbevents.js load error'); };
+      this.doc.head.appendChild(s);
+      this.d('[pixel] script appended');
+    }
 
-  private track(event: string) {
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', event);
+    // stub (sem injetar script de novo)
+    if (!w.fbq) {
+      (function (f: any) {
+        if (f.fbq) return;
+        const n: any = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+        f.fbq = n;
+        if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+      })(w);
+      this.d('[pixel] fbq stubbed');
+    }
+
+    // init uma única vez
+    try {
+      w.fbq('init', this.META_PIXEL_ID);
+      w.fbq('track', 'PageView'); // PageView inicial
+      w.__MA_FB_INIT__ = true;
+      this.fbInited = true;
+      this.d('[pixel] fbq init done');
+    } catch (e) {
+      this.d('[pixel] fbq init error', e);
     }
   }
-  private trackCustom(name: string, params?: Record<string, any>) {
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('trackCustom', name, params || {});
-    }
+
+  /** Espera o fbevents.js onload **e** o init ter sido executado */
+  private ensurePixelReady(): Promise<void> {
+    if (this.readyWait) return this.readyWait; // memoize
+    this.loadMetaPixel();
+
+    this.readyWait = new Promise<void>((resolve, reject) => {
+      const start = Date.now();
+      const timeoutMs = 8000;
+      const tick = () => {
+        const ready = this.jsLoaded && (this.fbInited || (window as any).__MA_FB_INIT__ === true);
+        if (ready) {
+          this.d('[ensure] ready in', Date.now() - start, 'ms');
+          resolve(); return;
+        }
+        if (Date.now() - start > timeoutMs) {
+          this.d('[ensure] timeout');
+          reject(new Error('fbq not ready'));
+          return;
+        }
+        setTimeout(tick, 50);
+      };
+      tick();
+    });
+
+    return this.readyWait;
+  }
+
+  private track(event: string): void {
+    (window as any).fbq?.('track', event);
+  }
+  private trackCustom(name: string, params?: Record<string, any>): void {
+    (window as any).fbq?.('trackCustom', name, params || {});
   }
 
   /* ========= VISITS ========= */
+
   private bumpVisitCount(): number {
     let visits = Number(this.readKV(this.K.visits) || 0);
     const firstSeen = this.readKV(this.K.first);
@@ -135,81 +197,52 @@ export class AcquisitionService {
     return visits;
   }
 
-  /* ========= IP GEO ========= */
-  private async tryIpProviders(): Promise<{ lat: number; lng: number; source: string } | null> {
-    const urls = [
-      `https://ipinfo.io/json?token=${encodeURIComponent(this.GEOFENCE.ipinfoToken)}`,
-      'https://ipapi.co/json/',
-      'https://ipwho.is/',
-      'https://get.geojs.io/v1/ip/geo.json',
-    ];
-    for (const url of urls) {
-      try {
-        const r = await this.fetchWithTimeout(url, this.GEOFENCE.ipTimeoutMs);
-        if (!r.ok) continue;
-        const j = await r.json();
-        const p = this.parseIpJson(j);
-        if (p) return { ...p, source: new URL(url).hostname };
-      } catch { /* ignore */ }
-    }
-    return null;
+  /* ========= QUEUE ========= */
+
+  private enqueue(name: string, params?: Record<string, any>) {
+    const q = (this.getLS(this.K.queue) as any[]) || [];
+    q.push({ name, params: params || {}, ts: Date.now() });
+    this.setLS(this.K.queue, q);
   }
 
-  private parseIpJson(j: any): Coords | null {
-    let lat = j?.latitude ?? j?.lat;
-    let lng = j?.longitude ?? j?.lon ?? j?.lng;
-    if ((!lat || !lng) && j?.loc && typeof j.loc === 'string') {
-      const [a, b] = j.loc.split(',');
-      lat = parseFloat(a); lng = parseFloat(b);
-    }
-    if (typeof lat === 'string') lat = parseFloat(lat);
-    if (typeof lng === 'string') lng = parseFloat(lng);
-    if (!isFinite(lat) || !isFinite(lng)) return null;
-    return { lat, lng };
+  private drain(extra?: Record<string, any>) {
+    const q = (this.getLS(this.K.queue) as any[]) || [];
+    if (!q.length) return;
+    this.d('[drain]', q.length, 'events');
+    for (const ev of q) this.trackCustom(ev.name, { ...(ev.params || {}), ...(extra || {}) });
+    this.setLS(this.K.queue, []);
   }
 
-  private fetchWithTimeout(url: string, ms: number) {
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), ms);
-    return fetch(url, { signal: ctrl.signal }).finally(() => clearTimeout(t));
-  }
+  /* ========= KV ========= */
 
-  private distKm(a: Coords, b: Coords): number {
-    const toRad = (x: number) => x * Math.PI / 180;
-    const R = 6371;
-    const dLat = toRad(b.lat - a.lat);
-    const dLng = toRad(b.lng - a.lng);
-    const lat1 = toRad(a.lat);
-    const lat2 = toRad(b.lat);
-    const h = Math.sin(dLat / 2) ** 2 + Math.sin(dLng / 2) ** 2 * Math.cos(lat1) * Math.cos(lat2);
-    return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
-  }
-
-  /* ========= KV (cookie + LS espelhados) ========= */
   private setCookie(name: string, value: string, days: number) {
     const d = new Date(); d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = 'expires=' + d.toUTCString();
     const host = this.doc.location.hostname;
-    const domain = host.startsWith('www.') ? host.substring(4) : host; // *.mane.com.vc
+    const domain = host.startsWith('www.') ? host.substring(4) : host;
     this.doc.cookie = `${name}=${encodeURIComponent(value)};${expires};path=/;SameSite=Lax;domain=${domain}`;
   }
   private getCookie(name: string): string | null {
-    const n = name + '=';
-    const ca = this.doc.cookie.split(';');
-    for (let c of ca) {
-      c = c.trim();
-      if (c.indexOf(n) === 0) return decodeURIComponent(c.substring(n.length));
-    }
+    const n = name + '='; const ca = this.doc.cookie.split(';');
+    for (let c of ca) { c = c.trim(); if (c.indexOf(n) === 0) return decodeURIComponent(c.substring(n.length)); }
     return null;
   }
-  private setLS(k: string, v: any) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { } }
+  private setLS(k: string, v: any) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
   private getLS(k: string): any { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch { return null; } }
   private saveKV(key: string, val: string) { this.setCookie(key, val, this.COOKIE_DAYS); this.setLS(key, val); }
   private readKV(key: string): string | null {
-    const vCookie = this.getCookie(key);
-    if (vCookie !== null) { this.setLS(key, vCookie); return vCookie; }
-    const vLS = this.getLS(key);
-    if (vLS !== null) { this.setCookie(key, vLS, this.COOKIE_DAYS); return vLS; }
+    const vCookie = this.getCookie(key); if (vCookie !== null) { this.setLS(key, vCookie); return vCookie; }
+    const vLS = this.getLS(key); if (vLS !== null) { this.setCookie(key, vLS, this.COOKIE_DAYS); return vLS; }
     return null;
+  }
+
+  /* ========= DEBUG ========= */
+  private d(...args: any[]) {
+    try {
+      if (localStorage.getItem('ma_debug') === '1') {
+        // eslint-disable-next-line no-console
+        console.log('[MA]', ...args);
+      }
+    } catch {}
   }
 }

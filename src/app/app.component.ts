@@ -74,13 +74,13 @@ export class AppComponent implements OnInit {
           '/menus'
         ]);
 
-        // 1) Se saiu da tela de seleção, concede consent automaticamente
+        // 1) Fallback: saiu da tela de seleção e AINDA não tem consent → ativa
         const isSelection = (u: string) => /^\/(unidade|location-selection|selecionar-unidade)(\/|$)/i.test(u || '');
         const cameFromSelection = isSelection(was);
         const nowIsNotSelection = !isSelection(url);
-        if (cameFromSelection && nowIsNotSelection) {
+        if (cameFromSelection && nowIsNotSelection && !this.hasConsent()) {
           this.zone.runOutsideAngular(() => {
-            try { this.acq.acceptAndRun(); } catch {}
+            try { this.acq.activateAndFlush({ path: url, trigger: 'route-exit-selection' }); } catch {}
           });
         }
 
@@ -102,7 +102,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.iconService.registerIcons();
-    // Se já houver consentimento salvo, inicializa o fluxo ao subir o app
+    // Pré-aquece conexões e inicia se já houver consent
+    this.acq.prime();
     this.acq.boot();
   }
 
