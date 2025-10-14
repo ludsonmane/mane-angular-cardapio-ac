@@ -1,19 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import { AcquisitionService } from './shared/acquisition/acquisition.service';
 import { IconService } from './shared/services/icon/icon.service';
 import { LanguageService } from './shared/services/language/language.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
-
-declare global {
-  interface Window {
-    MA?: {
-      accept?: () => void;
-      setUnit?: (slug: string) => void;
-      fireNow?: () => void;
-      runIfConsented?: () => void;
-    };
-  }
-}
 
 @Component({
   selector: 'app-root',
@@ -29,7 +19,8 @@ export class AppComponent implements OnInit {
     private iconService: IconService,
     private languageService: LanguageService,
     private router: Router,
-    private zone: NgZone
+    private zone: NgZone,
+    private acq: AcquisitionService
   ) {
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
@@ -38,45 +29,45 @@ export class AppComponent implements OnInit {
         const was = this.prevUrl;
         this.prevUrl = url;
 
-        // sua lógica do menu (se precisar)
-        const routesWithMenu = [
+        // --- Controle da exibição do menu (considera prefixos) ---
+        const startsWithAny = (p: string[]) => p.some(x => url === x || url.startsWith(x + '/'));
+        this.showMenu = startsWithAny([
           '/home',
-          '/restaurantes/home',
+          '/restaurantes',
           '/buscar',
           '/favoritos',
           '/opcoes',
           '/menus'
-        ];
-        this.showMenu = routesWithMenu.includes(url);
+        ]);
 
-        // 1) Se saiu da tela de seleção, concede consent automaticamente
-        const cameFromSelection = /^\/(unidade|location-selection|selecionar-unidade)(\/|$)/i.test(was || '');
-        const nowIsNotSelection = !/^\/(unidade|location-selection|selecionar-unidade)(\/|$)/i.test(url);
+        // --- 1) Se saiu da tela de seleção, concede consent automaticamente ---
+        const isSelection = (u: string) => /^\/(unidade|location-selection|selecionar-unidade)(\/|$)/i.test(u || '');
+        const cameFromSelection = isSelection(was);
+        const nowIsNotSelection = !isSelection(url);
         if (cameFromSelection && nowIsNotSelection) {
+          // Aceita LGPD e inicia o fluxo (geofence + pixel + eventos)
           this.zone.runOutsideAngular(() => {
-            setTimeout(() => { try { window.MA?.accept?.(); } catch {} }, 0);
+            try { this.acq.acceptAndRun(); } catch {}
           });
         }
 
-        // 2) Se rota é /cardapio/:slug, tenta capturar a unidade (se existir na URL)
+        // --- 2) Se rota é /cardapio/:slug, captura a unidade e persiste ---
         const m = url.match(/^\/cardapio\/([^\/?#]+)/i);
         if (m) {
           const slug = decodeURIComponent(m[1]);
-          this.zone.runOutsideAngular(() => {
-            setTimeout(() => { try { window.MA?.setUnit?.(slug); } catch {} }, 0);
-          });
+          try { localStorage.setItem('place_id', slug); } catch {}
         }
 
-        // 3) Sempre tenta disparar após navegação (só dispara se já houver consent)
+        // --- 3) Evento leve por navegação (só registra se já houver consent) ---
         this.zone.runOutsideAngular(() => {
-          setTimeout(() => {
-            try { (window.MA?.fireNow || window.MA?.runIfConsented)?.(); } catch {}
-          }, 0);
+          try { this.acq.fireNow('MenuOpen', { path: url }); } catch {}
         });
       });
   }
 
   ngOnInit(): void {
     this.iconService.registerIcons();
+    // Se já houver consentimento salvo, inicializa o fluxo ao subir o app
+    this.acq.boot();
   }
 }

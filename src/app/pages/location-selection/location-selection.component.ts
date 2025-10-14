@@ -5,6 +5,7 @@ import {
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import { UnitLocationBottomSheetComponent } from '../../shared/components/unit-location-bottom-sheet/unit-location-bottom-sheet.component';
+import { AcquisitionService } from '../../shared/acquisition/acquisition.service';
 
 @Component({
   selector: 'app-location-selection',
@@ -16,36 +17,40 @@ export class LocationSelectionComponent implements OnInit {
   constructor(
     private matBottomSheet: MatBottomSheet,
     private router: Router,
-    private zone: NgZone
+    private zone: NgZone,
+    private acq: AcquisitionService
   ) {}
 
   ngOnInit(): void {
-    const ref: MatBottomSheetRef<
-      UnitLocationBottomSheetComponent,
-      string | undefined
-    > = this.matBottomSheet.open(UnitLocationBottomSheetComponent, {
-      hasBackdrop: false,
-    });
+    const ref: MatBottomSheetRef<UnitLocationBottomSheetComponent, string | undefined> =
+      this.matBottomSheet.open(UnitLocationBottomSheetComponent, {
+        hasBackdrop: false,
+      });
 
-    // Aviso mini (sem tocar no HTML do sheet)
+    // aviso mini (sem tocar no HTML do sheet)
     ref.afterOpened().subscribe(() => this.injectConsentNote());
 
-    // Recebe o slug escolhido via dismiss(slug)
+    // recebe o slug escolhido via dismiss(slug)
     ref.afterDismissed().subscribe((slug) => {
       if (!slug) return;
       this.acceptAndGo(slug);
     });
   }
 
-  /** Clique = aceite (só marca) + setUnit + navegação; eventos disparam na próxima tela */
+  /**
+   * Clique = aceite LGPD + seta unidade + navegação
+   * Eventos (PageView/MenuOpen/New/Recurring) serão disparados pelo AcquisitionService
+   */
   private acceptAndGo(slug: string) {
-    try { window.MA?.accept?.(); } catch {}
-    try { window.MA?.setUnit?.(slug); } catch {}
+    try { localStorage.setItem('place_id', slug); } catch {}
 
-    this.router.navigate(['/cardapio', slug]).then(() => {
-      // dá um tick para a nova rota montar; então dispara rotina padrão
-      setTimeout(() => { try { window.MA?.runIfConsented?.(); } catch {} }, 0);
+    // aceita LGPD e inicia fluxo (geofence + pixel + eventos)
+    this.zone.runOutsideAngular(() => {
+      try { this.acq.acceptAndRun(); } catch {}
     });
+
+    // navega para o cardápio da unidade
+    this.router.navigate(['/cardapio', slug]);
   }
 
   /** Injeta o texto mini "Ao tocar na unidade..." no rodapé do Bottom Sheet */
