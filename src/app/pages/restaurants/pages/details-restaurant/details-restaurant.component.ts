@@ -11,14 +11,14 @@ import { ProductService } from '../../../../shared/services/product/product.serv
     styleUrl: './details-restaurant.component.css'
 })
 export class DetailsRestaurantComponent implements OnInit, OnDestroy {
-    restaurant!: any
-    search: string = ''
-    selectedCategory: string = 'Tudo'
+    restaurant!: any;
+    search: string = '';
+    selectedCategory: string = ''; // será preenchido com a 1ª categoria real
 
-    listChefTips: any[] = []
-    listCategories: any[] = []
-    listProducts: any[] = []
-    filteredProducts: any[] = []
+    listChefTips: any[] = [];
+    listCategories: any[] = [];
+    listProducts: any[] = [];
+    filteredProducts: any[] = [];
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -29,99 +29,112 @@ export class DetailsRestaurantComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe(params => {
-            
-            const id = params['id']
+            const id = params['id'];
             if (id) {
-                this.loadDetailsRestaurand(id)
-                this.loadChefTips()
-                this.loadAllProducts(id)
+                this.loadDetailsRestaurand(id);
+                this.loadChefTips();
+                this.loadAllProducts(id);
             }
-        })
+        });
     }
 
     ngOnDestroy(): void {
-        this.clearInlineTheme()
+        this.clearInlineTheme();
     }
 
     loadDetailsRestaurand(id: string): void {
         this.restaurantService.getRestaurantById(id)
             .subscribe((response) => {
                 if (response) {
-                    this.restaurant = response.data[0]
-                    const theme = response.data[0].theme
-                    this.document.documentElement.style.setProperty('--header-bg', theme.headerBg)
-                    this.document.documentElement.style.setProperty('--color-text', theme.colorText)
-                    this.document.documentElement.style.setProperty('--button-bg', theme.buttonBg)
+                    this.restaurant = response.data[0];
+                    const theme = response.data[0].theme;
+                    this.document.documentElement.style.setProperty('--header-bg', theme.headerBg);
+                    this.document.documentElement.style.setProperty('--color-text', theme.colorText);
+                    this.document.documentElement.style.setProperty('--button-bg', theme.buttonBg);
                 }
-            })
+            });
     }
 
     cancelSearch(): void {
-        this.search = ''
-        // this.loadAllProducts()
+        this.search = '';
+        this.filterProducts();
     }
 
     loadChefTips(): void {
         this.productService.getChefTips()
-            .subscribe((response) => this.listChefTips = response)
+            .subscribe((response) => this.listChefTips = response);
     }
 
+    /** Monta lista de categorias únicas e define a PRIMEIRA como selecionada (se ainda não houver uma) */
     refineProducts(listData: any): void {
-        const categories = listData.map((element: any) => element.categories)
-        const refinedCategories = []
-        for(let i = 0; i < categories.length; i++) {
-            for (let j = 0; j< categories[i].length; j++) {
-                refinedCategories.push(categories[i][j].name)
+        const categoriesArrays = listData.map((element: any) => element?.categories ?? []);
+        const refinedCategories: string[] = [];
+
+        for (let i = 0; i < categoriesArrays.length; i++) {
+            const catArr = categoriesArrays[i];
+            for (let j = 0; j < catArr.length; j++) {
+                const name = catArr[j]?.name;
+                if (name) refinedCategories.push(name);
             }
         }
-        this.listCategories = [... new Set(refinedCategories)]
-        this.filterProducts()
+
+        // categorias únicas (mantendo ordem de aparição)
+        this.listCategories = [...new Set(refinedCategories)];
+
+        // Se ainda não há categoria ativa, seleciona a PRIMEIRA
+        if (!this.selectedCategory && this.listCategories.length > 0) {
+            this.selectedCategory = this.listCategories[0];
+        }
+
+        this.filterProducts();
     }
 
     loadAllProducts(zigBarId: string): void {
         this.productService.getProductByRestaurant(zigBarId)
             .subscribe((response: any) => {
-                const dataResult = response.data
+                const page1 = response.data || [];
+                const pageCount = response?.meta?.pagination?.pageCount || 1;
 
-                if (response.meta.pagination.pageCount > 1) {
+                if (pageCount > 1) {
                     this.productService.getProductByRestaurant(zigBarId, 2)
-                        .subscribe((response: any) => {
-                            this.listProducts = [...dataResult, ...response.data]
-                            //console.log(this.listProducts)
-                            this.refineProducts(this.listProducts)
-                            this.filterProducts()
-                        })
+                        .subscribe((response2: any) => {
+                            const page2 = response2.data || [];
+                            this.listProducts = [...page1, ...page2];
+                            this.refineProducts(this.listProducts);
+                        });
                 } else {
-                    this.listProducts = response.data
-                    //console.log(this.listProducts)
-                    this.refineProducts(this.listProducts)
-                    this.filterProducts()
+                    this.listProducts = page1;
+                    this.refineProducts(this.listProducts);
                 }
-            })
+            });
     }
 
+    /** Clique nos chips: se clicar na ativa, vira "Tudo"; senão, seleciona a clicada */
     setCategory(category: string): void {
-        (this.selectedCategory == category) ? this.selectedCategory = 'Tudo' : this.selectedCategory = category
-        this.filterProducts()
+        this.selectedCategory = (this.selectedCategory === category) ? 'Tudo' : category;
+        this.filterProducts();
     }
 
-    filterProducts() {
+    /** Filtra por categoria e busca */
+    filterProducts(): void {
         this.filteredProducts = this.listProducts.filter(product => {
-            const allCategories = product.categories.map((element: any) => element.name)
-            const matchesCategory = this.selectedCategory === 'Tudo' ||
-                allCategories.includes(this.selectedCategory)
+            const productCategories = (product?.categories ?? []).map((c: any) => c?.name).filter(Boolean);
+
+            const matchesCategory = this.selectedCategory === 'Tudo'
+                ? true
+                : productCategories.includes(this.selectedCategory);
 
             const matchesSearch = this.search
-                ? product.name.toLowerCase().includes(this.search.toLowerCase())
-                : true
+                ? (product?.name || '').toLowerCase().includes(this.search.toLowerCase())
+                : true;
 
-            return matchesCategory && matchesSearch
-        })
+            return matchesCategory && matchesSearch;
+        });
     }
 
     clearInlineTheme(): void {
-        this.document.documentElement.style.removeProperty('--header-bg')
-        this.document.documentElement.style.removeProperty('--color-text')
-        this.document.documentElement.style.removeProperty('--button-bg')
+        this.document.documentElement.style.removeProperty('--header-bg');
+        this.document.documentElement.style.removeProperty('--color-text');
+        this.document.documentElement.style.removeProperty('--button-bg');
     }
 }

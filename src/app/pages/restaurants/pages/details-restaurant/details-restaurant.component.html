@@ -18,31 +18,22 @@
           [placeholder]="'RESTAURANTS.SEARCH_RESTAURANT' | translate"
           (input)="filterProducts()"
         />
-        <mat-icon *ngIf="search" class="icon-clear" (click)="cancelSearch()" svgIcon="close"></mat-icon>
+        <mat-icon
+          *ngIf="search"
+          class="icon-clear"
+          (click)="cancelSearch()"
+          svgIcon="close"
+        ></mat-icon>
       </div>
-      <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">{{ 'BUTTONS.CANCEL' | translate }}</button>
+      <button *ngIf="search" class="btn-cancel" (click)="cancelSearch()">
+        {{ 'BUTTONS.CANCEL' | translate }}
+      </button>
     </div>
-    <!--
-    @if (search === '') {
-      <div class="content-tips">
-        <h3>{{ 'RESTAURANTS.CHEF_TIPS' | translate }}</h3>
-        <div class="cards-wrapper">
-          @for (item of listChefTips; track item) {
-            <app-product-card
-              class="product-card-vertical"
-              layout="vertical"
-              [id]="item.id"
-              [imageUrl]="item.imageUrl"
-              [title]="item.title"
-              [price]="item.currentPrice"
-            ></app-product-card>
-          }
-        </div>
-      </div>
-    }
-  -->
+
     <div class="content-menu">
       <h3 *ngIf="search != ''">{{ 'RESTAURANTS.CHECKOUT_MENU' | translate }}</h3>
+
+      <!-- CATEGORIAS -->
       <div class="categories">
         @for (item of listCategories; track item) {
           <button
@@ -55,10 +46,11 @@
         }
       </div>
 
+      <!-- PRODUTOS DA CATEGORIA ATIVA -->
       <div class="products">
         @for (item of filteredProducts; track item) {
           <app-product-card
-            [id]="item.id"
+            [id]="item.documentId || item.id"
             [title]="item.name"
             [description]="item.description"
             [price]="item.price/100"

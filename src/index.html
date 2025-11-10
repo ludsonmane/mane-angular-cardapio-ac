@@ -5,13 +5,20 @@
   <title>Mané Mercado, Vírgula</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.svg">
+
+  <!-- Anti-cache (além dos headers do Firebase) -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;800&family=Merriweather:ital,wght@0,300;0,900;1,300;1,900&display=swap" rel="stylesheet">
 
+  <!-- PWA (opcional; sem SW ativo, vira só manifest) -->
   <link rel="manifest" href="manifest.webmanifest">
 
   <!-- Acelera o pixel no prod -->
@@ -19,14 +26,11 @@
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
   <link rel="dns-prefetch" href="https://www.facebook.com">
   <link rel="preconnect" href="https://www.facebook.com" crossorigin>
-
-  <!-- Ordem: pixel primeiro, depois a máquina de aquisição -->
-  <!-- (Servidos a partir de /public conforme angular.json) -->
 </head>
 <body>
   <app-root></app-root>
 
-  <!-- noscript do PageView (tem que ficar no BODY) -->
+  <!-- noscript do PageView (ID novo) -->
   <noscript>
     <img height="1" width="1" style="display:none" alt=""
          src="https://www.facebook.com/tr?id=1160688802149033&ev=PageView&noscript=1"/>

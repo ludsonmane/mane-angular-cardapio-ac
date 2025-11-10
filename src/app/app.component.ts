@@ -3,8 +3,7 @@ import { AcquisitionService } from './shared/acquisition/acquisition.service';
 import { IconService } from './shared/services/icon/icon.service';
 import { LanguageService } from './shared/services/language/language.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { filter, take, first, switchMap } from 'rxjs';
-import { SwUpdate, VersionEvent } from '@angular/service-worker';
+import { filter, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,24 +25,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private zone: NgZone,
     private acq: AcquisitionService,
-    private appRef: ApplicationRef,
-    private sw: SwUpdate
+    private appRef: ApplicationRef
   ) {
-    // --- SW: checa e aplica updates automaticamente (evita F5) ---
-    if (this.sw.isEnabled) {
-      this.appRef.isStable
-        .pipe(first(isStable => isStable))
-        .pipe(switchMap(() => this.sw.checkForUpdate()))
-        .subscribe();
-
-      this.sw.versionUpdates
-        .pipe(filter((e: VersionEvent) => e.type === 'VERSION_READY'))
-        .subscribe(async () => {
-          try { await this.sw.activateUpdate(); } catch {}
-          location.reload();
-        });
-    }
-
     // --- Disparo garantido no primeiro load (após a primeira NavigationEnd) ---
     this.router.events
       .pipe(filter(e => e instanceof NavigationEnd), take(1))

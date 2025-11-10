@@ -40,8 +40,7 @@
                 { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
                 { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
               ],
-              "outputHashing": "all",
-              "serviceWorker": "ngsw-config.json"
+              "outputHashing": "all"
             },
             "development": {
               "optimization": false,
@@ -80,7 +79,5 @@
       }
     }
   },
-  "cli": {
-    "analytics": "d72af91c-dee0-460c-8631-75ebba3ed89c"
-  }
+  "cli": { "analytics": "d72af91c-dee0-460c-8631-75ebba3ed89c" }
 }

@@ -1,6 +1,6 @@
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,8 @@ import { RestaurantsModule } from './pages/restaurants/restaurants.module';
 import { SearchModule } from './pages/search/search.module';
 import { FavoritesModule } from './pages/favorites/favorites.module';
 import { OptionsModule } from './pages/options/options.module';
-import { ServiceWorkerModule } from '@angular/service-worker';
+// ❌ Removido: ServiceWorkerModule para eliminar cache do app-shell
+// import { ServiceWorkerModule } from '@angular/service-worker';
 
 // loader de i18n
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,11 +41,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     FavoritesModule,
     OptionsModule,
 
-    // SW: registra imediatamente em produção → evita precisar de F5
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      registrationStrategy: 'registerImmediately',
-    }),
+    // ❌ Service Worker desativado por enquanto
+    // ServiceWorkerModule.register('ngsw-worker.js', {
+    //   enabled: false,
+    //   registrationStrategy: 'registerImmediately',
+    // }),
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],

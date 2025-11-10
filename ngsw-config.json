@@ -5,16 +5,31 @@
     {
       "name": "app",
       "installMode": "prefetch",
+      "updateMode": "prefetch",
       "resources": {
         "files": [
           "/favicon.ico",
-          "/index.csr.html",
-          "/index.html",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
         ]
       }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/i18n/*.json"
+        ]
+      }
     }
+  ],
+  "dataGroups": [],
+  "navigationUrls": [
+    "/**",
+    "!/api/**"
   ]
 }

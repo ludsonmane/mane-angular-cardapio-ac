@@ -17,15 +17,14 @@ export class AcquisitionService {
   } as const;
 
   /** flags internas */
-  private jsLoaded = false;         // fbevents.js carregado (onload)
-  private fbInited = false;         // fbq('init') concluído (flag)
-  private readyWait?: Promise<void>; // memoize do ensurePixelReady
+  private jsLoaded = false;           // fbevents.js carregado (ou detectado como já carregado)
+  private fbInited = false;           // fbq('init') executado
+  private readyWait?: Promise<void>;  // memoize do ensurePixelReady
 
   constructor(@Inject(DOCUMENT) private doc: Document) {}
 
   /* ========= PUBLIC API ========= */
 
-  /** Pré-aquecer conexões (use no ngOnInit do App) */
   public prime(): void {
     try {
       const p1 = this.doc.createElement('link'); p1.rel = 'preconnect'; p1.href = 'https://connect.facebook.net';
@@ -35,7 +34,6 @@ export class AcquisitionService {
     } catch {}
   }
 
-  /** Se já houver consentimento salvo, garante pixel e dispara base */
   public async boot(): Promise<void> {
     const consent = this.readKV(this.K.consent);
     if (consent === 'granted') {
@@ -47,47 +45,23 @@ export class AcquisitionService {
     }
   }
 
-  /** Aceite no clique da unidade: salva consent, garante pixel e drena fila */
   public async activateAndFlush(extra?: Record<string, any>): Promise<void> {
     this.saveKV(this.K.consent, 'granted');
     this.d('[activateAndFlush] consent=granted; ensuring pixel...');
     try { await this.ensurePixelReady(); } catch (e) { this.d('[activateAndFlush] ensure error', e); }
     this.initTrackingFlow(extra);
     this.drain(extra);
-
-    // rede de segurança: re-flush 1s depois
-    setTimeout(() => {
-      this.d('[activateAndFlush] safety re-flush');
-      this.drain(extra);
-    }, 1000);
+    setTimeout(() => { this.d('[activateAndFlush] safety re-flush'); this.drain(extra); }, 1000);
   }
 
-  /** Back-compat */
-  public acceptAndRun(extra?: Record<string, any>): Promise<void> {
-    return this.activateAndFlush(extra);
-  }
+  public acceptAndRun(extra?: Record<string, any>): Promise<void> { return this.activateAndFlush(extra); }
+  public deny(): void { this.saveKV(this.K.consent, 'denied'); this.d('[deny] consent=denied'); }
 
-  public deny(): void {
-    this.saveKV(this.K.consent, 'denied');
-    this.d('[deny] consent=denied');
-  }
-
-  /** Envia agora; se ainda não puder, enfileira */
   public async fireNow(name: string, params?: Record<string, any>): Promise<void> {
     const consent = this.readKV(this.K.consent);
-    if (consent !== 'granted') {
-      this.d('[fireNow] no consent → enqueue', name, params);
-      this.enqueue(name, params);
-      return;
-    }
-    try {
-      await this.ensurePixelReady();
-      this.d('[fireNow] sending', name, params);
-      (window as any).fbq?.('trackCustom', name, params || {});
-    } catch (e) {
-      this.d('[fireNow] ensure failed → enqueue', name, e);
-      this.enqueue(name, params);
-    }
+    if (consent !== 'granted') { this.d('[fireNow] no consent → enqueue', name, params); this.enqueue(name, params); return; }
+    try { await this.ensurePixelReady(); (window as any).fbq?.('trackCustom', name, params || {}); this.d('[fireNow] sent', name, params); }
+    catch (e) { this.d('[fireNow] ensure failed → enqueue', name, e); this.enqueue(name, params); }
   }
 
   /* ========= CORE FLOW ========= */
@@ -112,23 +86,30 @@ export class AcquisitionService {
     if (typeof window === 'undefined') return;
     const w = window as any;
 
-    // já inicializado?
-    if (w.__MA_FB_INIT__ || this.fbInited) return;
-
     // garantir script único
     let s = this.doc.getElementById('ma-fb-script') as HTMLScriptElement | null;
     if (!s) {
       s = this.doc.createElement('script');
       s.id = 'ma-fb-script';
       s.async = true;
+      // ❗️NADA de s.crossOrigin = 'anonymous' (isso quebra por CORS no localhost)
       s.src = 'https://connect.facebook.net/en_US/fbevents.js';
       s.onload = () => { this.jsLoaded = true; this.d('[pixel] fbevents.js onload'); };
       s.onerror = () => { this.d('[pixel] fbevents.js load error'); };
       this.doc.head.appendChild(s);
       this.d('[pixel] script appended');
+    } else {
+      // script já existe no DOM: se já carregou (cache/app-shell), marque como pronto
+      // @ts-ignore
+      if ((s as any).complete === true || (s as any).readyState === 'complete') {
+        this.jsLoaded = true;
+        this.d('[pixel] script already complete (cached)');
+      } else if (!s.onload) {
+        s.onload = () => { this.jsLoaded = true; this.d('[pixel] fbevents.js onload (existing)'); };
+      }
     }
 
-    // stub (sem injetar script de novo)
+    // stub fbq se preciso
     if (!w.fbq) {
       (function (f: any) {
         if (f.fbq) return;
@@ -140,34 +121,42 @@ export class AcquisitionService {
       this.d('[pixel] fbq stubbed');
     }
 
-    // init uma única vez
-    try {
-      w.fbq('init', this.META_PIXEL_ID);
-      w.fbq('track', 'PageView'); // PageView inicial
-      w.__MA_FB_INIT__ = true;
-      this.fbInited = true;
-      this.d('[pixel] fbq init done');
-    } catch (e) {
-      this.d('[pixel] fbq init error', e);
+    // init (idempotente)
+    if (!w.__MA_FB_INIT__ && !this.fbInited) {
+      try {
+        w.fbq('init', this.META_PIXEL_ID);
+        w.fbq('track', 'PageView');
+        w.__MA_FB_INIT__ = true;
+        this.fbInited = true;
+        this.d('[pixel] fbq init done');
+      } catch (e) {
+        this.d('[pixel] fbq init error', e);
+      }
     }
   }
 
-  /** Espera o fbevents.js onload **e** o init ter sido executado */
+  /**
+   * Pronto quando:
+   *  - fbq é função
+   *  - init já foi chamado (fbInited / __MA_FB_INIT__ = true)
+   * Não dependemos de 'onload' exclusivamente (funciona com app-shell/F5).
+   */
   private ensurePixelReady(): Promise<void> {
-    if (this.readyWait) return this.readyWait; // memoize
+    if (this.readyWait) return this.readyWait;
     this.loadMetaPixel();
 
     this.readyWait = new Promise<void>((resolve, reject) => {
       const start = Date.now();
       const timeoutMs = 8000;
       const tick = () => {
-        const ready = this.jsLoaded && (this.fbInited || (window as any).__MA_FB_INIT__ === true);
-        if (ready) {
-          this.d('[ensure] ready in', Date.now() - start, 'ms');
+        const fbqFn = typeof (window as any).fbq === 'function';
+        const inited = this.fbInited || (window as any).__MA_FB_INIT__ === true;
+        if (fbqFn && inited) {
+          this.d('[ensure] ready in', Date.now() - start, 'ms', '| jsLoaded=', this.jsLoaded);
           resolve(); return;
         }
         if (Date.now() - start > timeoutMs) {
-          this.d('[ensure] timeout');
+          this.d('[ensure] timeout | fbqFn=', fbqFn, ' inited=', inited, ' jsLoaded=', this.jsLoaded);
           reject(new Error('fbq not ready'));
           return;
         }
@@ -179,12 +168,8 @@ export class AcquisitionService {
     return this.readyWait;
   }
 
-  private track(event: string): void {
-    (window as any).fbq?.('track', event);
-  }
-  private trackCustom(name: string, params?: Record<string, any>): void {
-    (window as any).fbq?.('trackCustom', name, params || {});
-  }
+  private track(event: string): void { (window as any).fbq?.('track', event); }
+  private trackCustom(name: string, params?: Record<string, any>): void { (window as any).fbq?.('trackCustom', name, params || {}); }
 
   /* ========= VISITS ========= */
 
@@ -215,12 +200,11 @@ export class AcquisitionService {
 
   /* ========= KV ========= */
 
+  // Sem 'domain=' → grava no host atual (mais seguro em Firebase/custom domains)
   private setCookie(name: string, value: string, days: number) {
     const d = new Date(); d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = 'expires=' + d.toUTCString();
-    const host = this.doc.location.hostname;
-    const domain = host.startsWith('www.') ? host.substring(4) : host;
-    this.doc.cookie = `${name}=${encodeURIComponent(value)};${expires};path=/;SameSite=Lax;domain=${domain}`;
+    this.doc.cookie = `${name}=${encodeURIComponent(value)};${expires};path=/;SameSite=Lax`;
   }
   private getCookie(name: string): string | null {
     const n = name + '='; const ca = this.doc.cookie.split(';');
@@ -237,12 +221,5 @@ export class AcquisitionService {
   }
 
   /* ========= DEBUG ========= */
-  private d(...args: any[]) {
-    try {
-      if (localStorage.getItem('ma_debug') === '1') {
-        // eslint-disable-next-line no-console
-        console.log('[MA]', ...args);
-      }
-    } catch {}
-  }
+  private d(...args: any[]) { try { if (localStorage.getItem('ma_debug') === '1') console.log('[MA]', ...args); } catch {} }
 }
